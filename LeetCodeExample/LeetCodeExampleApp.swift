@@ -11,7 +11,7 @@ import SwiftUI
 struct LeetCodeExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(leetCodeViewModel: LeetCodeViewModel(leetCode: LeetCode()))
         }
     }
 }

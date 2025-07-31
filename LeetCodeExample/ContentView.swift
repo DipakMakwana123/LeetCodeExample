@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel: LeetCodeViewModel
+    
+    init(leetCodeViewModel: LeetCodeViewModel) {
+        _viewModel = StateObject(wrappedValue: LeetCodeViewModel(leetCode: LeetCode()))
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(alignment: .leading) {
+            List {
+                ForEach(viewModel.data, id: \.id) { item in
+                    Text(item.title)
+                }
+            }
+        }
+        .onAppear {
+            viewModel.minWindow()
+            
         }
         .padding()
     }
+    
+    
 }
 
 #Preview {
-    ContentView()
+    ContentView(leetCodeViewModel: LeetCodeViewModel(leetCode: LeetCode()))
 }
