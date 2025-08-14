@@ -13,7 +13,6 @@ struct ContentView: View {
     init(leetCodeViewModel: LeetCodeViewModel) {
         _viewModel = StateObject(wrappedValue: LeetCodeViewModel(leetCode: LeetCode()))
     }
-    
     var body: some View {
         VStack(alignment: .leading) {
             List {
@@ -23,13 +22,10 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            viewModel.minWindow()
-            
+            viewModel.maxSlidingWindow()
         }
         .padding()
     }
-    
-    
 }
 
 #Preview {
