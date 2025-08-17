@@ -46,8 +46,7 @@ class Tree {
     }
     
     func createTree(from array: [Int?]) -> TreeNode? {
-     
-        guard !array.isEmpty else { return nil }
+             guard !array.isEmpty else { return nil }
         let nodes: [TreeNode?] = array.map { $0.map { TreeNode($0) } }
         
         // Connect nodes

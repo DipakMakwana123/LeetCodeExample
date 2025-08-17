@@ -44,42 +44,20 @@ struct PriorityQueue {
 }
 
 struct LinkList {
-    func mergeKLists() {
-        let list1 = createListNode(from: [1, 4, 5])
-        let list2 = createListNode(from: [1, 3, 4])
-        let list3 = createListNode(from: [2, 6])
-        let merged = mergeKLists([list1, list2, list3])
-        printListNode(merged)
-      //  debugPrint(merged as Any)
-
-        //Output: [1,1,2,3,4,4,5,6]
-//        Explanation: The linked-lists are:
-//        [
-//          1->4->5,
-//          1->3->4,
-//          2->6
-//        ]
-//        merging them into one sorted linked list:
-//        1->1->2->3->4->4->5->6
-    }
-    
     func printListNode(_ head: ListNode?) {
-        print(convertListNodeToArray(head))
+        print(LL4_convertListNodeToArray(head))
     }
     
-    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+    func LL1_mergeKLists(_ lists: [ListNode?]) -> ListNode? {
         var queue = PriorityQueue()
-    
         // Add initial nodes to queue
         for list in lists {
             if let node = list {
                 queue.push(node)
             }
         }
-
         let dummy = ListNode(0)
         var current = dummy
-
         while !queue.isEmpty {
             if let smallest = queue.pop() {
                 current.next = smallest
@@ -92,7 +70,7 @@ struct LinkList {
 
         return dummy.next
     }
-    func createListNode(from array: [Int]) -> ListNode? {
+    func LL2_createListNode(from array: [Int]) -> ListNode? {
         guard !array.isEmpty else { return nil }
         let head = ListNode(array[0])
         var current = head
@@ -102,7 +80,7 @@ struct LinkList {
         }
         return head
     }
-    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+    func LL3_mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
         // Create a dummy head node to simplify handling the beginning of the merged list.
         let dummyHead: ListNode = ListNode()
         // 'current' pointer will always point to the last node added to the merged list.
@@ -138,7 +116,7 @@ struct LinkList {
         // The merged list starts from dummyHead.next, as dummyHead was just a placeholder.
         return dummyHead.next
     }
-    func convertListNodeToArray(_ head: ListNode?) -> [Int]{
+    func LL4_convertListNodeToArray(_ head: ListNode?) -> [Int]{
         var current = head
         var result: [Int] = []
         while current != nil {
@@ -147,7 +125,7 @@ struct LinkList {
         }
         return result
     }
-    func findMedian(array: [Int]) -> Double{
+    func LL5_findMedian(array: [Int]) -> Double{
         var median: Double = 0.0
         let cnt = array.count
         if cnt % 2 == 1 {

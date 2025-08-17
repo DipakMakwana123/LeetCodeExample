@@ -6,32 +6,26 @@
 //
 
 import Foundation
-
-
-
-
 class LeetCodeViewModel: ObservableObject {
-    
-    private var leetCode: LeetCode
-    private var linkList: LinkList
+
     private var slidingWindowVM: SlidingWindowViewModel
     private var stringVM: StringViewModel
     private var arrayVM: DArrayViewModel
     private var linkedListVM: LinkedListViewModel
     private var stackVM: StackViewModel
+    private var treeVM: TreeViewModel?
     
     @Published var data: [LeetCodeModel]
     
-    init(leetCode: LeetCode = LeetCode() ,
+    init(
          _ linkList: LinkList = .init(),
          _ slidingWindowVM: SlidingWindowViewModel = .init(),
          _ stringViewModel: StringViewModel = .init(),
          _ arrayVM: DArrayViewModel = .init(),
          _ linkedListVM: LinkedListViewModel = .init(),
-         _ stackVM: StackViewModel = .init()) {
+         _ stackVM: StackViewModel = .init(),
+         _ treeVM: TreeViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
-        self.leetCode = leetCode
-        self.linkList = linkList
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
         self.linkedListVM = linkedListVM
@@ -43,9 +37,12 @@ class LeetCodeViewModel: ObservableObject {
         ]
     }
     func findMaxDepth() {
-        leetCode.findMaxDepth(array: [3, 9, 20, nil, nil, 15, 7])
+        treeVM?.findMaxDepth()
     }
     // MARK: - String
+    func findSubstring() {
+        stringVM.findSubstring()
+    }
     func validParenthese() {
         stringVM.validParenthese()
     }
@@ -58,10 +55,28 @@ class LeetCodeViewModel: ObservableObject {
     func checkBracketStringValidation() {
         stringVM.checkBracketStringValidation()
     }
+    func largestNumber(){
+        stringVM.largestNumber()
+    }
     func isMatch() {
         stringVM.isMatch()
     }
+    func groupAnagrams() {
+        stringVM.groupAnagrams()
+    }
+    func encodeDecode() {
+        stringVM.encodeDecode()
+    }
     // MARK: - Array
+    func solveSudoku() {
+        arrayVM.solveSudoku()
+    }
+    func sortColors() {
+        arrayVM.sortColors()
+    }
+    func longestConsecutive(){
+        arrayVM.longestConsecutive()
+    }
     func productOfArrayExceptSelf() {
         arrayVM.productOfArrayExceptSelf()
     }
@@ -71,11 +86,15 @@ class LeetCodeViewModel: ObservableObject {
     func merge() {
         arrayVM.merge()
     }
+    func majorityElement(){
+        arrayVM.majorityElement()
+    }
+    // MARK: - Linked List
     func findMedian() {
         linkedListVM.findMedian()
     }
-    func trapingRainWater() {
-        arrayVM.trapingRainWater()
+    func maxArea() {
+        arrayVM.maxArea()
     }
     func maxProfit() {
         arrayVM.maxProfit()
@@ -92,9 +111,24 @@ class LeetCodeViewModel: ObservableObject {
     func getSumOfTwoNumber() {
         arrayVM.getSumOfTwoNumber()
     }
+    func firstMissingPositive() {
+        arrayVM.firstMissingPositive()
+    }
+    func maxSubArray(){
+        arrayVM.maxSubArray()
+    }
+    func maxProduct(){
+        arrayVM.maxProduct()
+    }
+    func findMin(){
+        arrayVM.findMin()
+    }
+    func isValidSudoku(){
+        arrayVM.isValidSudoku()
+    }
     // MARK: Linked List
     func mergeKLists() {
-        linkList.mergeKLists()
+        linkedListVM.mergeKLists()
     }
     func maxSlidingWindow() {
         slidingWindowVM.maxSlidingWindow()
@@ -105,6 +139,39 @@ class LeetCodeViewModel: ObservableObject {
     func totalFruit() {
         arrayVM.totalFruit()
     }
+    func A16_search(){
+        arrayVM.A16_search()
+    }
+    func A17_twoSum(){
+        arrayVM.A17_twoSum()
+    }
+    func threeSum() {
+        arrayVM.threeSum()
+    }
+    func isAlienSorted() {
+        arrayVM.isAlienSorted()
+    }
+    func nextPermutation() {
+        arrayVM.nextPermutation()
+    }
+    func removeDuplicate() {
+        arrayVM.removeDuplicate()
+    }
+    func searchRange(){
+        arrayVM.searchRange()
+    }
+    func trap(){
+        arrayVM.trap()
+    }
+    func findMedianSortedArrays(){
+        arrayVM.findMedianSortedArrays()
+    }
+    func isAnagram(){
+        arrayVM.isAnagram()
+    }
+    func topKFrequent(){
+        arrayVM.topKFrequent()
+    }
     // MARK: Sliding Window
     func minWindow() {
         slidingWindowVM.minWindow()
@@ -113,6 +180,7 @@ class LeetCodeViewModel: ObservableObject {
     func minStack() {
         stackVM.minStack()
     }
+    
     deinit {
         debugPrint("LeetCodeViewModel deinit")
     }

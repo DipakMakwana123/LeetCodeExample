@@ -18,7 +18,7 @@ struct SlidingWindowViewModel {
     func minWindow() {
         let s1 = "ADOBECODEBANC"
         let t1 = "ABC"
-        let result1 = leetCode.minWindow(s1, t1)
+        let result1 = leetCode.SW1_minWindow(s1, t1)
         print("s: \"\(s1)\", t: \"\(t1)\"")
         print("Minimum Window: \"\(result1)\"") // Expected: "BANC"
         print("---")
@@ -26,7 +26,7 @@ struct SlidingWindowViewModel {
         // Example 2: t has duplicates
         let s2 = "b"
         let t2 = "a"
-       let result2 = leetCode.minWindow(s2, t2)
+       let result2 = leetCode.SW1_minWindow(s2, t2)
         print("s: \"\(s2)\", t: \"\(t2)\"")
         print("Minimum Window: \"\(result2)\"") // Expected: "aab"
         print("---")
@@ -81,7 +81,7 @@ tjcwallfkarlrvfxchdqqtiutvfpoovjxzgxmtextvintpmvypnplyletrwhftreszdhshenfocadoxe
         var k = 3
        // nums = [1,-1]
        // k = 1
-        print(leetCode.maxSlidingWindow(nums, k))
+        print(leetCode.SW2_maxSlidingWindow(nums, k))
     }
     
     

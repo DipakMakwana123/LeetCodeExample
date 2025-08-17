@@ -7,27 +7,17 @@
 
 import Foundation
 
-class MyStringViewModel {
-    var leetCode: DString
-    
-    init(leetCode: DString = .init()) {
-        self.leetCode = leetCode
-    }
-    
-    
-}
-
 struct DString {
-    func isMatch(_ s: String, _ p: String) -> Bool {
+    func S1_isMatch(_ s: String, _ p: String) -> Bool {
         let sChars = Array(s)
         let pChars = Array(p)
         var dp = Array(repeating: Array(repeating: false, count: p.count + 1), count: s.count + 1)
         dp[0][0] = true
         
         for i in 0..<p.count {
-           debugPrint(pChars[i])
+            debugPrint(pChars[i])
             if pChars[i] == "*"  && dp[0][i-1] == true  {
-             dp[0][i+1] = true
+                dp[0][i+1] = true
             }
         }
         for i in 0..<s.count   {
@@ -54,48 +44,48 @@ struct DString {
         return dp[s.count][p.count]
     }
     func isMatch1(_ s: String, _ p: String) -> Bool {
-            let sChars = Array(s)
-            let pChars = Array(p)
-            let m = sChars.count
-            let n = pChars.count
-            
-            // dp[i][j] means s[0..<i] matches p[0..<j]
-            var dp = Array(repeating: Array(repeating: false, count: n + 1), count: m + 1)
-            dp[0][0] = true
-            
-            // Fill for patterns like a*, a*b*, a*b*c*
-            for j in 1...n {
-                if pChars[j - 1] == "*" && j >= 2 {
-                    dp[0][j] = dp[0][j - 2]
-                }
+        let sChars = Array(s)
+        let pChars = Array(p)
+        let m = sChars.count
+        let n = pChars.count
+        
+        // dp[i][j] means s[0..<i] matches p[0..<j]
+        var dp = Array(repeating: Array(repeating: false, count: n + 1), count: m + 1)
+        dp[0][0] = true
+        
+        // Fill for patterns like a*, a*b*, a*b*c*
+        for j in 1...n {
+            if pChars[j - 1] == "*" && j >= 2 {
+                dp[0][j] = dp[0][j - 2]
             }
-            
-            for i in 1...m {
-                for j in 1...n {
-                    if pChars[j - 1] == "." || pChars[j - 1] == sChars[i - 1] {
-                        dp[i][j] = dp[i - 1][j - 1]
-                    } else if pChars[j - 1] == "*" {
-                        // zero occurrence of preceding char
-                        dp[i][j] = dp[i][j - 2]
-                        
-                        // one or more occurrences if preceding matches
-                        if pChars[j - 2] == "." || pChars[j - 2] == sChars[i - 1] {
-                            dp[i][j] = dp[i][j] || dp[i - 1][j]
-                        }
+        }
+        
+        for i in 1...m {
+            for j in 1...n {
+                if pChars[j - 1] == "." || pChars[j - 1] == sChars[i - 1] {
+                    dp[i][j] = dp[i - 1][j - 1]
+                } else if pChars[j - 1] == "*" {
+                    // zero occurrence of preceding char
+                    dp[i][j] = dp[i][j - 2]
+                    
+                    // one or more occurrences if preceding matches
+                    if pChars[j - 2] == "." || pChars[j - 2] == sChars[i - 1] {
+                        dp[i][j] = dp[i][j] || dp[i - 1][j]
                     }
                 }
             }
-            
-            return dp[m][n]
         }
+        
+        return dp[m][n]
+    }
     
-    func isPalindromeTwoPointers(text: String) -> Bool {
+    func S2_isPalindromeTwoPointers(text: String) -> Bool {
         //print(isPalindromeTwoPointers(text: "madam"))   // true
-       // print(isPalindromeTwoPointers(text: "swift")) // false
+        // print(isPalindromeTwoPointers(text: "swift")) // false
         let characters = Array(text) // Convert to an array for O(1) access
         var left = 0
         var right = characters.count - 1
-
+        
         while left < right {
             if characters[left] != characters[right] {
                 return false
@@ -103,16 +93,16 @@ struct DString {
             left += 1
             right -= 1
         }
-
+        
         return true
     }
     
-    func isPalindromeRobust(text: String) -> Bool {
+    func S3_isPalindromeRobust(text: String) -> Bool {
         
-//        print(isPalindromeRobust(text: "A man, a plan, a canal: Panama")) // true
-//        print(isPalindromeRobust(text: "No 'x' in Nixon"))              // true
-//        print(isPalindromeRobust(text: "Hello, World!"))               // false
-//        
+        //        print(isPalindromeRobust(text: "A man, a plan, a canal: Panama")) // true
+        //        print(isPalindromeRobust(text: "No 'x' in Nixon"))              // true
+        //        print(isPalindromeRobust(text: "Hello, World!"))               // false
+        //
         // 1. Filter and normalize the string
         let filteredString = text.lowercased().filter { $0.isLetter || $0.isNumber }
         
@@ -130,7 +120,7 @@ struct DString {
         }
         return true
     }
-    func isValidBracketString(_ s: String) -> Bool {
+    func S3_isValidBracketString(_ s: String) -> Bool {
         // Use a Swift Array as a stack. We'll store Character types.
         var stack: [Character] = []
         
@@ -197,7 +187,7 @@ struct DString {
                     // Stack was empty or the popped bracket doesn't match
                     return false
                 }
-               // debugPrint(lastOpenBracket,matchingBrackets[char] ?? ??)
+                // debugPrint(lastOpenBracket,matchingBrackets[char] ?? ??)
             default:
                 // If the string contains any other characters (not specified in problem, but good practice)
                 return false
@@ -208,7 +198,7 @@ struct DString {
         return stack.isEmpty
     }
     
-    func lengthOfLongestSubstring(_ s: String) -> Int {
+    func S5_lengthOfLongestSubstring(_ s: String) -> Int {
         guard !s.isEmpty else {
             return 0 // Handle empty string edge case
         }
@@ -242,7 +232,7 @@ struct DString {
         return maxLength
     }
     
-    func isValidAfter180DegreeRotation(sequence: String) -> Bool {
+    func S6_isValidAfter180DegreeRotation(sequence: String) -> Bool {
         // 1. Define the rotation map for valid digits
         let rotationMap: [Character: Character] = [
             "0": "0",
@@ -284,7 +274,7 @@ struct DString {
         return finalRotatedString == sequence
         // return true
     }
-    func isAnagramFrequencyMap(_ s: String, _ t: String) -> Bool {
+    func S7_isAnagramFrequencyMap(_ s: String, _ t: String) -> Bool {
         // 1. If lengths are different, they cannot be anagrams
         guard s.count == t.count else {
             return false
@@ -297,18 +287,18 @@ struct DString {
         // Helper to get the 0-25 index for a lowercase English letter
         // Using Unicode scalars for robustness
         let aAsciiValue = Character("a").asciiValue!
-      //  let asciiValueA = Character("A").asciiValue!
+        //  let asciiValueA = Character("A").asciiValue!
         
         // 3. Populate for 's': Increment counts
         for char in s {
-          //  print(char.asciiValue)
+            //  print(char.asciiValue)
             let index = Int(char.asciiValue! - aAsciiValue)
             charCounts[index] += 1
         }
         
         // 4. Decrement for 't': Decrement counts
         for char in t {
-          //  print(char.asciiValue)
+            //  print(char.asciiValue)
             let index = Int(char.asciiValue! - aAsciiValue)
             charCounts[index] -= 1
         }
@@ -321,4 +311,115 @@ struct DString {
         }
         return true
     }
+    func S8_findSubstring(_ s: String, _ words: [String]) -> [Int] {
+        var result = [Int]()
+        guard !s.isEmpty, !words.isEmpty else { return result }
+        
+        let wordLen = words[0].count
+        let wordCount = words.count
+        // _ = wordLen * wordCount
+        let sArray = Array(s)
+        
+        // Build frequency map for words
+        var wordMap = [String: Int]()
+        for w in words {
+            wordMap[w, default: 0] += 1
+        }
+        
+        for offset in 0..<wordLen {
+            var left = offset
+            var right = offset
+            var currMap = [String: Int]()
+            var count = 0
+            
+            while right + wordLen <= sArray.count {
+                let word = String(sArray[right..<right+wordLen])
+                right += wordLen
+                
+                if let _ = wordMap[word] {
+                    currMap[word, default: 0] += 1
+                    count += 1
+                    
+                    while currMap[word]! > wordMap[word]! {
+                        let leftWord = String(sArray[left..<left+wordLen])
+                        currMap[leftWord]! -= 1
+                        count -= 1
+                        left += wordLen
+                    }
+                    
+                    if count == wordCount {
+                        result.append(left)
+                    }
+                } else {
+                    currMap.removeAll()
+                    count = 0
+                    left = right
+                }
+            }
+        }
+        
+        return result
+    }
+    
+    func S9_groupAnagrams(_ strs: [String]) -> [[String]] {
+        var map = [String: [String]]()
+        
+        for word in strs {
+            // Sort the word’s characters → anagram groups share same sorted string
+            let key = String(word.sorted())
+            map[key, default: []].append(word)
+        }
+        
+        return Array(map.values)
+    }
+    
+    // Encode a list of strings to a single string.
+    func S10_encode(_ strs: [String]) -> String {
+        var result = ""
+        for str in strs {
+            result += "\(str.count)#\(str)"
+        }
+        return result
+    }
+    
+    // Decode a single string to a list of strings.
+    func S11_decode(_ s: String) -> [String] {
+        var result = [String]()
+        var i = s.startIndex
+        
+        while i < s.endIndex {
+            // 1️⃣ Read length (until '#')
+            var lengthStr = ""
+            while s[i] != "#" {
+                lengthStr.append(s[i])
+                i = s.index(after: i)
+            }
+            
+            let length = Int(lengthStr) ?? 0
+            i = s.index(after: i) // skip '#'
+            
+            // 2️⃣ Extract substring of that length
+            let start = i
+            let end = s.index(i, offsetBy: length)
+            result.append(String(s[start..<end]))
+            
+            i = end
+        }
+        
+        return result
+    }
+
+        func S12_largestNumber(_ nums: [Int]) -> String {
+            // Convert numbers to strings
+            let strs = nums.map { String($0) }
+            
+            // Custom sort: compare concatenations
+            let sorted = strs.sorted { $0 + $1 > $1 + $0 }
+            
+            // Join result
+            let result = sorted.joined()
+            
+            // Edge case: if all numbers are "0"
+            return result.first == "0" ? "0" : result
+        }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 struct SlidingWindow {
     
-    func minWindow(_ s: String, _ t: String) -> String {
+    func SW1_minWindow(_ s: String, _ t: String) -> String {
         // Handle edge cases: if t is empty, return empty string as per problem constraints.
         // If s is empty, no window can be formed.
         guard !t.isEmpty else { return "" }
@@ -91,8 +91,7 @@ struct SlidingWindow {
             return String(s[startIndex..<endIndex])
         }
     }
-    
-    func minWindowS(_ s: String, _ t: String) -> String {
+    /* func minWindowS(_ s: String, _ t: String) -> String {
         // Handle edge cases: if t is empty, return empty string as per problem constraints.
         // If s is empty, no window can be formed.
         guard !t.isEmpty else { return "" }
@@ -164,121 +163,6 @@ struct SlidingWindow {
         }
         
         // If minLength is still Int.max, no valid window was found
-        if minLength == Int.max {
-            return ""
-        } else {
-            // Extract the minimum window substring
-            let startIndex = s.index(s.startIndex, offsetBy: minWindowStart)
-            let endIndex = s.index(startIndex, offsetBy: minLength)
-            return String(s[startIndex..<endIndex])
-        }
-    }
-    /*func minWindowD(_ s: String, _ t: String) -> String {
-        if s == t  || s.contains(t) {
-            return t
-        }
-        guard !t.isEmpty else { return "" }
-        guard !s.isEmpty else { return "" }
-        if t.count > s.count {
-            return ""
-        }
-        ///guard s.count > t.count else { return "" }
-        var tFreq: [Character: Int] = .init()
-        for char in t {
-            tFreq[char,default: 0] += 1
-        }
-        let tFreqRef = tFreq
-        var rightInd: Int = 0
-        var leftInd: Int = 0
-        let sArr = Array(s)
-        var minLength = Int.max // Stores the length of the smallest valid window found
-        var minWindowStart = 0  // Stores the starting index of the smallest valid window
-        let cnt = s.count
-        // `required` tracks the number of unique characters from t that we need to match
-        let required = tFreq.count
-        
-        // `formed` tracks how many unique characters from t are currently satisfied in the window
-        var formed = 0
-        while rightInd < cnt {
-            let rightChar = sArr[rightInd]
-            if t.contains(rightChar),let _ =  tFreq[rightChar]  {
-                tFreq[rightChar]! -= 1
-                if tFreq[rightChar] == 0 {
-                    formed += 1
-                    // tFreq[rightChar]! = -99
-                    // tFreq.removeValue(forKey: rightChar)
-                    while formed == required && leftInd <= rightInd {
-                        let currentWindowLength = rightInd - leftInd + 1
-                        // If this window is smaller than the current minimum, update
-                        if currentWindowLength < minLength {
-                            minLength = currentWindowLength
-                            minWindowStart = leftInd
-                        }
-                        formed = 0
-                        tFreq = tFreqRef
-                        leftInd += 1
-                        rightInd -= 1
-                    }
-                }
-            }
-            rightInd += 1
-        }
-        if minLength == Int.max {
-            return ""
-        } else {
-            // Extract the minimum window substring
-            let startIndex = s.index(s.startIndex, offsetBy: minWindowStart)
-            let endIndex = s.index(startIndex, offsetBy: minLength)
-            return String(s[startIndex..<endIndex])
-        }
-    }
-    func minWindowD2(_ s: String, _ t: String) -> String {
-        if s == t  || s.contains(t) {
-            return t
-        }
-        guard !t.isEmpty else { return "" }
-        guard !s.isEmpty else { return "" }
-        if t.count > s.count {
-            return ""
-        }
-        ///guard s.count > t.count else { return "" }
-        var tFreq: [Character: Int] = .init()
-        for char in t {
-            tFreq[char,default: 0] += 1
-        }
-        var j: Int = 0
-        var i: Int = 0
-        let sArr = Array(s)
-        var minLength = Int.max // Stores the length of the smallest valid window found
-        var minWindowStart = 0  // Stores the starting index of the smallest valid window
-        let cnt = s.count
-        // `required` tracks the number of unique characters from t that we need to match
-        var required = tFreq.count
-        
-        // `formed` tracks how many unique characters from t are currently satisfied in the window
-        // var formed = 0
-        while j < cnt {
-            let jChar = sArr[j]
-            if let tCnt = tFreq[jChar], tCnt > 0 {
-                required -= 1
-                tFreq[jChar]! -= 1
-            }
-            //
-            //tFreq[jChar,default: 0] -= 1
-            while required == 0 {
-                let currentWindowSize = j - i + 1
-                if currentWindowSize < minLength {
-                    minLength = currentWindowSize
-                    minWindowStart = i
-                }
-                tFreq[sArr[i]]! += 1
-                if let tCnt = tFreq[sArr[i]], tCnt > 0 {
-                    required += 1
-                }
-                i += 1
-            }
-            j += 1
-        }
         if minLength == Int.max {
             return ""
         } else {
@@ -288,28 +172,28 @@ struct SlidingWindow {
             return String(s[startIndex..<endIndex])
         }
     } */
-    
-     func maxSlidingWindowD(_ nums: [Int], _ k: Int) -> [Int] {
-        var result = [Int]()
-        var maxNumber = 0
-        var left = 0
-        var right = 0
-        var endRange = k
-        while right < nums.count {
-            let num = nums[right]
-            maxNumber = num < 0  && k == 1 ? num : max(maxNumber,num)
-            right += 1
-            if right == endRange  {
-                result.append(maxNumber)
-                maxNumber = 0
-                left += 1
-                right = left
-                endRange = right + k
-            }
-        }
-        return result
-    }
-    func maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int] {
+   
+//     func maxSlidingWindowD(_ nums: [Int], _ k: Int) -> [Int] {
+//        var result = [Int]()
+//        var maxNumber = 0
+//        var left = 0
+//        var right = 0
+//        var endRange = k
+//        while right < nums.count {
+//            let num = nums[right]
+//            maxNumber = num < 0  && k == 1 ? num : max(maxNumber,num)
+//            right += 1
+//            if right == endRange  {
+//                result.append(maxNumber)
+//                maxNumber = 0
+//                left += 1
+//                right = left
+//                endRange = right + k
+//            }
+//        }
+//        return result
+//    }
+    func SW2_maxSlidingWindow(_ nums: [Int], _ k: Int) -> [Int] {
         guard !nums.isEmpty, k > 0 else { return [] }
         
         var deque = [Int]() // stores indices of nums
