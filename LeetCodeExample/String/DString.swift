@@ -159,44 +159,7 @@ struct DString {
         // all brackets were correctly matched and closed.
         return stack.isEmpty
     }
-    func validParenthese(_ s: String) -> Bool {
-        // A quick check for odd length strings - they can never be valid
-        if s.count % 2 != 0 {
-            return false
-        }
-        
-        var stack: [Character] = [] // Using a Swift Array as a stack
-        
-        // A dictionary to quickly check for matching pairs
-        let matchingBrackets: [Character: Character] = [
-            ")": "(",
-            "}": "{",
-            "]": "["
-        ]
-        
-        for char in s {
-            switch char {
-            case "(", "{", "[":
-                // It's an opening bracket, push it onto the stack
-                stack.append(char)
-            case ")", "}", "]":
-                // It's a closing bracket
-                
-                guard let lastOpenBracket = stack.popLast(), // Try to pop the last opened bracket
-                      lastOpenBracket == matchingBrackets[char] else { // Check if it matches
-                    // Stack was empty or the popped bracket doesn't match
-                    return false
-                }
-                // debugPrint(lastOpenBracket,matchingBrackets[char] ?? ??)
-            default:
-                // If the string contains any other characters (not specified in problem, but good practice)
-                return false
-            }
-        }
-        
-        // After iterating through the string, the stack should be empty if all brackets matched
-        return stack.isEmpty
-    }
+    
     
     func S5_lengthOfLongestSubstring(_ s: String) -> Int {
         guard !s.isEmpty else {

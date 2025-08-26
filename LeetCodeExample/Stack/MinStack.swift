@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class DStack {
+class MinStack {
     
     var myStack: [Int]
 

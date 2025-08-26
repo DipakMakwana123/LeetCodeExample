@@ -11,9 +11,10 @@ class LeetCodeViewModel: ObservableObject {
     private var slidingWindowVM: SlidingWindowViewModel
     private var stringVM: StringViewModel
     private var arrayVM: DArrayViewModel
-    private var linkedListVM: LinkedListViewModel
+    private var linkListVM: LinkedListViewModel
     private var stackVM: StackViewModel
     private var treeVM: TreeViewModel?
+    private var heapVM: HeapViewModel?
     
     @Published var data: [LeetCodeModel]
     
@@ -24,13 +25,14 @@ class LeetCodeViewModel: ObservableObject {
          _ arrayVM: DArrayViewModel = .init(),
          _ linkedListVM: LinkedListViewModel = .init(),
          _ stackVM: StackViewModel = .init(),
-         _ treeVM: TreeViewModel = .init()) {
+         _ treeVM: TreeViewModel = .init(),
+         _ heapVM: HeapViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
-        self.linkedListVM = linkedListVM
+        self.linkListVM = linkedListVM
         self.stackVM = stackVM
-        
+        self.heapVM = heapVM
         data = [
             LeetCodeModel(title: "Two number sum from array"),
             LeetCodeModel(title: "Bracket Validation String"),
@@ -39,12 +41,9 @@ class LeetCodeViewModel: ObservableObject {
     func findMaxDepth() {
         treeVM?.findMaxDepth()
     }
-    // MARK: - String
+    // MARK: - ========================================== String ==========================================
     func findSubstring() {
         stringVM.findSubstring()
-    }
-    func validParenthese() {
-        stringVM.validParenthese()
     }
     func isValidAfter180DegreeRotation() {
         stringVM.isValidAfter180DegreeRotation()
@@ -67,7 +66,10 @@ class LeetCodeViewModel: ObservableObject {
     func encodeDecode() {
         stringVM.encodeDecode()
     }
-    // MARK: - Array
+    func lengthOfLongestSubstring() {
+        stringVM.lengthOfLongestSubstring()
+    }
+    // MARK: - ========================================== Array ==========================================
     func solveSudoku() {
         arrayVM.solveSudoku()
     }
@@ -88,10 +90,6 @@ class LeetCodeViewModel: ObservableObject {
     }
     func majorityElement(){
         arrayVM.majorityElement()
-    }
-    // MARK: - Linked List
-    func findMedian() {
-        linkedListVM.findMedian()
     }
     func maxArea() {
         arrayVM.maxArea()
@@ -125,16 +123,6 @@ class LeetCodeViewModel: ObservableObject {
     }
     func isValidSudoku(){
         arrayVM.isValidSudoku()
-    }
-    // MARK: Linked List
-    func mergeKLists() {
-        linkedListVM.mergeKLists()
-    }
-    func maxSlidingWindow() {
-        slidingWindowVM.maxSlidingWindow()
-    }
-    func lengthOfLongestSubstring() {
-        stringVM.lengthOfLongestSubstring()
     }
     func totalFruit() {
         arrayVM.totalFruit()
@@ -172,15 +160,104 @@ class LeetCodeViewModel: ObservableObject {
     func topKFrequent(){
         arrayVM.topKFrequent()
     }
-    // MARK: Sliding Window
+    // MARK: - ========================================== Linked List ==========================================
+    func findMedian() {
+        linkListVM.findMedian()
+    }
+    func addTwoNumbers() {
+        linkListVM.addTwoNumbers()
+    }
+    func mergeKLists() {
+        linkListVM.mergeKLists()
+    }
+    func hasCycle(){
+        linkListVM.hasCycle()
+    }
+    func mergeTwoLists() {
+        linkListVM.mergeTwoLists()
+    }
+    func removeNthFromEnd() {
+        linkListVM.removeNthFromEnd()
+    }
+    func reorderList() {
+        linkListVM.reorderList()
+    }
+    func middleNode(){
+     linkListVM.middleNode()
+    }
+    func flatten() {
+        linkListVM.flatten()
+    }
+    func reverseKGroup() {
+        linkListVM.reverseKGroup()
+    }
+    func copyRandomList(){
+        linkListVM.copyRandomList()
+    }
+    func findDuplicate(){
+        linkListVM.findDuplicate()
+    }
+    func lruCache() {
+        stackVM.lruCache()
+    }
+    func carFleet() {
+        stackVM.carFleet()
+    }
+    func minRemoveToMakeValid() {
+        stackVM.minRemoveToMakeValid()
+    }
+    func largestRectangleArea() {
+        stackVM.largestRectangleArea()
+    }
+    func longestValidParentheses() {
+        stackVM.longestValidParentheses()
+    }
+    func maxStack() {
+        stackVM.S7_716_MaxStack()
+    }
+    // MARK: ========================================== Sliding Window ==========================================
     func minWindow() {
         slidingWindowVM.minWindow()
     }
-    // MARK: Stack 
-    func minStack() {
-        stackVM.minStack()
+    func maxSlidingWindow() {
+        slidingWindowVM.maxSlidingWindow()
     }
-    
+    // MARK:  ========================================== Stack ===================================================
+    func validParenthese() {
+        stackVM.validParenthese()
+    }
+    func minStack() {
+        stackVM.minStackOperation()
+    }
+    func evalRPN() {
+        stackVM.evalRPN()
+    }
+    // MARK:  ========================================== Heap ===================================================
+    func minHeapOperation() {
+        heapVM?.minHeapOperation()
+    }
+    func lastStoneWeight() {
+        heapVM?.lastStoneWeight()
+    }
+    func findKthLargest() {
+        heapVM?.findKthLargest()
+    }
+    func kClosest() {
+        heapVM?.kClosest()
+    }
+    func leastInterval(){
+        heapVM?.leastInterval()
+    }
+    func highFive() {
+        heapVM?.highFive()
+    }
+    func employeeFreeTime(){
+        heapVM?.employeeFreeTime()
+    }
+    func findMedianUsingQ() {
+        heapVM?.findMedian()
+    }
+    // MARK:  ========================================== deinit ===================================================
     deinit {
         debugPrint("LeetCodeViewModel deinit")
     }

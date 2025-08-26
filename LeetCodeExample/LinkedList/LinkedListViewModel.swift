@@ -99,7 +99,7 @@ struct LinkedListViewModel {
         let list1 = linkList.LL2_createListNode(from: [1, 4, 5])
         let list2 = linkList.LL2_createListNode(from: [1, 3, 4])
         let list3 = linkList.LL2_createListNode(from: [2, 6])
-        let merged = linkList.LL1_mergeKLists([list1, list2, list3])
+        let merged = linkList.LL1_23_mergeKLists([list1, list2, list3])
         linkList.printListNode(merged)
        // debugPrint(merged as Any)
         //Output: [1,1,2,3,4,4,5,6]
@@ -112,4 +112,82 @@ struct LinkedListViewModel {
 //        merging them into one sorted linked list:
 //        1->1->2->3->4->4->5->6
     }
+    func addTwoNumbers() {
+        // l1 = [2,4,3], l2 = [5,6,4]
+        // 342 + 465 = 807 → output: [7,0,8]
+        let l1 = ListNode(2, ListNode(4, ListNode(3)))
+        let l2 = ListNode(5, ListNode(6, ListNode(4)))
+        
+        var result = linkList.LL6_2_addTwoNumbers(l1, l2)
+        while result != nil {
+            print(result!.val, terminator: " ") // 7 0 8
+            result = result?.next
+        }
+    }
+    func hasCycle(){
+        let node1 = ListNode(3)
+        let node2 = ListNode(2)
+        let node3 = ListNode(0)
+        let node4 = ListNode(-4)
+        node1.next = node2
+        node2.next = node3
+        node3.next = node4
+        node4.next = node2 // cycle here
+        print(linkList.LL8_141_hasCycle(node1)) // true
+
+    }
+    func mergeTwoLists() {
+        let l1 = ListNode(1, ListNode(2, ListNode(4)))
+        let l2 = ListNode(1, ListNode(3, ListNode(4)))
+        var merged = linkList.LL3_21_mergeTwoLists(l1, l2)
+        while merged != nil {
+            print(merged!.val, terminator: " ") // 1 1 2 3 4 4
+            merged = merged?.next
+        }
+    }
+    func removeNthFromEnd() {
+        let head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        var result = linkList.LL9_19_removeNthFromEnd(head, 2)
+        while result != nil {
+            print(result!.val, terminator: " ") // Output: 1 2 3 5
+            result = result?.next
+        }
+    }
+    func reorderList() {
+        let head: ListNode? = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        linkList.LL10_143_reorderList(head)
+        var curr = head
+        while curr != nil {
+            print(curr!.val, terminator: " ")  // Output: 1 5 2 4 3
+            curr = curr?.next
+        }
+    }
+    func middleNode(){
+        let head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        if let middle = linkList.LL11_876_middleNode(head) {
+            print(middle.val) // Output: 3
+        }
+    }
+    func flatten() {
+//Input:  1
+//       / \
+//      2   5
+//     / \   \
+//    3   4   6
+        // Output : 1 -> 2 -> 3 -> 4 -> 5 -> 6
+    }
+    func reverseKGroup() {
+        let head: ListNode? = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        let k = 2
+        print(linkList.LL13_25_reverseKGroup(head, k) ?? nil)
+    }
+    func copyRandomList(){
+        
+    }
+    func findDuplicate(){
+        print(linkList.LL14_287_findDuplicate([1,3,4,2,2])) // Output: 2
+        print(linkList.LL14_287_findDuplicate([3,1,3,4,2])) // Output: 3
+
+    }
+    
 }

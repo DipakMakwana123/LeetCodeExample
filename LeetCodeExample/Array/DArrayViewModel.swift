@@ -82,7 +82,7 @@ struct DArrayViewModel {
     
     func dailyTemperatures() {
         let arr = [73,74,75,71,69,72,76,73]
-        print("[73,74,75,71,69,72,76,73]: \(dArray.A4_dailyTemperatures(arr))")
+        print("[73,74,75,71,69,72,76,73]: \(dArray.A4_739_dailyTemperatures(arr))")
     }
     func totalFruit() {
         let fruits1 = [1,2,1]

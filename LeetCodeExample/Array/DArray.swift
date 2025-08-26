@@ -114,7 +114,7 @@ struct DArray {
         
         return maxProfit
     }
-    func A4_dailyTemperatures(_ temperatures: [Int]) -> [Int] {
+    func A4_739_dailyTemperatures(_ temperatures: [Int]) -> [Int] {
         let n = temperatures.count
         var answer = Array(repeating: 0, count: n)
         var stack:[Int] = []
