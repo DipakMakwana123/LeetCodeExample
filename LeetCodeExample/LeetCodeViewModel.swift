@@ -16,6 +16,7 @@ class LeetCodeViewModel: ObservableObject {
     private var treeVM: TreeViewModel?
     private var heapVM: HeapViewModel?
     private var searchVM: SearchViewModel?
+    private var dpVM: DPViewModel?
     
     @Published var data: [LeetCodeModel]
     
@@ -28,13 +29,15 @@ class LeetCodeViewModel: ObservableObject {
          _ stackVM: StackViewModel = .init(),
          _ treeVM: TreeViewModel = .init(),
          _ heapVM: HeapViewModel = .init(),
-         _ searchVM: SearchViewModel = .init()) {
+         _ searchVM: SearchViewModel = .init(),
+         _ dpVM: DPViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
         self.linkListVM = linkedListVM
         self.stackVM = stackVM
         self.heapVM = heapVM
+        self.dpVM = dpVM
         data = [
             LeetCodeModel(title: "Two number sum from array"),
             LeetCodeModel(title: "Bracket Validation String"),
@@ -312,6 +315,10 @@ class LeetCodeViewModel: ObservableObject {
     }
     func minEatingSpeed() {
         searchVM?.minEatingSpeed()
+    }
+    // MARK:  ========================================== Dyamic Programing ===================================================
+    func rob() {
+        dpVM?.rob()
     }
     // MARK:  ========================================== deinit ===================================================
     deinit {
