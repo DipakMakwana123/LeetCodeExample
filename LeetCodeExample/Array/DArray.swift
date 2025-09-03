@@ -29,12 +29,8 @@ struct DArray {
     func A1_productExceptSelf(_ nums: [Int]) -> [Int] {
         let n = nums.count
         
-        // Initialize the answer array with 1s.
-        // This array will first store the product of elements to the left of each index.
         var answer = Array(repeating: 1, count: n)
         
-        // MARK: - Left Pass: Calculate products of elements to the left of each index
-        // `leftProduct` will accumulate the product of elements encountered so far from the left.
         var leftProduct = 1
         for i in 0..<n {
             // At index `i`, `answer[i]` stores the product of elements BEFORE `nums[i]`.
@@ -242,7 +238,8 @@ struct DArray {
         }
         return resultArray
     }
-    func A8_maxArea(_ height: [Int]) -> Int {
+    // 11. Container With Most Water
+    func A8_11_maxArea(_ height: [Int]) -> Int {
         var left = 0
         var right = height.count - 1
         var maxWater = 0
@@ -261,35 +258,9 @@ struct DArray {
         
         return maxWater
     }
-    func A9_trap(_ height: [Int]) -> Int {
-        
-        var left = 0
-        var right = height.count - 1
-        var leftMax = 0
-        var rightMax = 0
-        var water = 0
-        
-        while left < right {
-            if height[left] < height[right] {
-                if height[left] >= leftMax {
-                    leftMax = height[left]
-                } else {
-                    water += leftMax - height[left]
-                }
-                left += 1
-            } else {
-                if height[right] >= rightMax {
-                    rightMax = height[right]
-                } else {
-                    water += rightMax - height[right]
-                }
-                right -= 1
-            }
-        }
-        return water
-    }
-    func A9_trapingRainWater(_ array: [Int]) -> Int  {
-        let arrayCnt = array.count
+    // 42. Trapping Rain Water
+    func a9_42_trap(_ height: [Int]) -> Int  {
+        let arrayCnt = height.count
         var left = 0
         var right = arrayCnt - 1
         var leftMaxHeight = 0
@@ -297,21 +268,49 @@ struct DArray {
         var savedWater = 0
         
         while (left < right) {
-            leftMaxHeight = max(leftMaxHeight,array[left])
-            rightMaxHeight = max(rightMaxHeight,array[right])
+            leftMaxHeight = max(leftMaxHeight,height[left])
+            rightMaxHeight = max(rightMaxHeight,height[right])
             
             if leftMaxHeight < rightMaxHeight {
-                savedWater += leftMaxHeight - array[left]
+                savedWater += leftMaxHeight - height[left]
                 left += 1
                 // left ++
             }
             else {
-                savedWater += rightMaxHeight - array[right]
+                savedWater += rightMaxHeight - height[right]
                 right -= 1
             }
         }
         return savedWater
     }
+    // 42. Trapping Rain Water
+    //    func a9_42_trap(_ height: [Int]) -> Int {
+    //        var left = 0
+    //        var right = height.count - 1
+    //        var leftMax = 0
+    //        var rightMax = 0
+    //        var water = 0
+    //
+    //        while left < right {
+    //            if height[left] < height[right] {
+    //                if height[left] >= leftMax {
+    //                    leftMax = height[left]
+    //                } else {
+    //                    water += leftMax - height[left]
+    //                }
+    //                left += 1
+    //            } else {
+    //                if height[right] >= rightMax {
+    //                    rightMax = height[right]
+    //                } else {
+    //                    water += rightMax - height[right]
+    //                }
+    //                right -= 1
+    //            }
+    //        }
+    //        return water
+    //    }
+    //
     struct FuelStation  {
         let postion: Int
         let available: Int
@@ -348,7 +347,8 @@ struct DArray {
         }
         return fuelStop
     }
-    func A11_solveSudoku(_ board: inout [[Character]]) {
+    // Medium : 36. Valid Sudoku
+    func A11_m36_solveSudoku(_ board: inout [[Character]]) {
         func isValid(_ row: Int, _ col: Int, _ char: Character) -> Bool {
             for i in 0..<9 {
                 // Check row
@@ -358,7 +358,31 @@ struct DArray {
                 // Check 3×3 box
                 let boxRow = 3 * (row / 3) + i / 3
                 let boxCol = 3 * (col / 3) + i % 3
+                
                 /*
+                 
+                 (i/3 , i%3)
+                 +-------+-------+-------+
+                 | (0,0) | (0,1) | (0,2) |
+                 +-------+-------+-------+
+                 | (1,0) | (1,1) | (1,2) |
+                 +-------+-------+-------+
+                 | (2,0) | (2,1) | (2,2) |
+                 +-------+-------+-------+
+                 
+                 | i | i/3 | i%3 | (row offset, col offset) |
+                 | - | --- | --- | ------------------------ |
+                 | 0 | 0   | 0   | (0,0)                    |
+                 | 1 | 0   | 1   | (0,1)                    |
+                 | 2 | 0   | 2   | (0,2)                    |
+                 | 3 | 1   | 0   | (1,0)                    |
+                 | 4 | 1   | 1   | (1,1)                    |
+                 | 5 | 1   | 2   | (1,2)                    |
+                 | 6 | 2   | 0   | (2,0)                    |
+                 | 7 | 2   | 1   | (2,1)                    |
+                 | 8 | 2   | 2   | (2,2)                    |
+                 
+                 
                  We number the boxes 0–8 (left→right, top→bottom):
                  Each **box** is 3 rows × 3 cols.
                  +-------+-------+-------+
@@ -436,18 +460,14 @@ struct DArray {
         
         _ = backtrack()
     }
-    
-    func A12_firstMissingPositive(_ numsInput: [Int]) -> Int {
+    // HARD: 41. First Missing Positive
+    func A12_H41_firstMissingPositive(_ numsInput: [Int]) -> Int {
         var nums = numsInput      // work on a mutable copy
         let n = nums.count
         var i = 0
         
         while i < n {
             let v = nums[i]
-            // target index for value v is v-1
-            debugPrint(v >= 1)
-            debugPrint(v <= n)
-            // debugPrint(nums[v - 1] != v )
             if v >= 1 && v <= n && nums[v - 1] != v {
                 nums.swapAt(i, v - 1)
             } else {
@@ -463,7 +483,8 @@ struct DArray {
         }
         return n + 1
     }
-    func A13_maxSubArray(_ nums: [Int]) -> Int {
+    // Medium: 53. Maximum Subarray
+    func a13_m53_maxSubArray(_ nums: [Int]) -> Int {
         var currSum = nums[0]
         var maxSum = nums[0]
         
@@ -474,7 +495,8 @@ struct DArray {
         
         return maxSum
     }
-    func A14_maxProduct(_ nums: [Int]) -> Int {
+    // Medium: 152. Maximum Product Subarray
+    func a14_m152_maxProduct(_ nums: [Int]) -> Int {
         var maxProd = nums[0]
         var minProd = nums[0]
         var result = nums[0]
@@ -491,12 +513,13 @@ struct DArray {
         }
         return result
     }
-    func A15_findMin(_ nums: [Int]) -> Int {
+    // Medium: 153. Find Minimum in Rotated Sorted Array
+    func a15_m153_findMin(_ nums: [Int]) -> Int {
         var left = 0
         var right = nums.count - 1
         
         while left < right {
-            let mid = left + (right - left) / 2
+            let mid = (left + right) / 2
             if nums[mid] > nums[right] {
                 // min is in the right half
                 left = mid + 1
@@ -507,7 +530,8 @@ struct DArray {
         }
         return nums[left]
     }
-    func A16_search(_ nums: [Int], _ target: Int) -> Int {
+    // Medium : 33. Search in Rotated Sorted Array
+    func a16_m33_search(_ nums: [Int], _ target: Int) -> Int {
         var left = 0
         var right = nums.count - 1
         while left <= right {
@@ -534,7 +558,8 @@ struct DArray {
         }
         return -1
     }
-    func A17_twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
+    // Easy: 1. Two Sum
+    func a17_e1_twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
         var left = 0
         var right = numbers.count - 1
         while left < right {
@@ -549,8 +574,44 @@ struct DArray {
         }
         return []
     }
+    /* Medium: 15. 3Sum
+     Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+     
+     Notice that the solution set must not contain duplicate triplets.
+     Example 1:
+     
+     Input: nums = [-1,0,1,2,-1,-4]
+     Output: [[-1,-1,2],[-1,0,1]]
+     Explanation:
+     nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+     nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+     nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+     The distinct triplets are [-1,0,1] and [-1,-1,2].
+     Notice that the order of the output and the order of the triplets does not matter.
+     */
     
-    func A18_threeSum(_ nums: [Int]) -> [[Int]] {
+    func a18_m15_threeSum1(_ nums: [Int]) -> [[Int]] {
+        var result = [[Int]]()
+        
+        for left in 0..<nums.count - 1 {
+            let leftNo = nums[left]
+            let rightNo = nums[left+1]
+            let sum = leftNo + rightNo
+            let target = (-1)*sum
+            if let indexOfTarget = nums.firstIndex(of: target),indexOfTarget != left+1   {
+                if nums.contains(target) {
+                    let subArray = [leftNo,target,rightNo].sorted()
+                    if !result.contains(subArray) {
+                        result.append(subArray)
+                    }
+                }
+            }
+            
+        }
+        return result
+        
+    }
+    func a18_m15_threeSum(_ nums: [Int]) -> [[Int]] {
         let nums = nums.sorted()
         var result = [[Int]]()
         let n = nums.count
@@ -586,7 +647,16 @@ struct DArray {
         }
         return result
     }
-    func A19_isAlienSorted(_ words: [String], _ order: String) -> Bool {
+    /*
+     Easy : 953. Verifying an Alien Dictionary
+     Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
+     Example 1:
+     
+     Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
+     Output: true
+     Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+     */
+    func a19_e953_isAlienSorted(_ words: [String], _ order: String) -> Bool {
         // Step 1: Map each character to its index in alien order
         var alienOrder = [Character: Int]()
         for (i, ch) in order.enumerated() {
@@ -613,245 +683,262 @@ struct DArray {
         }
         return true
     }
-    func A20_nextPermutation(_ nums: inout [Int]) {
-        let n = nums.count
-        var i = n - 2
-        
-        // Step 1: Find first decreasing element from right
-        while i >= 0 && nums[i] >= nums[i + 1] {
-            i -= 1
+   /*
+    Medium 31. Next Permutation
+    A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
+
+    For example, for arr = [1,2,3], the following are all the permutations of arr: [1,2,3], [1,3,2], [2, 1, 3], [2, 3, 1], [3,1,2], [3,2,1].
+   
+    For example, the next permutation of arr = [1,2,3] is [1,3,2].
+    Similarly, the next permutation of arr = [2,3,1] is [3,1,2].
+    While the next permutation of arr = [3,2,1] is [1,2,3] because [3,2,1] does not have a lexicographical larger rearrangement.
+    Given an array of integers nums, find the next permutation of nums.
+
+    The replacement must be in place and use only constant extra memory.
+    */
+func a20_m31_nextPermutation(_ nums: inout [Int]) {
+    let n = nums.count
+    var i = n - 2
+    
+    // Step 1: Find first decreasing element from right
+    while i >= 0 && nums[i] >= nums[i + 1] {
+        i -= 1
+    }
+    
+    if i >= 0 {
+        // Step 2: Find the next greater element from right
+        var j = n - 1
+        while nums[j] <= nums[i] {
+            j -= 1
         }
-        
-        if i >= 0 {
-            // Step 2: Find the next greater element from right
-            var j = n - 1
-            while nums[j] <= nums[i] {
-                j -= 1
-            }
-            nums.swapAt(i, j)
-        }
-        // Step 3: Reverse the suffix
-        reverse(&nums, i + 1, n - 1)
-        func reverse(_ nums: inout [Int], _ left: Int, _ right: Int) {
-            var l = left, r = right
-            while l < r {
-                nums.swapAt(l, r)
-                l += 1
-                r -= 1
-            }
+        nums.swapAt(i, j)
+    }
+    // Step 3: Reverse the suffix
+    reverse(&nums, i + 1, n - 1)
+    func reverse(_ nums: inout [Int], _ left: Int, _ right: Int) {
+        var l = left, r = right
+        while l < r {
+            nums.swapAt(l, r)
+            l += 1
+            r -= 1
         }
     }
-    func A21_removeDuplicates(_ nums: inout [Int]) -> Int {
-        if nums.isEmpty { return 0 }
-        var i = 0
-        for j in 1..<nums.count {
-            if nums[j] != nums[i] {
-                i += 1
-                nums[i] = nums[j]
-            }
+}
+
+func A21_removeDuplicates(_ nums: inout [Int]) -> Int {
+    if nums.isEmpty { return 0 }
+    var i = 0
+    for j in 1..<nums.count {
+        if nums[j] != nums[i] {
+            i += 1
+            nums[i] = nums[j]
         }
-        return i + 1
     }
-    func A22_searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-        func findFirst(_ nums: [Int], _ target: Int) -> Int {
-            var left = 0, right = nums.count - 1, ans = -1
-            while left <= right {
-                let mid = left + (right - left) / 2
-                if nums[mid] == target {
-                    ans = mid
-                    right = mid - 1   // keep going left
-                } else if nums[mid] < target {
-                    left = mid + 1
-                } else {
-                    right = mid - 1
-                }
-            }
-            return ans
-        }
-        
-        func findLast(_ nums: [Int], _ target: Int) -> Int {
-            var left = 0, right = nums.count - 1, ans = -1
-            while left <= right {
-                let mid = left + (right - left) / 2
-                if nums[mid] == target {
-                    ans = mid
-                    left = mid + 1   // keep going right
-                } else if nums[mid] < target {
-                    left = mid + 1
-                } else {
-                    right = mid - 1
-                }
-            }
-            return ans
-        }
-        
-        let first = findFirst(nums, target)
-        let last = findLast(nums, target)
-        return [first, last]
-    }
-    func A23_findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
-        var A = nums1, B = nums2
-        if A.count > B.count { swap(&A, &B) } // ensure A is smaller
-        
-        let m = A.count, n = B.count
-        var left = 0, right = m
-        
+    return i + 1
+}
+func A22_searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+    func findFirst(_ nums: [Int], _ target: Int) -> Int {
+        var left = 0, right = nums.count - 1, ans = -1
         while left <= right {
-            let i = (left + right) / 2
-            let j = (m + n + 1) / 2 - i
-            
-            let maxLeftA = (i == 0) ? Int.min : A[i - 1]
-            let minRightA = (i == m) ? Int.max : A[i]
-            
-            let maxLeftB = (j == 0) ? Int.min : B[j - 1]
-            let minRightB = (j == n) ? Int.max : B[j]
-            
-            if maxLeftA <= minRightB && maxLeftB <= minRightA {
-                if (m + n) % 2 == 0 {
-                    return Double(max(maxLeftA, maxLeftB) + min(minRightA, minRightB)) / 2.0
-                } else {
-                    return Double(max(maxLeftA, maxLeftB))
-                }
-            } else if maxLeftA > minRightB {
-                right = i - 1
+            let mid = left + (right - left) / 2
+            if nums[mid] == target {
+                ans = mid
+                right = mid - 1   // keep going left
+            } else if nums[mid] < target {
+                left = mid + 1
             } else {
-                left = i + 1
+                right = mid - 1
             }
         }
-        
-        return 0.0 // should never reach
+        return ans
     }
-    func A24_findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
-        let m = nums1.count, n = nums2.count
-        var i = 0, j = 0
-        var merged: [Int] = []
-        
-        // merge only until median index
-        while merged.count <= (m + n) / 2 {
-            if i < m && (j >= n || nums1[i] < nums2[j]) {
-                merged.append(nums1[i])
-                i += 1
+    
+    func findLast(_ nums: [Int], _ target: Int) -> Int {
+        var left = 0, right = nums.count - 1, ans = -1
+        while left <= right {
+            let mid = left + (right - left) / 2
+            if nums[mid] == target {
+                ans = mid
+                left = mid + 1   // keep going right
+            } else if nums[mid] < target {
+                left = mid + 1
             } else {
-                merged.append(nums2[j])
-                j += 1
+                right = mid - 1
             }
         }
+        return ans
+    }
+    
+    let first = findFirst(nums, target)
+    let last = findLast(nums, target)
+    return [first, last]
+}
+// 4. Median of Two Sorted Arrays
+func a23_4_findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+    var A = nums1, B = nums2
+    if A.count > B.count { swap(&A, &B) } // ensure A is smaller
+    
+    let m = A.count, n = B.count
+    var left = 0, right = m
+    
+    while left <= right {
+        let i = (left + right) / 2
+        let j = (m + n + 1) / 2 - i
         
-        let total = m + n
-        if total % 2 == 1 {
-            return Double(merged.last!)
+        let maxLeftA = (i == 0) ? Int.min : A[i - 1]
+        let minRightA = (i == m) ? Int.max : A[i]
+        
+        let maxLeftB = (j == 0) ? Int.min : B[j - 1]
+        let minRightB = (j == n) ? Int.max : B[j]
+        
+        if maxLeftA <= minRightB && maxLeftB <= minRightA {
+            if (m + n) % 2 == 0 {
+                return Double(max(maxLeftA, maxLeftB) + min(minRightA, minRightB)) / 2.0
+            } else {
+                return Double(max(maxLeftA, maxLeftB))
+            }
+        } else if maxLeftA > minRightB {
+            right = i - 1
         } else {
-            return Double(merged[merged.count - 1] + merged[merged.count - 2]) / 2.0
+            left = i + 1
         }
     }
     
-    func A25_isAnagram(_ s: String, _ t: String) -> Bool {
-        if s.count != t.count { return false }
-        
-        var count = [Int](repeating: 0, count: 26)
-        let aAscii = Character("a").asciiValue!
-        
-        for ch in s {
-            count[Int(ch.asciiValue! - aAscii)] += 1
+    return 0.0 // should never reach
+}
+func A24_findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+    let m = nums1.count, n = nums2.count
+    var i = 0, j = 0
+    var merged: [Int] = []
+    
+    // merge only until median index
+    while merged.count <= (m + n) / 2 {
+        if i < m && (j >= n || nums1[i] < nums2[j]) {
+            merged.append(nums1[i])
+            i += 1
+        } else {
+            merged.append(nums2[j])
+            j += 1
         }
-        for ch in t {
-            count[Int(ch.asciiValue! - aAscii)] -= 1
-            if count[Int(ch.asciiValue! - aAscii)] < 0 {
+    }
+    let total = m + n
+    if total % 2 == 1 {
+        return Double(merged.last!)
+    } else {
+        return Double(merged[merged.count - 1] + merged[merged.count - 2]) / 2.0
+    }
+}
+
+func A25_isAnagram(_ s: String, _ t: String) -> Bool {
+    if s.count != t.count { return false }
+    
+    var count = [Int](repeating: 0, count: 26)
+    let aAscii = Character("a").asciiValue!
+    
+    for ch in s {
+        count[Int(ch.asciiValue! - aAscii)] += 1
+    }
+    for ch in t {
+        count[Int(ch.asciiValue! - aAscii)] -= 1
+        if count[Int(ch.asciiValue! - aAscii)] < 0 {
+            return false
+        }
+    }
+    return true
+}
+func A26_topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
+    // Step 1: Count frequencies
+    var freq: [Int: Int] = [:]
+    for num in nums {
+        freq[num, default: 0] += 1
+    }
+    
+    // Step 2: Sort by frequency (descending)
+    let sorted = freq.sorted { $0.value > $1.value }
+    
+    // Step 3: Take top k keys
+    return Array(sorted.prefix(k).map { $0.key })
+}
+// Medium : 36. Valid Sudoku
+func A27_m36_isValidSudoku(_ board: [[Character]]) -> Bool {
+    // 9 rows, 9 cols, 9 boxes
+    var rows = Array(repeating: Set<Character>(), count: 9)
+    var cols = Array(repeating: Set<Character>(), count: 9)
+    var boxes = Array(repeating: Set<Character>(), count: 9)
+    
+    for r in 0..<9 {
+        for c in 0..<9 {
+            let val = board[r][c]
+            if val == "." { continue }
+            
+            // Box index calculation
+            let boxIndex = (r / 3) * 3 + (c / 3)
+            
+            // If duplicate found → invalid
+            if rows[r].contains(val) || cols[c].contains(val) || boxes[boxIndex].contains(val) {
                 return false
             }
+            // Mark as seen
+            rows[r].insert(val)
+            cols[c].insert(val)
+            boxes[boxIndex].insert(val)
         }
-        return true
     }
-    func A26_topKFrequent(_ nums: [Int], _ k: Int) -> [Int] {
-        // Step 1: Count frequencies
-        var freq: [Int: Int] = [:]
-        for num in nums {
-            freq[num, default: 0] += 1
-        }
-        
-        // Step 2: Sort by frequency (descending)
-        let sorted = freq.sorted { $0.value > $1.value }
-        
-        // Step 3: Take top k keys
-        return Array(sorted.prefix(k).map { $0.key })
-    }
-    func A27_isValidSudoku(_ board: [[Character]]) -> Bool {
-        // 9 rows, 9 cols, 9 boxes
-        var rows = Array(repeating: Set<Character>(), count: 9)
-        var cols = Array(repeating: Set<Character>(), count: 9)
-        var boxes = Array(repeating: Set<Character>(), count: 9)
-        
-        for r in 0..<9 {
-            for c in 0..<9 {
-                let val = board[r][c]
-                if val == "." { continue }
-                
-                // Box index calculation
-                let boxIndex = (r / 3) * 3 + (c / 3)
-                
-                // If duplicate found → invalid
-                if rows[r].contains(val) || cols[c].contains(val) || boxes[boxIndex].contains(val) {
-                    return false
-                }
-                // Mark as seen
-                rows[r].insert(val)
-                cols[c].insert(val)
-                boxes[boxIndex].insert(val)
+    return true
+}
+func A28_longestConsecutive(_ nums: [Int]) -> Int {
+    guard !nums.isEmpty else { return 0 }
+    let numSet = Set(nums)
+    var longest = 0
+    
+    for num in numSet {
+        // only start if this is the beginning of a sequence
+        if !numSet.contains(num - 1) {
+            var current = num
+            var length = 1
+            
+            while numSet.contains(current + 1) {
+                current += 1
+                length += 1
             }
-        }
-        return true
-    }
-    func A28_longestConsecutive(_ nums: [Int]) -> Int {
-        guard !nums.isEmpty else { return 0 }
-        let numSet = Set(nums)
-        var longest = 0
-        
-        for num in numSet {
-            // only start if this is the beginning of a sequence
-            if !numSet.contains(num - 1) {
-                var current = num
-                var length = 1
-                
-                while numSet.contains(current + 1) {
-                    current += 1
-                    length += 1
-                }
-                
-                longest = max(longest, length)
-            }
-        }
-        
-        return longest
-    }
-    func A29_sortColors(_ nums: inout [Int]) {
-        var low = 0
-        var mid = 0
-        var high = nums.count - 1
-        
-        while mid <= high {
-            if nums[mid] == 0 {
-                nums.swapAt(low, mid)
-                low += 1
-                mid += 1
-            } else if nums[mid] == 1 {
-                mid += 1
-            } else { // nums[mid] == 2
-                nums.swapAt(mid, high)
-                high -= 1
-            }
+            
+            longest = max(longest, length)
         }
     }
-    func A30_majorityElement(_ nums: [Int]) -> Int {
-        var candidate = nums[0]
-        var count = 0
-        
-        for num in nums {
-            if count == 0 {
-                candidate = num
-            }
-            count += (num == candidate) ? 1 : -1
+    
+    return longest
+}
+// 75. Sort Colors
+func A29_75_sortColors(_ nums: inout [Int]) {
+    var low = 0
+    var mid = 0
+    var high = nums.count - 1
+    
+    while mid <= high {
+        if nums[mid] == 0 {
+            nums.swapAt(low, mid)
+            low += 1
+            mid += 1
+        } else if nums[mid] == 1 {
+            mid += 1
+        } else { // nums[mid] == 2
+            nums.swapAt(mid, high)
+            high -= 1
         }
-        
-        return candidate
     }
+}
+// 169. Majority Element
+func A30_169_majorityElement(_ nums: [Int]) -> Int {
+    var candidate = nums[0]
+    var count = 0
+    
+    for num in nums {
+        if count == 0 {
+            candidate = num
+        }
+        count += (num == candidate) ? 1 : -1
+    }
+    
+    return candidate
+}
 }

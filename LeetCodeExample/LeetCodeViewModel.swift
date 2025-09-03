@@ -15,6 +15,7 @@ class LeetCodeViewModel: ObservableObject {
     private var stackVM: StackViewModel
     private var treeVM: TreeViewModel?
     private var heapVM: HeapViewModel?
+    private var searchVM: SearchViewModel?
     
     @Published var data: [LeetCodeModel]
     
@@ -26,7 +27,8 @@ class LeetCodeViewModel: ObservableObject {
          _ linkedListVM: LinkedListViewModel = .init(),
          _ stackVM: StackViewModel = .init(),
          _ treeVM: TreeViewModel = .init(),
-         _ heapVM: HeapViewModel = .init()) {
+         _ heapVM: HeapViewModel = .init(),
+         _ searchVM: SearchViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
@@ -68,6 +70,45 @@ class LeetCodeViewModel: ObservableObject {
     }
     func lengthOfLongestSubstring() {
         stringVM.lengthOfLongestSubstring()
+    }
+    func longestCommonPrefix() {
+        stringVM.longestCommonPrefix()
+    }
+    func fizzBuzz(){
+        stringVM.fizzBuzz()
+    }
+    func characterReplacement() {
+        stringVM.characterReplacement()
+    }
+    func lengthOfLongestSubstring2(){
+        stringVM.lengthOfLongestSubstring2()
+    }
+    func minWindow2() {
+        stringVM.minWindow()
+    }
+    func isAnagram2(){
+        stringVM.isAnagram()
+    }
+    func groupAnagrams2() {
+        stringVM.groupAnagrams()
+    }
+    func isPalindrome2() {
+        stringVM.isPalindrome2()
+    }
+    func longestPalindrome() {
+        stringVM.longestPalindrome()
+    }
+    func countSubstrings(){
+        stringVM.countSubstrings()
+    }
+    func isPalindrome() {
+        stringVM.isPalindrome()
+    }
+    func letterCombinations() {
+        stringVM.letterCombinations()
+    }
+    func fullJustify() {
+        stringVM.fullJustify()
     }
     // MARK: - ========================================== Array ==========================================
     func solveSudoku() {
@@ -197,6 +238,28 @@ class LeetCodeViewModel: ObservableObject {
     func findDuplicate(){
         linkListVM.findDuplicate()
     }
+    func sortList() {
+        linkListVM.sortList()
+    }
+   
+    
+    // MARK: ========================================== Sliding Window ==========================================
+    func minWindow() {
+        slidingWindowVM.minWindow()
+    }
+    func maxSlidingWindow() {
+        slidingWindowVM.maxSlidingWindow()
+    }
+    // MARK:  ========================================== Stack ===================================================
+    func validParenthese() {
+        stackVM.validParenthese()
+    }
+    func minStack() {
+        stackVM.minStackOperation()
+    }
+    func evalRPN() {
+        stackVM.evalRPN()
+    }
     func lruCache() {
         stackVM.lruCache()
     }
@@ -214,23 +277,6 @@ class LeetCodeViewModel: ObservableObject {
     }
     func maxStack() {
         stackVM.S7_716_MaxStack()
-    }
-    // MARK: ========================================== Sliding Window ==========================================
-    func minWindow() {
-        slidingWindowVM.minWindow()
-    }
-    func maxSlidingWindow() {
-        slidingWindowVM.maxSlidingWindow()
-    }
-    // MARK:  ========================================== Stack ===================================================
-    func validParenthese() {
-        stackVM.validParenthese()
-    }
-    func minStack() {
-        stackVM.minStackOperation()
-    }
-    func evalRPN() {
-        stackVM.evalRPN()
     }
     // MARK:  ========================================== Heap ===================================================
     func minHeapOperation() {
@@ -256,6 +302,16 @@ class LeetCodeViewModel: ObservableObject {
     }
     func findMedianUsingQ() {
         heapVM?.findMedian()
+    }
+    // MARK:  ========================================== Search ===================================================
+    func search() {
+        searchVM?.search()
+    }
+    func searchMatrix() {
+        searchVM?.searchMatrix()
+    }
+    func minEatingSpeed() {
+        searchVM?.minEatingSpeed()
     }
     // MARK:  ========================================== deinit ===================================================
     deinit {

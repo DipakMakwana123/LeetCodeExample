@@ -350,6 +350,25 @@ struct LinkList {
         }
         return slow
     }
+    
+    // 148. Sort List
+        func ll15_148_sortList(_ head: ListNode?) -> ListNode? {
+            var list:[Int] = []
+            sortNodes(head,&list)
+            return head
+        }
+
+        func sortNodes(_ node:ListNode?,_ list:inout[Int]){
+            if node == nil{
+                list = list.sorted(by:{$0 < $1})
+                return
+            }
+            list.append(node!.val)
+            sortNodes(node?.next,&list)
+            node?.val = list.last!
+            let _ = list.popLast()
+        }
+    
 }
 
 

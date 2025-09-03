@@ -82,7 +82,12 @@ struct DArrayViewModel {
     
     func dailyTemperatures() {
         let arr = [73,74,75,71,69,72,76,73]
-        print("[73,74,75,71,69,72,76,73]: \(dArray.A4_739_dailyTemperatures(arr))")
+        print("[73,74,75,71,69,72,76,73]: Expected [1,1,4,2,1,1,0,0]\(dArray.A4_739_dailyTemperatures(arr))")
+        print("Expected [1,1,4,2,1,1,0,0] \(dArray.A4_739_dailyTemperatures([73,74,75,71,69,72,76,73]))")
+        print("Expected [1,1,1,0] \(dArray.A4_739_dailyTemperatures([30,40,50,60]))")
+        print("Expected [1,1,0] \(dArray.A4_739_dailyTemperatures([30,60,90]))")
+        print("Expected [0,0,0,0]  \(dArray.A4_739_dailyTemperatures([90,80,70,60]))")
+        print("Expected [1,2,1,1,0] \(dArray.A4_739_dailyTemperatures([50,60,55,65,70]))")
     }
     func totalFruit() {
         let fruits1 = [1,2,1]
@@ -153,29 +158,31 @@ struct DArrayViewModel {
         //        print("Example 4 Merged: \( leetCode.merge(nums1_4, m4, nums2_4, n4))") // Output: [1, 2, 3, 4, 5, 6]
     }
     func maxArea() {
-        print("\nHeight: [0,1,0,2,1,0,1,3,2,1,2,1]  Expected 6")
-        print(dArray.A8_maxArea([0,1,0,2,1,0,1,3,2,1,2,1])) // Expected 6
-        print(dArray.A8_maxArea([0,1,10,2,1,0,1,3,2,1,2,1])) // Expected
+      
+       
+        print("Expected: 49 \(dArray.A8_11_maxArea( [1,8,6,2,5,4,8,3,7]))") // Expected 6
+        print(dArray.A8_11_maxArea([0,1,0,2,1,0,1,3,2,1,2,1])) // Expected 6
+        print(dArray.A8_11_maxArea([0,1,10,2,1,0,1,3,2,1,2,1])) // Expected
         print("\nHeight: [1,2,3,4,5]")
-        print("Trapped Water: \(dArray.A8_maxArea([1,2,3,4,5]))") // Expected: 0
+        print("Trapped Water: \(dArray.A8_11_maxArea([1,2,3,4,5]))") // Expected: 0
         print("\nHeight: [5,4,3,2,1]")
-        print("Trapped Water: \(dArray.A8_maxArea([5,4,3,2,1]))") // Expected: 0
+        print("Trapped Water: \(dArray.A8_11_maxArea([5,4,3,2,1]))") // Expected: 0
         
         // Example 4: Peak in middle
         print("\nHeight: [4,2,0,3,2,5]")
-        print("Trapped Water: \(dArray.A8_maxArea([4,2,0,3,2,5]))") // Expected: 9 (2 at index 1, 4 at index 2, 1 at index 4)
+        print("Trapped Water: \(dArray.A8_11_maxArea([4,2,0,3,2,5]))") // Expected: 9 (2 at index 1, 4 at index 2, 1 at index 4)
         
         //Example 5: No water (too few bars)
         print("\nHeight: [1,2]")
-        print("Trapped Water: \(dArray.A8_maxArea([1,2]))") // Expected: 0
+        print("Trapped Water: \(dArray.A8_11_maxArea([1,2]))") // Expected: 0
         
         // Example 6: Empty array
         print("\nHeight: []")
-        print("Trapped Water: \(dArray.A8_maxArea([]))") // Expected: 0
+        print("Trapped Water: \(dArray.A8_11_maxArea([]))") // Expected: 0
         
         // Example 7: Example from problem with leading/trailing zeros
         print("\nHeight: [0,1,0,2,1,0,1,3,2,1,2,1]")
-        print("Trapped Water: \(dArray.A8_maxArea([0,1,0,2,10,0,1,3,2,1,2,1]))") // Expected: 7
+        print("Trapped Water: \(dArray.A8_11_maxArea([0,1,0,2,10,0,1,3,2,1,2,1]))") // Expected: 7
     }
     func findMinFuelStationToReachDestination() {
         let target1 = 100
@@ -198,71 +205,74 @@ struct DArrayViewModel {
             [".",".",".",".","8",".",".","7","9"]
         ]
         
-        dArray.A11_solveSudoku(&board)
+        dArray.A11_m36_solveSudoku(&board)
         print(board)
     }
     func firstMissingPositive() {
-        print("Expected 3: Current \(dArray.A12_firstMissingPositive([1,2,0]))")        // 3
-        print(dArray.A12_firstMissingPositive([3,4,-1,1]))     // 2
-        print(dArray.A12_firstMissingPositive([7,8,9,1,12]))  // 1
-        print(dArray.A12_firstMissingPositive([1,2,3]))  // 1
+        print("Expected: 3, Current: \(dArray.A12_H41_firstMissingPositive([1,2,0]))")        // 3
+        print("Expected: 2, Current: \(dArray.A12_H41_firstMissingPositive([3,4,-1,1]))")     // 2
+        print("Expected: 1, Current: \(dArray.A12_H41_firstMissingPositive([7,8,9,1,12]))")  // 1
+        print("Expected: 1, Current: \(dArray.A12_H41_firstMissingPositive([1,2,3]))")  // 1
     }
     func maxSubArray(){
-        print(dArray.A13_maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6  (subarray [4,-1,2,1])
-        print(dArray.A13_maxSubArray([1]))                     // 1
-        print(dArray.A13_maxSubArray([5,4,-1,7,8]))            // 23
+        print(dArray.a13_m53_maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6  (subarray [4,-1,2,1])
+        print(dArray.a13_m53_maxSubArray([1]))                     // 1
+        print(dArray.a13_m53_maxSubArray([5,4,-1,7,8]))            // 23
     }
     func maxProduct(){
-        print(dArray.A14_maxProduct([2,3,-2,4]))   // 6   (subarray [2,3])
-        print(dArray.A14_maxProduct([-2,0,-1]))    // 0   (subarray [0])
-        print(dArray.A14_maxProduct([-2,3,-4]))    // 24  (subarray [-2,3,-4])
+        print(dArray.a14_m152_maxProduct([2,3,-2,4]))   // 6   (subarray [2,3])
+        print(dArray.a14_m152_maxProduct([-2,0,-1]))    // 0   (subarray [0])
+        print(dArray.a14_m152_maxProduct([-2,3,-4]))    // 24  (subarray [-2,3,-4])
     }
     func findMin(){
-        print(dArray.A15_findMin([3,4,5,1,2]))   // 1
-        print(dArray.A15_findMin([4,5,6,7,0,1,2])) // 0
-        print(dArray.A15_findMin([11,13,15,17])) // 11
+        print(dArray.a15_m153_findMin([3,4,5,1,2]))   // 1
+        print(dArray.a15_m153_findMin([4,5,6,7,0,1,2])) // 0
+        print(dArray.a15_m153_findMin([11,13,15,17])) // 11
     }
     func A16_search(){
-        print(dArray.A16_search([4,5,6,7,0,1,2], 0))  // 4
-        print(dArray.A16_search([4,5,6,7,0,1,2], 3))  // -1
-        print(dArray.A16_search([1], 0))              // -1
+        print(dArray.a16_m33_search([4,5,6,7,0,1,2], 0))  // 4
+        print(dArray.a16_m33_search([4,5,6,7,0,1,2], 3))  // -1
+        print(dArray.a16_m33_search([1], 0))              // -1
     }
     func A17_twoSum(){
-        print(dArray.A17_twoSum([2,7,11,15], 9))   // [1,2]
-        print(dArray.A17_twoSum([2,3,4], 6))       // [1,3]
-        print(dArray.A17_twoSum([-1,0], -1))       // [1,2]
+        print(dArray.a17_e1_twoSum([2,7,11,15], 9))   // [1,2]
+        print(dArray.a17_e1_twoSum([2,3,4], 6))       // [1,3]
+        print(dArray.a17_e1_twoSum([-1,0], -1))       // [1,2]
     }
     func threeSum() {
-        print(dArray.A18_threeSum([-1,0,1,2,-1,-4]))
+        
+        debugPrint(dArray.a18_m15_threeSum([3,-2,1,0])) // 
+        debugPrint(dArray.a18_m15_threeSum([-1,0,1,0])) // [[-1,0,1]]
+        print(dArray.a18_m15_threeSum([-1,0,1,2,-1,-4])) // [[-1, 0, 1], [-1, -1, 2]]
         // [[-1, -1, 2], [-1, 0, 1]]
-        print(dArray.A18_threeSum([0,1,1]))  // []
-        print(dArray.A18_threeSum([0,0,0]))  // [[0,0,0]]
+        print(dArray.a18_m15_threeSum([0,1,1]))  // []
+        print(dArray.a18_m15_threeSum([0,0,0]))  // [[0,0,0]]
     }
     func isAlienSorted() {
-        print(dArray.A19_isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"))
+        print(dArray.a19_e953_isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"))
         // Expected: true
 
-        print(dArray.A19_isAlienSorted(["word","world","row"], "worldabcefghijkmnpqstuvxyz"))
+        print(dArray.a19_e953_isAlienSorted(["word","world","row"], "worldabcefghijkmnpqstuvxyz"))
         // Expected: false
 
-        print(dArray.A19_isAlienSorted(["apple","app"], "abcdefghijklmnopqrstuvwxyz"))
+        print(dArray.a19_e953_isAlienSorted(["apple","app"], "abcdefghijklmnopqrstuvwxyz"))
         // Expected: false
 
-        print(dArray.A19_isAlienSorted(["app","apple"], "abcdefghijklmnopqrstuvwxyz"))
+        print(dArray.a19_e953_isAlienSorted(["app","apple"], "abcdefghijklmnopqrstuvwxyz"))
         // Expected: true
     }
     func nextPermutation() {
         var arr1 = [1,2,3]
-        dArray.A20_nextPermutation(&arr1)
-        print(arr1)  // [1,3,2]
+        dArray.a20_m31_nextPermutation(&arr1)
+        print("Expected [1,3,2] \(arr1)")
 
         var arr2 = [3,2,1]
-        dArray.A20_nextPermutation(&arr2)
-        print(arr2)  // [1,2,3]
+        dArray.a20_m31_nextPermutation(&arr2)
+        print("Expected [1,2,3] \(arr2)")
 
         var arr3 = [1,1,5]
-        dArray.A20_nextPermutation(&arr3)
-        print(arr3)  // [1,5,1]
+        dArray.a20_m31_nextPermutation(&arr3)
+        print("Expected [1,5,1] \(arr3)")
     }
     func removeDuplicate() {
         var arr1 = [1,1,2]
@@ -281,11 +291,11 @@ struct DArrayViewModel {
         print(dArray.A22_searchRange([], 0))
     }
     func trap(){
-        print(dArray.A9_trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+        print(dArray.a9_42_trap([0,1,0,2,1,0,1,3,2,1,2,1]))
         // 6
-        print(dArray.A9_trap([4,2,0,3,2,5]))
+        print(dArray.a9_42_trap([4,2,0,3,2,5]))
         // 9
-        print(dArray.A9_trap([1,0,2,1,0,1,3]))
+        print(dArray.a9_42_trap([1,0,2,1,0,1,3]))
         // 5
     }
     func findMedianSortedArrays(){
@@ -316,7 +326,7 @@ struct DArrayViewModel {
             [".",".",".","4","1","9",".",".","5"],
             [".",".",".",".","8",".",".","7","9"]
         ]
-        print(dArray.A27_isValidSudoku(board1)) // true
+        print(dArray.A27_m36_isValidSudoku(board1)) // true
 
         let board2: [[Character]] = [
             ["8","3",".",".","7",".",".",".","."],
@@ -329,7 +339,7 @@ struct DArrayViewModel {
             [".",".",".","4","1","9",".",".","5"],
             [".",".",".",".","8",".",".","7","9"]
         ]
-        print(dArray.A27_isValidSudoku(board2)) // false
+        print(dArray.A27_m36_isValidSudoku(board2)) // false
     }
     func longestConsecutive(){
         print(dArray.A28_longestConsecutive([100,4,200,1,3,2])) // 4 (sequence: 1,2,3,4)
@@ -337,12 +347,12 @@ struct DArrayViewModel {
     }
     func sortColors() {
         var arr = [2,0,2,1,1,0]
-        dArray.A29_sortColors(&arr)
+        dArray.A29_75_sortColors(&arr)
         print(arr)  // [0,0,1,1,2,2]
     }
     func majorityElement(){
-        print(dArray.A30_majorityElement([3,2,3]))       // 3
-        print(dArray.A30_majorityElement([2,2,1,1,1,2,2])) // 2
+        print(dArray.A30_169_majorityElement([3,2,3]))       // 3
+        print(dArray.A30_169_majorityElement([2,2,1,1,1,2,2])) // 2
     }
     
     

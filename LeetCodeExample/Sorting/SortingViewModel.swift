@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct SortingViewModel {
+    private var sorting: Sorting
+    
+    init(sorting: Sorting) {
+        self.sorting = sorting
+    }
+    
+}

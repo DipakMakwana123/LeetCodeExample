@@ -10,17 +10,18 @@ import Foundation
 struct HeapViewModel {
     
     func minHeapOperation() {
-        var minHeap = MinHeap<Int>()
+        var minHeap = MinHeap()
         minHeap.insert(10)
         minHeap.insert(4)
         minHeap.insert(15)
         minHeap.insert(20)
         minHeap.insert(1)
         
-        print(minHeap.peek()!)       // 1 (minimum element)
-        print(minHeap.extractMin()!) // 1
-        print(minHeap.extractMin()!) // 4
-        print(minHeap.extractMin()!) // 10
+        print(minHeap.peek!)       // 1 (minimum element)
+        print(minHeap.removeMin()!) // 1
+        print(minHeap.removeMin()!) // 4
+        print(minHeap.removeMin()!) // 10
+        //print(minHeap.extractMin()!) // 10
     }
     func lastStoneWeight() {
         let maxHeap = MaxHeap()

@@ -179,7 +179,7 @@ struct LinkedListViewModel {
     func reverseKGroup() {
         let head: ListNode? = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
         let k = 2
-        print(linkList.LL13_25_reverseKGroup(head, k) ?? nil)
+        print(linkList.LL13_25_reverseKGroup(head, k) ?? nil ?? ListNode(0))
     }
     func copyRandomList(){
         
@@ -188,6 +188,36 @@ struct LinkedListViewModel {
         print(linkList.LL14_287_findDuplicate([1,3,4,2,2])) // Output: 2
         print(linkList.LL14_287_findDuplicate([3,1,3,4,2])) // Output: 3
 
+    }
+    func sortList() {
+        func buildList(_ arr: [Int]) -> ListNode? {
+            let dummy = ListNode(0)
+            var current = dummy
+            for num in arr {
+                current.next = ListNode(num)
+                current = current.next!
+            }
+            return dummy.next
+        }
+
+        func printList(_ head: ListNode?) {
+            var head = head
+            var result = [Int]()
+            while head != nil {
+                result.append(head!.val)
+                head = head?.next
+            }
+            print(result)
+        }
+        
+        let list1 = buildList([4,2,1,3])
+        printList(linkList.ll15_148_sortList(list1))   // [1,2,3,4]
+
+        let list2 = buildList([-1,5,3,4,0])
+        printList(linkList.ll15_148_sortList(list2))   // [-1,0,3,4,5]
+
+        let list3 = buildList([])
+        printList(linkList.ll15_148_sortList(list3))   // []
     }
     
 }
