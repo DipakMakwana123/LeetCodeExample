@@ -118,7 +118,7 @@ struct LinkedListViewModel {
         let l1 = ListNode(2, ListNode(4, ListNode(3)))
         let l2 = ListNode(5, ListNode(6, ListNode(4)))
         
-        var result = linkList.LL6_2_addTwoNumbers(l1, l2)
+        var result = linkList.LL6_m2_addTwoNumbers(l1, l2)
         while result != nil {
             print(result!.val, terminator: " ") // 7 0 8
             result = result?.next
@@ -218,6 +218,21 @@ struct LinkedListViewModel {
 
         let list3 = buildList([])
         printList(linkList.ll15_148_sortList(list3))   // []
+    }
+    func deleteDuplicates() {
+        // Input: 1 -> 1 -> 2 -> 3 -> 3
+        let head = ListNode(1, ListNode(1, ListNode(2, ListNode(3, ListNode(3)))))
+    
+        let newHead = linkList.deleteDuplicates(head)
+
+        // Print result
+        var node = newHead
+        while let n = node {
+            print(n.val, terminator: " ")
+            node = n.next
+        }
+        // Output: 1 2 3
+
     }
     
 }

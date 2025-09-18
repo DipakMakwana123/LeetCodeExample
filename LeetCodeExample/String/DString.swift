@@ -8,14 +8,31 @@
 import Foundation
 
 struct DString {
-    func s1_isMatch(_ s: String, _ p: String) -> Bool {
+    /* Hard 10. Regular Expression Matching
+     Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+     
+     '.' Matches any single character.
+     '*' Matches zero or more of the preceding element.
+     The matching should cover the entire input string (not partial).
+     Example 1:
+     
+     Input: s = "aa", p = "a"
+     Output: false
+     Explanation: "a" does not match the entire string "aa".
+     
+     Example 2:
+     Input: s = "aa", p = "a*"
+     Output: true
+     Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+     
+     */
+    func s1_h10_isMatch1(_ s: String, _ p: String) -> Bool {
         let sChars = Array(s)
         let pChars = Array(p)
         var dp = Array(repeating: Array(repeating: false, count: p.count + 1), count: s.count + 1)
         dp[0][0] = true
         
         for i in 0..<p.count {
-            debugPrint(pChars[i])
             if pChars[i] == "*"  && dp[0][i-1] == true  {
                 dp[0][i+1] = true
             }
@@ -42,6 +59,45 @@ struct DString {
             }
         }
         return dp[s.count][p.count]
+    }
+    func s1_h10_isMatch(_ s: String, _ p: String) -> Bool {
+        let sArr = Array(s)
+        let pArr = Array(p)
+        let m = sArr.count
+        let n = pArr.count
+        
+        // only keep one row for dp
+        var prev = Array(repeating: false, count: n+1)
+        var curr = Array(repeating: false, count: n+1)
+        
+        prev[0] = true
+        
+        // handle patterns like a*, a*b*, etc. that match empty string
+        for j in 1...n {
+            if pArr[j-1] == "*" && j > 1 {
+                prev[j] = prev[j-2]
+            }
+        }
+        
+        for i in 1...m {
+            curr = Array(repeating: false, count: n+1)
+            for j in 1...n {
+                if pArr[j-1] == "." || pArr[j-1] == sArr[i-1] {
+                    curr[j] = prev[j-1]
+                } else if pArr[j-1] == "*" {
+                    // zero occurrence of the preceding char
+                    curr[j] = curr[j-2]
+                    
+                    // one or more occurrence
+                    if pArr[j-2] == "." || pArr[j-2] == sArr[i-1] {
+                        curr[j] = curr[j] || prev[j]
+                    }
+                }
+            }
+            prev = curr
+        }
+        
+        return prev[n]
     }
     func isMatch1(_ s: String, _ p: String) -> Bool {
         let sChars = Array(s)
@@ -79,47 +135,7 @@ struct DString {
         return dp[m][n]
     }
     
-    func s2_isPalindromeTwoPointers(text: String) -> Bool {
-        //print(isPalindromeTwoPointers(text: "madam"))   // true
-        // print(isPalindromeTwoPointers(text: "swift")) // false
-        let characters = Array(text) // Convert to an array for O(1) access
-        var left = 0
-        var right = characters.count - 1
-        
-        while left < right {
-            if characters[left] != characters[right] {
-                return false
-            }
-            left += 1
-            right -= 1
-        }
-        
-        return true
-    }
     
-    func s3_isPalindromeRobust(text: String) -> Bool {
-        
-        //        print(isPalindromeRobust(text: "A man, a plan, a canal: Panama")) // true
-        //        print(isPalindromeRobust(text: "No 'x' in Nixon"))              // true
-        //        print(isPalindromeRobust(text: "Hello, World!"))               // false
-        //
-        // 1. Filter and normalize the string
-        let filteredString = text.lowercased().filter { $0.isLetter || $0.isNumber }
-        
-        // 2. Use the two-pointer approach on the filtered string
-        let characters = Array(filteredString)
-        var left = 0
-        var right = characters.count - 1
-        
-        while left < right {
-            if characters[left] != characters[right] {
-                return false
-            }
-            left += 1
-            right -= 1
-        }
-        return true
-    }
     func s3_isValidBracketString(_ s: String) -> Bool {
         // Use a Swift Array as a stack. We'll store Character types.
         var stack: [Character] = []
@@ -159,8 +175,6 @@ struct DString {
         // all brackets were correctly matched and closed.
         return stack.isEmpty
     }
-    
-    
     func s5_lengthOfLongestSubstring(_ s: String) -> Int {
         guard !s.isEmpty else {
             return 0 // Handle empty string edge case
@@ -371,20 +385,6 @@ struct DString {
         
         return result
     }
-    //    179. Largest Number
-    func s12_179_largestNumber(_ nums: [Int]) -> String {
-        // Convert numbers to strings
-        let strs = nums.map { String($0) }
-        
-        // Custom sort: compare concatenations
-        let sorted = strs.sorted { $0 + $1 > $1 + $0 }
-        
-        // Join result
-        let result = sorted.joined()
-        
-        // Edge case: if all numbers are "0"
-        return result.first == "0" ? "0" : result
-    }
     func s13_14_longestCommonPrefix(_ strs: [String]) -> String {
         guard var prefix = strs.first else {return ""}
         for string in strs.dropFirst() {
@@ -395,20 +395,7 @@ struct DString {
         }
         return prefix
     }
-    func s14_412_fizzBuzz(_ n: Int) -> [String] {
-        var result = [String]()
-        
-        for i in 1...n {
-            var str = ""
-            
-            if i % 3 == 0 { str += "Fizz" }
-            if i % 5 == 0 { str += "Buzz" }
-            
-            result.append(str.isEmpty ? "\(i)" : str)
-        }
-        
-        return result
-    }
+    
     func s15_424_characterReplacement(_ s: String, _ k: Int) -> Int {
         var freq = [Int](repeating: 0, count: 26)
         var left = 0
@@ -432,8 +419,15 @@ struct DString {
         }
         return best
     }
-    
-    func s16_3_lengthOfLongestSubstring(_ s: String) -> Int {
+    /* Medium 3. Longest Substring Without Repeating Characters
+     Given a string s, find the length of the longest substring without duplicate characters.
+     Example 1:
+
+     Input: s = "abcabcbb"
+     Output: 3
+     Explanation: The answer is "abc", with the length of 3.
+     */
+    func s16m3_lengthOfLongestSubstring(_ s: String) -> Int {
         let chars = Array(s)
         var dict = [Character: Int]()   // stores last seen index
         var left = 0
@@ -509,11 +503,9 @@ struct DString {
     
     func s19_49_groupAnagrams(_ strs: [String]) -> [[String]] {
         var anagrams: [String: [String]] = [:]
-        
         for str in strs {
             anagrams[String(str.sorted()), default:[String]()].append(str)
         }
-        
         return anagrams.map { $0.value }
     }
     
@@ -540,8 +532,16 @@ struct DString {
         
         return true
     }
+    /* Medium 5. Longest Palindromic Substring
+     Given a string s, return the longest palindromic substring in s.
+     Example 1:
+
+     Input: s = "babad"
+     Output: "bab"
+     Explanation: "aba" is also a valid answer.
+     */
     
-    func s21_5_longestPalindrome(_ s: String) -> String {
+    func s21m5_longestPalindrome(_ s: String) -> String {
         if s.count < 2 { return s }
         
         let chars = Array(s)
@@ -572,26 +572,7 @@ struct DString {
         
         return String(chars[start...end])
     }
-    // 647. Palindromic Substrings
-    func s22_647_countSubstrings(_ s: String) -> Int {
-        var characters = Array(s)
-        var charactersCount = characters.count
-        var result = 0
-        
-        for centerIndex in 0..<(2 * charactersCount) - 1 {
-            var leftPointerIndex = centerIndex / 2
-            var rightPointerIndex = leftPointerIndex + (centerIndex % 2)
-            
-            while leftPointerIndex >= 0, rightPointerIndex < charactersCount, characters[leftPointerIndex] == characters[rightPointerIndex] {
-                result += 1
-                leftPointerIndex -= 1
-                rightPointerIndex += 1
-            }
-        }
-        
-        return result
-        
-    }
+    
     //    234. Palindrome Linked List
     func s23_234_isPalindrome(_ head: ListNode?) -> Bool {
         var node = head
@@ -603,12 +584,18 @@ struct DString {
         }
         return list == Array(list.reversed())
     }
+    /* Medium 17. Letter Combinations of a Phone Number
+     Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
+     
+     A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+     Example 1:
+     
+     Input: digits = "23"
+     Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+     */
     
-    //17. Letter Combinations of a Phone Number
-    func s24_17_letterCombinations(_ digits: String) -> [String] {
-        if digits.isEmpty { return [] }
-        
-        let phone: [Character: [String]] = [
+    func s24_m17_letterCombinations(_ digits: String) -> [String]  {
+        let mapping: [Character: [String]] = [
             "2": ["a","b","c"],
             "3": ["d","e","f"],
             "4": ["g","h","i"],
@@ -618,30 +605,23 @@ struct DString {
             "8": ["t","u","v"],
             "9": ["w","x","y","z"]
         ]
-        
-        var result = [String]()
-        var path = [String]()
-        let digitsArray = Array(digits)
-        
-        func backtrack(_ index: Int) {
-            if index == digitsArray.count {
-                result.append(path.joined())
-                return
-            }
-            
-            let digit = digitsArray[index]
-            if let letters = phone[digit] {
+        if digits.isEmpty { return [] }
+        var combinations: [String] = [""]
+        for d in digits {
+            guard let letters = mapping[d] else { continue }
+            var next: [String] = []
+            for prefix in combinations {
                 for letter in letters {
-                    path.append(letter)
-                    backtrack(index + 1)
-                    path.removeLast()
+                    next.append(prefix + letter)
                 }
             }
+            combinations = next
         }
-        
-        backtrack(0)
-        return result
+        return combinations
     }
+    
+    
+    
     //68. Text Justification
     func s25_68_fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {
         var result = [String]()
@@ -693,6 +673,487 @@ struct DString {
         
         return result
     }
+    
+    
+    /* Easy  67. Add Binary
+     
+     Given two binary strings a and b, return their sum as a binary string.
+     
+     Example 1:
+     Example 1:
+     Input: a = "11", b = "1"
+     Output: "100"
+     Example 2:
+     
+     Input: a = "1010", b = "1011"
+     Output: "10101"
+     
+     */
+    func s27_e67_addBinary(_ a: String, _ b: String) -> String {
+        let arrA = Array(a)
+        let arrB = Array(b)
+        var i = arrA.count - 1
+        var j = arrB.count - 1
+        var carry = 0
+        var result: [Character] = []
+        
+        while i >= 0 || j >= 0 || carry > 0 {
+            let bitA = (i >= 0) ? Int(String(arrA[i]))! : 0
+            let bitB = (j >= 0) ? Int(String(arrB[j]))! : 0
+            
+            let sum = bitA + bitB + carry
+            result.append(Character(String(sum % 2)))
+            carry = sum / 2
+            
+            i -= 1
+            j -= 1
+        }
+        
+        return String(result.reversed())
+    }
+    
+    // Medium : 36. Valid Sudoku
+    func s29_m36_solveSudoku(_ board: inout [[Character]]) {
+        func isValid(_ row: Int, _ col: Int, _ char: Character) -> Bool {
+            for i in 0..<9 {
+                // Check row
+                if board[row][i] == char { return false }
+                // Check column
+                if board[i][col] == char { return false }
+                // Check 3×3 box
+                let boxRow = 3 * (row / 3) + i / 3
+                let boxCol = 3 * (col / 3) + i % 3
+                
+                /*
+                 
+                 (i/3 , i%3)
+                 +-------+-------+-------+
+                 | (0,0) | (0,1) | (0,2) |
+                 +-------+-------+-------+
+                 | (1,0) | (1,1) | (1,2) |
+                 +-------+-------+-------+
+                 | (2,0) | (2,1) | (2,2) |
+                 +-------+-------+-------+
+                 
+                 | i | i/3 | i%3 | (row offset, col offset) |
+                 | - | --- | --- | ------------------------ |
+                 | 0 | 0   | 0   | (0,0)                    |
+                 | 1 | 0   | 1   | (0,1)                    |
+                 | 2 | 0   | 2   | (0,2)                    |
+                 | 3 | 1   | 0   | (1,0)                    |
+                 | 4 | 1   | 1   | (1,1)                    |
+                 | 5 | 1   | 2   | (1,2)                    |
+                 | 6 | 2   | 0   | (2,0)                    |
+                 | 7 | 2   | 1   | (2,1)                    |
+                 | 8 | 2   | 2   | (2,2)                    |
+                 
+                 
+                 We number the boxes 0–8 (left→right, top→bottom):
+                 Each **box** is 3 rows × 3 cols.
+                 +-------+-------+-------+
+                 | box 0 | box 1 | box 2 |
+                 |       |       |       |
+                 +-------+-------+-------+
+                 | box 3 | box 4 | box 5 |
+                 |       |       |       |
+                 +-------+-------+-------+
+                 | box 6 | box 7 | box 8 |
+                 |       |       |       |
+                 +-------+-------+-------+
+                 ### **Step 1 – Find top-left corner of the box**
+                 
+                 If `row = 4` and `col = 5`:
+                 
+                 * `row / 3 = 1` → box is in the **second row of boxes** → top row index = `3 * 1 = 3`
+                 * `col / 3 = 1` → box is in the **second column of boxes** → left col index = `3 * 1 = 3`
+                 **Top-left corner of box:** `(3, 3)`
+                 ### **Step 2 – Enumerate cells in the box with `i = 0...8`**
+                 
+                 We scan in row-major order:
+                 
+                 | i | i / 3 | i % 3 | boxRow = 3\*(row/3) + i/3 | boxCol = 3\*(col/3) + i%3 |
+                 | - | ----- | ----- | ------------------------- | ------------------------- |
+                 | 0 | 0     | 0     | 3 + 0 = 3                 | 3 + 0 = 3                 |
+                 | 1 | 0     | 1     | 3                         | 4                         |
+                 | 2 | 0     | 2     | 3                         | 5                         |
+                 | 3 | 1     | 0     | 4                         | 3                         |
+                 | 4 | 1     | 1     | 4                         | 4                         |
+                 | 5 | 1     | 2     | 4                         | 5                         |
+                 | 6 | 2     | 0     | 5                         | 3                         |
+                 | 7 | 2     | 1     | 5                         | 4                         |
+                 | 8 | 2     | 2     | 5                         | 5                         |
+                 
+                 That’s exactly the 3×3 block from `(3,3)` to `(5,5)`.
+                 
+                 ---
+                 
+                 ### **Visual for box at (row=4, col=5)**
+                 Row\Col   3   4   5
+                 +---+---+---+
+                 3  | * | * | * |
+                 4  | * | * | **|
+                 5  | * | * | * |
+                 +---+---+---+
+                 Where each `*` is hit exactly once by `(boxRow, boxCol)` from the formula.
+                 If you want, I can make a **color-coded 9×9 Sudoku diagram** showing **all boxes and the scanning order for i=0…8** so you can see the traversal pattern across the entire grid.
+                 Do you want me to make that?
+                 
+                 */
+                if board[boxRow][boxCol] == char { return false }
+            }
+            return true
+        }
+        
+        func backtrack() -> Bool {
+            for row in 0..<9 {
+                for col in 0..<9 {
+                    if board[row][col] == "." {
+                        for num in 1...9 {
+                            let char = Character("\(num)")
+                            if isValid(row, col, char) {
+                                board[row][col] = char
+                                if backtrack() { return true }
+                                board[row][col] = "." // undo
+                            }
+                        }
+                        return false // no valid number found
+                    }
+                }
+            }
+            return true // all cells filled
+        }
+        
+        _ = backtrack()
+    }
+    
+    
+    
+    
+    /* Easy 290. Word Pattern
+     
+     Given a pattern and a string s, find if s follows the same pattern.
+     
+     Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s. Specifically:
+     
+     Each letter in pattern maps to exactly one unique word in s.
+     Each unique word in s maps to exactly one letter in pattern.
+     No two letters map to the same word, and no two words map to the same letter.
+     
+     
+     Example 1:
+     
+     Input: pattern = "abba", s = "dog cat cat dog"
+     
+     Output: true
+     
+     Explanation:
+     */
+    func s31_e290_wordPattern(_ pattern: String, _ s: String) -> Bool {
+        
+        let words = s.split(separator: " ").map { String($0) }
+        guard words.count == pattern.count else { return false }
+        
+        var pIndex: [Character: Int] = [:]
+        var wIndex: [String: Int] = [:]
+        
+        let patternChars = Array(pattern)
+        
+        for i in 0..<patternChars.count {
+            let p = patternChars[i]
+            let w = words[i]
+            
+            if pIndex[p] != wIndex[w] {
+                return false
+            }
+            
+            // Store the current index + 1 (to avoid default 0 confusion)
+            pIndex[p] = i + 1
+            wIndex[w] = i + 1
+        }
+        
+        return true
+        
+    }
+    /* Easy 344. Reverse String
+     Write a function that reverses a string. The input string is given as an array of characters s.
+     
+     You must do this by modifying the input array in-place with O(1) extra memory.
+     Example 1:
+     
+     Input: s = ["h","e","l","l","o"]
+     Output: ["o","l","l","e","h"]
+     */
+    func s32_e344_reverseString(_ s: inout [Character]) {
+        var left = 0
+        var right = s.count - 1
+        
+        while left < right {
+            s.swapAt(left, right)
+            left += 1
+            right -= 1
+        }
+    }
+    /* Easy 345. Reverse Vowels of a String
+     Given a string s, reverse only all the vowels in the string and return it.
+     
+     The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+     Example 1:
+     
+     Input: s = "IceCreAm"
+     
+     Output: "AceCreIm"
+     
+     Explanation:
+     
+     The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
+     */
+    
+    func s33_e345_reverseVowels(_ s: String) -> String {
+        var chars = Array(s)
+        var left = 0
+        var right = chars.count - 1
+        let vowels: Set<Character> = ["a","e","i","o","u","A","E","I","O","U"]
+        
+        while left < right {
+            while left < right && !vowels.contains(chars[left]) {
+                left += 1
+            }
+            while left < right && !vowels.contains(chars[right]) {
+                right -= 1
+            }
+            
+            if left < right {
+                chars.swapAt(left, right)
+                left += 1
+                right -= 1
+            }
+        }
+        
+        return String(chars)
+    }
+    /* Easy 383. Ransom Note
+     Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+     
+     Each letter in magazine can only be used once in ransomNote.
+     
+     Example 1:
+     
+     Input: ransomNote = "a", magazine = "b"
+     Output: false
+     Example 2:
+     
+     Input: ransomNote = "aa", magazine = "ab"
+     Output: false
+     Example 3:
+     */
+    
+    func s34_e383_canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
+        var freq: [Character: Int] = [:]
+        
+        // Count characters in magazine
+        for ch in magazine {
+            freq[ch, default: 0] += 1
+        }
+        
+        // Check against ransomNote
+        for ch in ransomNote {
+            if let count = freq[ch], count > 0 {
+                freq[ch]! -= 1
+            } else {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    /* Easy 383. Ransom Note
+     Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+     
+     Each letter in magazine can only be used once in ransomNote.
+     
+     Example 1:
+     
+     Input: ransomNote = "a", magazine = "b"
+     Output: false
+     Example 2:
+     
+     Input: ransomNote = "aa", magazine = "ab"
+     Output: false
+     
+     */
+    func s35_e383_canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
+        var freq: [Character: Int] = [:]
+        
+        // Count characters in magazine
+        for ch in magazine {
+            freq[ch, default: 0] += 1
+        }
+        
+        // Check against ransomNote
+        for ch in ransomNote {
+            if let count = freq[ch], count > 0 {
+                freq[ch]! -= 1
+            } else {
+                return false
+            }
+        }
+        
+        return true
+    }
+    /* Easy 387. First Unique Character in a String
+     
+     Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+     Example 1:
+     Input: s = "leetcode"
+     Output: 0
+     Explanation:
+     The character 'l' at index 0 is the first character that does not occur at any other index.
+     
+     Example 2:
+     Input: s = "loveleetcode"
+     Output: 2
+     */
+    
+    func s36_e387_firstUniqChar(_ s: String) -> Int {
+        var freq = [Character: Int]()
+        
+        // Count frequencies
+        for ch in s {
+            freq[ch, default: 0] += 1
+        }
+        
+        // Find first unique char
+        for (i, ch) in s.enumerated() {
+            if freq[ch] == 1 {
+                return i
+            }
+        }
+        
+        return -1
+    }
+/* Easy 389. Find the Difference
+ 
+ You are given two strings s and t.
 
+ String t is generated by random shuffling string s and then add one more letter at a random position.
 
+ Return the letter that was added to t.
+
+ Example 1:
+ Input: s = "abcd", t = "abcde"
+ Output: "e"
+ Explanation: 'e' is the letter that was added.
+ Example 2:
+
+ Input: s = "", t = "y"
+ Output: "y"
+ */
+    func s37_e389_findTheDifference(_ s: String, _ t: String) -> Character {
+            var freq: [Character: Int] = [:]
+            
+            // Count in s
+            for ch in s {
+                freq[ch, default: 0] += 1
+            }
+            
+            // Subtract using t
+            for ch in t {
+                if let count = freq[ch], count > 0 {
+                    freq[ch]! -= 1
+                } else {
+                    return ch
+                }
+            }
+            
+            return " " // should never reach
+        }
+//func isIsomorphic(_ s: String, _ t: String) -> Bool {
+//     let sChars = Array(s)
+//     let tChars = Array(t)
+//     guard sChars.count == tChars.count else { return false }
+//     
+//     var mapST: [Character: Character] = [:]
+//     var mapTS: [Character: Character] = [:]
+//     
+//     for i in 0..<sChars.count {
+//     let sc = sChars[i]
+//     let tc = tChars[i]
+//     
+//     if let mapped = mapST[sc] {
+//     if mapped != tc { return false }
+//     } else {
+//     mapST[sc] = tc
+//     }
+//     
+//     if let mappedBack = mapTS[tc] {
+//     if mappedBack != sc { return false }
+//     } else {
+//     mapTS[tc] = sc
+//     }
+//     }
+//     return true
+//     }
+    
+    /* Easy 392. Is Subsequence
+     Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+     A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+     Example 1:
+
+     Input: s = "abc", t = "ahbgdc"
+     Output: true
+     Example 2:
+
+     Input: s = "axc", t = "ahbgdc"
+     Output: false
+
+     */
+    func s38_e392_isSubsequence(_ s: String, _ t: String) -> Bool {
+            if s.isEmpty { return true }
+            
+            let sChars = Array(s)
+            let tChars = Array(t)
+            
+            var i = 0, j = 0
+            
+            while i < sChars.count && j < tChars.count {
+                if sChars[i] == tChars[j] {
+                    i += 1
+                }
+                j += 1
+            }
+            
+            return i == sChars.count
+        }
+    /* Easy 415. Add Strings
+     Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
+
+     You must solve the problem without using any built-in library for handling large integers (such as BigInteger). You must also not convert the inputs to integers directly.
+
+     Example 1:
+
+     Input: num1 = "11", num2 = "123"
+     Output: "134"
+     */
+    func s39_e415_addStrings(_ num1: String, _ num2: String) -> String {
+            let arr1 = Array(num1), arr2 = Array(num2)
+            var i = arr1.count - 1
+            var j = arr2.count - 1
+            var carry = 0
+            var result = ""
+            
+            while i >= 0 || j >= 0 || carry > 0 {
+                let x = i >= 0 ? Int(String(arr1[i]))! : 0
+                let y = j >= 0 ? Int(String(arr2[j]))! : 0
+                
+                let sum = x + y + carry
+                result.append(String(sum % 10))
+                carry = sum / 10
+                
+                i -= 1
+                j -= 1
+            }
+            
+            return String(result.reversed())
+        }
 }

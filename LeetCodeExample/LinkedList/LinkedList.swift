@@ -126,7 +126,14 @@ struct LinkList {
         }
         return median
     }
-    func LL6_2_addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+    /* Medium 2. Add Two Numbers
+     
+     You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+     You may assume the two numbers do not contain any leading zero, except the number 0 itself
+      
+     */
+    func LL6_m2_addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let dummy = ListNode(0)
         var curr: ListNode? = dummy
         var p = l1, q = l2
@@ -368,6 +375,25 @@ struct LinkList {
             node?.val = list.last!
             let _ = list.popLast()
         }
+    
+    
+        func deleteDuplicates(_ head: ListNode?) -> ListNode? {
+            var current: ListNode? = head
+            var prev: ListNode? = nil
+
+            while current != nil {
+                if current?.val == prev?.val {
+                    prev?.next = current?.next
+                    current = current?.next
+                } else {
+                    prev = current
+                    current = current?.next
+                }
+            }
+
+            return head
+        }
+
     
 }
 

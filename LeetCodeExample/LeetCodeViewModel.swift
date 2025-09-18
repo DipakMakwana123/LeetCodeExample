@@ -17,7 +17,8 @@ class LeetCodeViewModel: ObservableObject {
     private var heapVM: HeapViewModel?
     private var searchVM: SearchViewModel?
     private var dpVM: DPViewModel?
-    
+    private var devideConquerVM: DevideConquerViewModel?
+    private var dIntVM: DIntViewModel?
     @Published var data: [LeetCodeModel]
     
     init(
@@ -30,7 +31,9 @@ class LeetCodeViewModel: ObservableObject {
          _ treeVM: TreeViewModel = .init(),
          _ heapVM: HeapViewModel = .init(),
          _ searchVM: SearchViewModel = .init(),
-         _ dpVM: DPViewModel = .init()) {
+         _ dpVM: DPViewModel = .init(),
+         _ devideConquerVM: DevideConquerViewModel = .init(),
+         _ dIntVM: DIntViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
@@ -38,15 +41,123 @@ class LeetCodeViewModel: ObservableObject {
         self.stackVM = stackVM
         self.heapVM = heapVM
         self.dpVM = dpVM
+        self.dIntVM = dIntVM
+        self.devideConquerVM = devideConquerVM
         data = [
             LeetCodeModel(title: "Two number sum from array"),
             LeetCodeModel(title: "Bracket Validation String"),
         ]
     }
+    // MARK: - ========================================== Tree ==========================================
     func findMaxDepth() {
         treeVM?.findMaxDepth()
     }
+    // MARK: - ========================================== Int ==========================================
+    func reverseBits() {
+        dIntVM?.reverseBits()
+    }
+    func isHappy() {
+        dIntVM?.isHappy()
+    }
+    func containsDuplicate(){
+        dIntVM?.containsDuplicate()
+    }
+    func containsNearbyDuplicate() {
+        dIntVM?.containsNearbyDuplicate()
+    }
+    func isPowerOfTwo() {
+        dIntVM?.isPowerOfTwo()
+    }
+    func addDigits() {
+        dIntVM?.addDigits()
+    }
+    func isUgly() {
+        dIntVM?.isUgly()
+    }
+    func missingNumber() {
+        dIntVM?.missingNumber()
+    }
+    func isPowerOfThree() {
+        dIntVM?.isPowerOfThree()
+    }
+    func mySqrt() {
+        dIntVM?.mySqrt()
+    }
+    func isPerfectSquare() {
+        dIntVM?.isPerfectSquare()
+    }
+    func countSubstrings(){
+        dIntVM?.countSubstrings()
+    }
+    func titleToNumber() {
+        dIntVM?.titleToNumber()
+    }
+    func summaryRanges() {
+        dIntVM?.summaryRanges()
+    }
+    func longestPalindrome() {
+        dIntVM?.longestPalindrome()
+    }
+    func thirdMax() {
+        dIntVM?.thirdMax()
+    }
+    func countSegments() {
+        dIntVM?.countSegments()
+    }
+    func arrangeCoins() {
+        dIntVM?.arrangeCoins()
+    }
+    func findDisappearedNumbers() {
+        dIntVM?.findDisappearedNumbers()
+    }
+    func findContentChildren() {
+        dIntVM?.findContentChildren()
+    }
+    func hammingDistance() {
+        dIntVM?.hammingDistance()
+    }
+    func findComplement(){
+        dIntVM?.findComplement()
+    }
+    func licenseKeyFormatting() {
+        dIntVM?.licenseKeyFormatting()
+    }
+    func findMaxConsecutiveOnes() {
+        dIntVM?.findMaxConsecutiveOnes()
+    }
+    func findPoisonedDuration() {
+        dIntVM?.findPoisonedDuration()
+    }
+    
     // MARK: - ========================================== String ==========================================
+    func findWords() {
+        stringVM.findWords()
+    }
+    func repeatedSubstringPattern(){
+        stringVM.repeatedSubstringPattern()
+    }
+    func addStrings() {
+        stringVM.addStrings()
+    }
+    func isSubsequence() {
+        stringVM.isSubsequence()
+    }
+    func findTheDifference() {
+        stringVM.findTheDifference()
+    }
+    func canConstruct() {
+        stringVM.canConstruct()
+    }
+    func reverseVowels() {
+        stringVM.reverseVowels()
+    }
+    func reverseString() {
+        stringVM.reverseString()
+    }
+    func wordPattern() {
+        stringVM.wordPattern()
+    }
+   
     func findSubstring() {
         stringVM.findSubstring()
     }
@@ -60,7 +171,7 @@ class LeetCodeViewModel: ObservableObject {
         stringVM.checkBracketStringValidation()
     }
     func largestNumber(){
-        stringVM.largestNumber()
+        dIntVM?.largestNumber()
     }
     func isMatch() {
         stringVM.isMatch()
@@ -78,7 +189,7 @@ class LeetCodeViewModel: ObservableObject {
         stringVM.longestCommonPrefix()
     }
     func fizzBuzz(){
-        stringVM.fizzBuzz()
+        dIntVM?.fizzBuzz()
     }
     func characterReplacement() {
         stringVM.characterReplacement()
@@ -98,12 +209,10 @@ class LeetCodeViewModel: ObservableObject {
     func isPalindrome2() {
         stringVM.isPalindrome2()
     }
-    func longestPalindrome() {
+    func longestPalindromeString() {
         stringVM.longestPalindrome()
     }
-    func countSubstrings(){
-        stringVM.countSubstrings()
-    }
+    
     func isPalindrome() {
         stringVM.isPalindrome()
     }
@@ -113,10 +222,15 @@ class LeetCodeViewModel: ObservableObject {
     func fullJustify() {
         stringVM.fullJustify()
     }
-    // MARK: - ========================================== Array ==========================================
-    func solveSudoku() {
-        arrayVM.solveSudoku()
+    func addBinary() {
+        stringVM.addBinary()
     }
+    
+    func solveSudoku() {
+        stringVM.solveSudoku()
+    }
+    // MARK: - ========================================== Array ==========================================
+    
     func sortColors() {
         arrayVM.sortColors()
     }
@@ -204,6 +318,30 @@ class LeetCodeViewModel: ObservableObject {
     func topKFrequent(){
         arrayVM.topKFrequent()
     }
+    func romanToInt() {
+        arrayVM.romanToInt()
+    }
+    func removeDuplicates() {
+        arrayVM.removeDuplicates()
+    }
+    func findFirstIndexFromSting () {
+        arrayVM.findFirstIndexFromSting()
+    }
+    func searchInsert() {
+        arrayVM.searchInsert()
+    }
+    func lengthOfLastWord() {
+        arrayVM.lengthOfLastWord()
+    }
+    func plusOne() {
+        arrayVM.plusOne()
+    }
+    func intersection() {
+        arrayVM.intersection()
+    }
+    func intersect() {
+        arrayVM.intersect()
+    }
     // MARK: - ========================================== Linked List ==========================================
     func findMedian() {
         linkListVM.findMedian()
@@ -244,7 +382,9 @@ class LeetCodeViewModel: ObservableObject {
     func sortList() {
         linkListVM.sortList()
     }
-   
+    func deleteDuplicates() {
+        linkListVM.deleteDuplicates()
+    }
     
     // MARK: ========================================== Sliding Window ==========================================
     func minWindow() {
@@ -319,6 +459,37 @@ class LeetCodeViewModel: ObservableObject {
     // MARK:  ========================================== Dyamic Programing ===================================================
     func rob() {
         dpVM?.rob()
+    }
+    func climbStairs() {
+        dpVM?.climbStairs()
+    }
+    func minCostClimbingStairs() {
+        dpVM?.minCostClimbingStairs()
+    }
+    func coinChange() {
+        dpVM?.coinChange()
+    }
+    func generate() {
+        dpVM?.generate()
+    }
+    func wordBreak() {
+        dpVM?.wordBreak()
+    }
+    func combinationSum() {
+        dpVM?.combinationSum()
+    }
+    func rob2() {
+        dpVM?.rob2()
+    }
+    // MARK:  ========================================== Devide & Conqure ===================================================
+    func secondLargestNumber() {
+        devideConquerVM?.secondLargestNumber()
+    }
+    func reverseNumber() {
+        devideConquerVM?.reverseNumber()
+    }
+    func makeArrayIdentical() {
+        devideConquerVM?.makeArrayIdentical()
     }
     // MARK:  ========================================== deinit ===================================================
     deinit {

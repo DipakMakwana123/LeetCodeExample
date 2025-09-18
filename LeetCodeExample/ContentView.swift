@@ -22,7 +22,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            viewModel.rob()
+            viewModel.longestPalindrome()
         }
         .padding()
     }

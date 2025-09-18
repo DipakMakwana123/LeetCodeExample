@@ -142,20 +142,20 @@ struct DArrayViewModel {
         print("[7, 14, 10]: expected -1 \(dArray.A6_setBricks(&arr))")
     }
     func merge() {
-        let nums1_1 = [1,2,3,0,0,0]
+        var nums1_1 = [1,2,3,0,0,0]
         let m1 = 3
         let nums2_1 = [2,5,6]
         let n1 = 3
         
         print(
-            "Example 1 Merged: \(dArray.A7_merge(nums1_1, m1, nums2_1, n1))"
+            "Expected [1, 2, 2, 3, 5, 6] Actual: \(dArray.a7_e88_merge(&nums1_1, m1, nums2_1, n1))"
         ) // Output: [1, 2, 2, 3, 5, 6]
         
         //        let nums1_4 = [4,5,6]
         //        let m4 = 3
         //        let nums2_4 = [1,2,3,0,0,0]
         //        let n4 = 3
-        //        print("Example 4 Merged: \( leetCode.merge(nums1_4, m4, nums2_4, n4))") // Output: [1, 2, 3, 4, 5, 6]
+        //        print("Example 4 Merged: \(dArray.a7_e88_merge(nums1_4, m4, nums2_4, n4))") // Output: [1, 2, 3, 4, 5, 6]
     }
     func maxArea() {
       
@@ -192,22 +192,6 @@ struct DArrayViewModel {
         print("Example 1: Min Refuels = Expected Output 2 \(dArray.A9_findMinFuelStationToReachDestination(target: target1, startFuel: startFuel1, capacity: capacity1, gasStations: stations1))")
     }
     
-    func solveSudoku() {
-        var board: [[Character]] = [
-            ["5","3",".",".","7",".",".",".","."],
-            ["6",".",".","1","9","5",".",".","."],
-            [".","9","8",".",".",".",".","6","."],
-            ["8",".",".",".","6",".",".",".","3"],
-            ["4",".",".","8",".","3",".",".","1"],
-            ["7",".",".",".","2",".",".",".","6"],
-            [".","6",".",".",".",".","2","8","."],
-            [".",".",".","4","1","9",".",".","5"],
-            [".",".",".",".","8",".",".","7","9"]
-        ]
-        
-        dArray.A11_m36_solveSudoku(&board)
-        print(board)
-    }
     func firstMissingPositive() {
         print("Expected: 3, Current: \(dArray.A12_H41_firstMissingPositive([1,2,0]))")        // 3
         print("Expected: 2, Current: \(dArray.A12_H41_firstMissingPositive([3,4,-1,1]))")     // 2
@@ -276,11 +260,11 @@ struct DArrayViewModel {
     }
     func removeDuplicate() {
         var arr1 = [1,1,2]
-        print(dArray.A21_removeDuplicates(&arr1))  // 2
+        print(dArray.a32_e26_removeDuplicates(&arr1))  // 2
         print(arr1)  // [1,2,_]
 
         var arr2 = [0,0,1,1,1,2,2,3,3,4]
-        print(dArray.A21_removeDuplicates(&arr2))  // 5
+        print(dArray.a32_e26_removeDuplicates(&arr2))  // 5
         print(arr2)  // [0,1,2,3,4,_...]
     }
     func searchRange(){
@@ -306,13 +290,14 @@ struct DArrayViewModel {
         print(dArray.A24_findMedianSortedArrays([2], []))           // 2.0
     }
     func isAnagram(){
-        print(dArray.A25_isAnagram("anagram", "nagaram")) // true
-        print(dArray.A25_isAnagram("rat", "car"))         // false
+        print(dArray.A25_e242_isAnagram("Rat", "rat"))         // false
+        print(dArray.A25_e242_isAnagram("anagram", "nagaram")) // true
+       print(dArray.A25_e242_isAnagram("rat", "car"))         // false
     }
     func topKFrequent(){
-        print(dArray.A26_topKFrequent([1,1,1,2,2,3], 2)) // [1, 2]
-        print(dArray.A26_topKFrequent([1], 1))           // [1]
-        print(dArray.A26_topKFrequent([4,4,4,5,5,6], 2)) // [4, 5]
+        print(dArray.A26_m347_topKFrequent([1,1,1,2,2,3], 2)) // [1, 2]
+        print(dArray.A26_m347_topKFrequent([1], 1))           // [1]
+        print(dArray.A26_m347_topKFrequent([4,4,4,5,5,6], 2)) // [4, 5]
     }
     func isValidSudoku(){
         let board1: [[Character]] = [
@@ -342,18 +327,73 @@ struct DArrayViewModel {
         print(dArray.A27_m36_isValidSudoku(board2)) // false
     }
     func longestConsecutive(){
-        print(dArray.A28_longestConsecutive([100,4,200,1,3,2])) // 4 (sequence: 1,2,3,4)
-        print(dArray.A28_longestConsecutive([0,3,7,2,5,8,4,6,0,1])) // 9 (sequence: 0–8)
+        print(dArray.A28_m128_longestConsecutive([100,4,200,1,3,2])) // 4 (sequence: 1,2,3,4)
+        print(dArray.A28_m128_longestConsecutive([0,3,7,2,5,8,4,6,0,1])) // 9 (sequence: 0–8)
     }
     func sortColors() {
         var arr = [2,0,2,1,1,0]
-        dArray.A29_75_sortColors(&arr)
+        dArray.A29_m75_sortColors(&arr)
         print(arr)  // [0,0,1,1,2,2]
     }
     func majorityElement(){
-        print(dArray.A30_169_majorityElement([3,2,3]))       // 3
-        print(dArray.A30_169_majorityElement([2,2,1,1,1,2,2])) // 2
+        print(dArray.A30_e169_majorityElement([1,2,3,4,1,2,2]))       // 2
+       // print(dArray.A30_e169_majorityElement([3,2,3,2,3]))       // 3
+      //print(dArray.A30_e169_majorityElement([3,2,3]))       // 3
+      //  print(dArray.A30_e169_majorityElement([2,2,1,1,1,2,2])) // 2
     }
-    
-    
+    func romanToInt() {
+        print(dArray.a31_e13_romanToInt("III"))    // 3
+        print(dArray.a31_e13_romanToInt("LVIII"))  // 58  (50 + 5 + 3)
+        print(dArray.a31_e13_romanToInt("MCMXCIV"))// 1994 (1000 + (100 before 1000 → 900) + (10 before 100 → 90) + (1 before 5 → 4))
+
+    }
+    func removeDuplicates() {
+        var nums1 = [1,1,2]
+        let len1 = dArray.a32_e26_removeDuplicates(&nums1)
+        print(len1)          // 2
+        print(Array(nums1[..<len1])) // [1, 2]
+
+        var nums2 = [0,0,1,1,1,2,2,3,3,4]
+        let len2 = dArray.a32_e26_removeDuplicates(&nums2)
+        print(len2)          // 5
+        print(Array(nums2[..<len2])) // [0, 1, 2, 3, 4]
+    }
+    func findFirstIndexFromSting () {
+        print(dArray.a34_e28_findFirstIndexFromSting("sadbutsad", "sad"))   // 0
+        print(dArray.a34_e28_findFirstIndexFromSting("leetcode", "leeto")) // -1
+        print(dArray.a34_e28_findFirstIndexFromSting("sadbutsad", "but"))  // 3
+    }
+    func searchInsert() {
+        print(dArray.a35_e35_searchInsert([1,3,5,6], 5))  // 2 (found at index 2)
+        print(dArray.a35_e35_searchInsert([1,3,5,6], 2))  // 1 (insert before 3)
+        print(dArray.a35_e35_searchInsert([1,3,5,6], 7))  // 4 (insert at end)
+        print(dArray.a35_e35_searchInsert([1,3,5,6], 0))  // 0 (insert at start)
+    }
+    func lengthOfLastWord() {
+        print(
+            dArray.a36_e58_lengthOfLastWord("Hello World")
+        )       // 5 ("World")
+        print(dArray.a36_e58_lengthOfLastWord("   fly me   to   the moon  ")) // 4 ("moon")
+        print(dArray.a36_e58_lengthOfLastWord("luffy is still joyboy"))       // 6 ("joyboy")
+    }
+    func plusOne() {
+        print(dArray.a37_e66_plusOne([1,2,3]))   // [1,2,4]
+        print(dArray.a37_e66_plusOne([4,3,2,1])) // [4,3,2,2]
+        print(dArray.a37_e66_plusOne([9]))       // [1,0]
+        print(dArray.a37_e66_plusOne([9,9,9]))   // [1,0,0,0]
+    }
+    func intersection() {
+        print(dArray.a38_e349_intersection([1,2,2,1], [2,2]))       // [2]
+        print(dArray.a38_e349_intersection([4,9,5], [9,4,9,8,4]))   // [4,9] or [9,4]
+        print(dArray.a38_e349_intersection([], [1,2]))              // []
+        print(dArray.a38_e349_intersection([1,2,3], [4,5,6]))       // []
+        print(dArray.a38_e349_intersection([1,1,1,2,3], [1,1,2]))   // [1,2]
+    }
+    func intersect() {
+        print(dArray.a39_e350_intersect([1,2,2,1], [2,2]))        // [2,2]
+        print(dArray.a39_e350_intersect([4,9,5], [9,4,9,8,4]))    // [4,9]
+        print(dArray.a39_e350_intersect([1,2,3], [4,5,6]))        // []
+        print(dArray.a39_e350_intersect([1,1,1,2], [1,1,2,2]))    // [1,1,2]
+
+    }
 }

@@ -8,9 +8,11 @@
 import Foundation
 struct StringViewModel {
     private var dString: DString
+    private var dString2: DString2
     
-    init(myString: DString = .init()) {
+    init(myString: DString = .init(),dString2: DString2 = .init()) {
         self.dString = myString
+        self.dString2 = dString2
     }
     func lengthOfLongestSubstring() {
         let s1 = "abcabcbb"
@@ -110,10 +112,10 @@ struct StringViewModel {
     }
     func isMatch() {
         // let solution = Solution()
-        print(dString.s1_isMatch("aab", "c*a*b")) // true
-        print(dString.s1_isMatch("mississippi", "mis*is*p*.")) // false
+        print(dString.s1_h10_isMatch("aab", "c*a*b")) // true
+        print(dString.s1_h10_isMatch("mississippi", "mis*is*p*.")) // false
         //        print(leetCode.isMatch("ab", ".*")) // true
-        print(dString.s1_isMatch("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*")) // false
+        print(dString.s1_h10_isMatch("aaaaaaaaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*")) // false
     }
     
     func findSubstring() {
@@ -140,20 +142,13 @@ struct StringViewModel {
         print(decoded)
         // ["lint","code","love","you"]
     }
-    func largestNumber(){
-        print(dString.s12_179_largestNumber([10,2]))        // "210"
-        print(dString.s12_179_largestNumber([3,30,34,5,9])) // "9534330"
-        print(dString.s12_179_largestNumber([0,0]))         // "0"
-        
-    }
+   
     func longestCommonPrefix() {
         print(dString.s13_14_longestCommonPrefix(["flower","flow","flight"]))  // "fl"
         print(dString.s13_14_longestCommonPrefix(["dog","racecar","car"]))     // ""
         print(dString.s13_14_longestCommonPrefix(["interspecies","interstellar","interstate"])) // "inters"
     }
-    func fizzBuzz(){
-        print(dString.s14_412_fizzBuzz(15))
-    }
+    
     func characterReplacement() {
         print(dString.s15_424_characterReplacement("ABAB", 2))      // 4
         print(dString.s15_424_characterReplacement("AABABBA", 1))   // 4
@@ -162,11 +157,11 @@ struct StringViewModel {
         print(dString.s15_424_characterReplacement("ABBB", 2))      // 4
     }
     func lengthOfLongestSubstring2(){
-        print(dString.s16_3_lengthOfLongestSubstring("abcabcbb"))  // 3
-        print(dString.s16_3_lengthOfLongestSubstring("bbbbb"))     // 1
-        print(dString.s16_3_lengthOfLongestSubstring("pwwkew"))    // 3
-        print(dString.s16_3_lengthOfLongestSubstring(""))          // 0
-        print(dString.s16_3_lengthOfLongestSubstring("dvdf"))      // 3
+        print(dString.s16m3_lengthOfLongestSubstring("abcabcbb"))  // 3
+        print(dString.s16m3_lengthOfLongestSubstring("bbbbb"))     // 1
+        print(dString.s16m3_lengthOfLongestSubstring("pwwkew"))    // 3
+        print(dString.s16m3_lengthOfLongestSubstring(""))          // 0
+        print(dString.s16m3_lengthOfLongestSubstring("dvdf"))      // 3
         
     }
     func minWindow() {
@@ -197,20 +192,13 @@ struct StringViewModel {
         print(dString.s20_125_isPalindrome("hello"))                           // false
     }
     func longestPalindrome() {
-        print(dString.s21_5_longestPalindrome("babad"))   // "bab" or "aba"
-        print(dString.s21_5_longestPalindrome("cbbd"))    // "bb"
-        print(dString.s21_5_longestPalindrome("a"))       // "a"
-        print(dString.s21_5_longestPalindrome("ac"))      // "a" or "c"
-        print(dString.s21_5_longestPalindrome("racecar")) // "racecar"
-
+        print(dString.s21m5_longestPalindrome("babad"))   // "bab" or "aba"
+        print(dString.s21m5_longestPalindrome("cbbd"))    // "bb"
+        print(dString.s21m5_longestPalindrome("a"))       // "a"
+        print(dString.s21m5_longestPalindrome("ac"))      // "a" or "c"
+        print(dString.s21m5_longestPalindrome("racecar")) // "racecar"
     }
-    func countSubstrings(){
-        print(dString.s22_647_countSubstrings("abc"))   // 3
-        print(dString.s22_647_countSubstrings("aaa"))   // 6
-        print(dString.s22_647_countSubstrings("a"))     // 1
-        print(dString.s22_647_countSubstrings("ababa")) // 9
-
-    }
+   
     func isPalindrome() {
         // Helper to build linked list
         func buildList(_ arr: [Int]) -> ListNode? {
@@ -231,10 +219,10 @@ struct StringViewModel {
         
     }
     func letterCombinations() {
-        print(dString.s24_17_letterCombinations("23"))  // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
-        print(dString.s24_17_letterCombinations(""))    // []
-        print(dString.s24_17_letterCombinations("2"))   // ["a","b","c"]
-        print(dString.s24_17_letterCombinations("79"))  // 16 combinations
+        print(dString.s24_m17_letterCombinations("23"))  // ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+        print(dString.s24_m17_letterCombinations(""))    // []
+        print(dString.s24_m17_letterCombinations("2"))   // ["a","b","c"]
+        print(dString.s24_m17_letterCombinations("79"))  // 16 combinations
         
     }
     func fullJustify() {
@@ -266,5 +254,126 @@ struct StringViewModel {
         // ]
 
     }
+    func addBinary() {
+        print(dString.s27_e67_addBinary("11", "1"))       // "100"
+        print(dString.s27_e67_addBinary("1010", "1011"))  // "10101"
+    }
+    
+    func solveSudoku() {
+        var board: [[Character]] = [
+            ["5","3",".",".","7",".",".",".","."],
+            ["6",".",".","1","9","5",".",".","."],
+            [".","9","8",".",".",".",".","6","."],
+            ["8",".",".",".","6",".",".",".","3"],
+            ["4",".",".","8",".","3",".",".","1"],
+            ["7",".",".",".","2",".",".",".","6"],
+            [".","6",".",".",".",".","2","8","."],
+            [".",".",".","4","1","9",".",".","5"],
+            [".",".",".",".","8",".",".","7","9"]
+        ]
+        
+        dString.s29_m36_solveSudoku(&board)
+        print(board)
+    }
+    
+    func wordPattern() {
+        print(dString.s31_e290_wordPattern("abba", "dog cat cat dog"))  // true
+        print(dString.s31_e290_wordPattern("abba", "dog cat cat fish")) // false
+        print(dString.s31_e290_wordPattern("aaaa", "dog cat cat dog"))  // false
+        print(dString.s31_e290_wordPattern("abba", "dog dog dog dog"))  // false
+        print(dString.s31_e290_wordPattern("abc", "b c a"))             // true
+    }
+    func reverseString() {
+        var arr1: [Character] = ["h","e","l","l","o"]
+        dString.s32_e344_reverseString(&arr1)
+        print(arr1)  // ["o","l","l","e","h"]
+
+        var arr2: [Character] = ["H","a","n","n","a","h"]
+        dString.s32_e344_reverseString(&arr2)
+        print(arr2)  // ["h","a","n","n","a","H"]
+
+        var arr3: [Character] = ["a"]
+        dString.s32_e344_reverseString(&arr3)
+        print(arr3)  // ["a"]
+    }
+    func reverseVowels() {
+        print(dString.s33_e345_reverseVowels("hello"))      // "holle"
+        print(dString.s33_e345_reverseVowels("leetcode"))   // "leotcede"
+        print(dString.s33_e345_reverseVowels("aA"))         // "Aa"
+        print(dString.s33_e345_reverseVowels("swift"))      // "swifT" (no change since only one vowel)
+        print(dString.s33_e345_reverseVowels("AEIOU"))      // "UOIEA"
+    }
+    func canConstruct() {
+        print(dString.s34_e383_canConstruct("a", "b"))        // false
+        print(dString.s34_e383_canConstruct("aa", "ab"))      // false
+        print(dString.s34_e383_canConstruct("aa", "aab"))     // true
+        print(dString.s34_e383_canConstruct("abc", "cbaabc")) // true
+    }
+    func firstUniqChar() {
+        print(dString.s36_e387_firstUniqChar("leetcode"))      // 0
+        print(dString.s36_e387_firstUniqChar("loveleetcode"))  // 2
+        print(dString.s36_e387_firstUniqChar("aabb"))          // -1
+        print(dString.s36_e387_firstUniqChar("swiss"))         // 0 (s repeats, w is unique at index 1)
+    }
+    func findTheDifference() {
+        print(dString.s37_e389_findTheDifference("abcd", "abcde"))  // "e"
+        print(dString.s37_e389_findTheDifference("", "y"))          // "y"
+        print(dString.s37_e389_findTheDifference("aabb", "ababa"))  // "a"
+    }
+    func isSubsequence() {
+        // Basic true case
+        print(dString.s38_e392_isSubsequence("abc", "ahbgdc"))  // true
+
+        // Basic false case
+        print(dString.s38_e392_isSubsequence("axc", "ahbgdc"))  // false
+
+        // Empty subsequence → always true
+        print(dString.s38_e392_isSubsequence("", "ahbgdc"))     // true
+
+        // Empty target but non-empty s → false
+        print(dString.s38_e392_isSubsequence("a", ""))          // false
+
+        // Both empty → true
+        print(dString.s38_e392_isSubsequence("", ""))           // true
+
+        // Single character match
+        print(dString.s38_e392_isSubsequence("a", "a"))         // true
+
+        // Single character mismatch
+        print(dString.s38_e392_isSubsequence("a", "b"))         // false
+
+        // Subsequence at start
+        print(dString.s38_e392_isSubsequence("abc", "abcde"))   // true
+
+        // Subsequence at end
+        print(dString.s38_e392_isSubsequence("cde", "abcde"))   // true
+
+        // Subsequence in the middle
+        print(dString.s38_e392_isSubsequence("bcd", "abcde"))   // true
+
+        // Characters appear but in wrong order
+        print(dString.s38_e392_isSubsequence("cba", "abcde"))
+
+    }
+    func addStrings() {
+        print(dString.s39_e415_addStrings("11", "123"))   // "134"
+        print(dString.s39_e415_addStrings("456", "77"))   // "533"
+        print(dString.s39_e415_addStrings("0", "0"))      // "0"
+        print(dString.s39_e415_addStrings("999", "1"))    // "1000"
+    }
+    func repeatedSubstringPattern(){
+        print(dString2.s1e459_repeatedSubstringPattern("abab"))       // true
+        print(dString2.s1e459_repeatedSubstringPattern("aba"))        // false
+        print(dString2.s1e459_repeatedSubstringPattern("abcabcabc"))  // true
+        print(dString2.s1e459_repeatedSubstringPattern("aaaa"))       // true
+        print(dString2.s1e459_repeatedSubstringPattern("abcd"))       // false
+    }
+    func findWords() {
+        print(dString2.findWords(["Hello","Alaska","Dad","Peace"])) // ["Alaska","Dad"]
+        print(dString2.findWords(["omk"]))                          // []
+        print(dString2.findWords(["adsdf","sfd"]))                  // ["adsdf","sfd"]
+    }
+    
 }
+
 
