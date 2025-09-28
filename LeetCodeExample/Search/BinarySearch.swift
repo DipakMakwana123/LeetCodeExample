@@ -27,15 +27,29 @@ struct BinarySearch {
         }
         return binarySearch(nums, target, 0, nums.count - 1)
     }
+    /* Medium 74. Search a 2D Matrix
+     
+     You are given an m x n integer matrix matrix with the following two properties:
+
+     Each row is sorted in non-decreasing order.
+     The first integer of each row is greater than the last integer of the previous row.
+     Given an integer target, return true if target is in matrix or false otherwise.
+
+     You must write a solution in O(log(m * n)) time complexity.
+     Example 1:
+
+     Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
+     Output: true
+     */
     //74. Search a 2D Matrix
-    func s2_74_searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
+    func s2_m74_searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
         let m = matrix.count
         let n = matrix[0].count
         var left = 0
         var right = m * n - 1
         
         while left <= right {
-            let mid = left + (right - left) / 2
+            let mid = (right + left) / 2
             let row = mid / n
             let col = mid % n
             let midVal = matrix[row][col]

@@ -279,8 +279,19 @@ struct DArray {
      }
      return resultArray
      }*/
+    
+    /* Medium 11. Container With Most Water
+     
+     You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+     Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+     Return the maximum amount of water a container can store.
+
+     Notice that you may not slant the container.
+     */
     // 11. Container With Most Water
-    func A8_11_maxArea(_ height: [Int]) -> Int {
+    func a8_m11_maxArea(_ height: [Int]) -> Int {
         var left = 0
         var right = height.count - 1
         var maxWater = 0
@@ -411,18 +422,7 @@ struct DArray {
         }
         return n + 1
     }
-    // Medium: 53. Maximum Subarray
-    func a13_m53_maxSubArray(_ nums: [Int]) -> Int {
-        var currSum = nums[0]
-        var maxSum = nums[0]
-        
-        for i in 1..<nums.count {
-            currSum = max(nums[i], currSum + nums[i])
-            maxSum = max(maxSum, currSum)
-        }
-        
-        return maxSum
-    }
+   
     // Medium: 152. Maximum Product Subarray
     func a14_m152_maxProduct(_ nums: [Int]) -> Int {
         var maxProd = nums[0]
@@ -482,7 +482,7 @@ struct DArray {
                 } else {
                     right = mid - 1
                 }
-            }
+            }   
         }
         return -1
     }
@@ -518,7 +518,7 @@ struct DArray {
      Notice that the order of the output and the order of the triplets does not matter.
      */
     
-    func a18_m15_threeSum1(_ nums: [Int]) -> [[Int]] {
+ /*   func a18_m15_threeSum1(_ nums: [Int]) -> [[Int]] {
         var result = [[Int]]()
         
         for left in 0..<nums.count - 1 {
@@ -534,11 +534,11 @@ struct DArray {
                     }
                 }
             }
-            
         }
         return result
         
     }
+  */
     func a18_m15_threeSum(_ nums: [Int]) -> [[Int]] {
         let nums = nums.sorted()
         var result = [[Int]]()
@@ -656,7 +656,7 @@ struct DArray {
         func findFirst(_ nums: [Int], _ target: Int) -> Int {
             var left = 0, right = nums.count - 1, ans = -1
             while left <= right {
-                let mid = left + (right - left) / 2
+                let mid = (left + right) / 2
                 if nums[mid] == target {
                     ans = mid
                     right = mid - 1   // keep going left

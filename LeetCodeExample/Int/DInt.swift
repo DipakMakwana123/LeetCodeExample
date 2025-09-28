@@ -508,6 +508,7 @@ struct DInt {
         return hasOdd ? length + 1 : length
     }
     
+    
     func i20_isPalindromeTwoPointers(text: String) -> Bool {
         //print(isPalindromeTwoPointers(text: "madam"))   // true
         // print(isPalindromeTwoPointers(text: "swift")) // false
@@ -760,7 +761,7 @@ struct DInt {
         return String(result.reversed())
     }
     /* Easy 485. Max Consecutive Ones
-    
+     
      Given a binary array nums, return the maximum number of consecutive 1's in the array.
      Example 1:
      Input: nums = [1,1,0,1,1,1]
@@ -768,27 +769,27 @@ struct DInt {
      Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
      */
     func i30e485_findMaxConsecutiveOnes(_ nums: [Int]) -> Int {
-            var maxCount = 0
-            var currentCount = 0
-            
-            for num in nums {
-                if num == 1 {
-                    currentCount += 1
-                    maxCount = max(maxCount, currentCount)
-                } else {
-                    currentCount = 0
-                }
+        var maxCount = 0
+        var currentCount = 0
+        
+        for num in nums {
+            if num == 1 {
+                currentCount += 1
+                maxCount = max(maxCount, currentCount)
+            } else {
+                currentCount = 0
             }
-            return maxCount
         }
+        return maxCount
+    }
     /* Easy 495. Teemo Attacking
      Our hero Teemo is attacking an enemy Ashe with poison attacks! When Teemo attacks Ashe, Ashe gets poisoned for a exactly duration seconds. More formally, an attack at second t will mean Ashe is poisoned during the inclusive time interval [t, t + duration - 1]. If Teemo attacks again before the poison effect ends, the timer for it is reset, and the poison effect will end duration seconds after the new attack.
-
+     
      You are given a non-decreasing integer array timeSeries, where timeSeries[i] denotes that Teemo attacks Ashe at second timeSeries[i], and an integer duration.
-
+     
      Return the total number of seconds that Ashe is poisoned.
      Example 1:
-
+     
      Input: timeSeries = [1,4], duration = 2
      Output: 4
      Explanation: Teemo's attacks on Ashe go as follows:
@@ -797,18 +798,342 @@ struct DInt {
      Ashe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total.
      */
     func i31e495_findPoisonedDuration(_ timeSeries: [Int], _ duration: Int) -> Int {
-            guard !timeSeries.isEmpty else { return 0 }
+        guard !timeSeries.isEmpty else { return 0 }
+        
+        var total = 0
+        for i in 0..<timeSeries.count - 1 {
+            total += min(duration, timeSeries[i + 1] - timeSeries[i])
+        }
+        
+        // Add last attack duration
+        total += duration
+        
+        return total
+    }
+    /* Medium 7. Reverse Integer
+     Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+     
+     Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+     
+     Example 1:
+     Input: x = 123
+     Output: 321
+     */
+    func i32m7_reverse(_ x: Int) -> Int {
+        var num = x
+        var rev = 0
+        
+        while num != 0 {
+            let digit = num % 10
+            num /= 10
             
-            var total = 0
-            for i in 0..<timeSeries.count - 1 {
-                total += min(duration, timeSeries[i + 1] - timeSeries[i])
+            // Check overflow before multiplying
+            if rev > Int32.max / 10 || (rev == Int32.max / 10 && digit > 7) {
+                return 0
+            }
+            if rev < Int32.min / 10 || (rev == Int32.min / 10 && digit < -8) {
+                return 0
+            }
+            rev = rev * 10 + digit
+        }
+        
+        return rev
+    }
+    
+    /* Medium 12. Integer to Roman
+     Seven different symbols represent Roman numerals with the following values:
+     
+     Symbol    Value
+     I    1
+     V    5
+     X    10
+     L    50
+     C    100
+     D    500
+     M    1000
+     Roman numerals are formed by appending the conversions of decimal place values from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules:
+     
+     If the value does not start with 4 or 9, select the symbol of the maximal value that can be subtracted from the input, append that symbol to the result, subtract its value, and convert the remainder to a Roman numeral.
+     If the value starts with 4 or 9 use the subtractive form representing one symbol subtracted from the following symbol, for example, 4 is 1 (I) less than 5 (V): IV and 9 is 1 (I) less than 10 (X): IX. Only the following subtractive forms are used: 4 (IV), 9 (IX), 40 (XL), 90 (XC), 400 (CD) and 900 (CM).
+     Only powers of 10 (I, X, C, M) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5 (V), 50 (L), or 500 (D) multiple times. If you need to append a symbol 4 times use the subtractive form.
+     Given an integer, convert it to a Roman numeral.
+     Example 1:
+     
+     Input: num = 3749
+     
+     Output: "MMMDCCXLIX"
+     
+     Explanation:
+     
+     3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
+     700 = DCC as 500 (D) + 100 (C) + 100 (C)
+     40 = XL as 10 (X) less of 50 (L)
+     9 = IX as 1 (I) less of 10 (X)
+     Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
+     Example 2:
+     
+     Input: num = 58
+     
+     Output: "LVIII"
+     
+     Explanation:
+     
+     50 = L
+     8 = VIII
+     */
+    func i33_mM12_intToRoman(_ num: Int) -> String {
+        let values = [1000, 900, 500, 400,
+                      100, 90, 50, 40,
+                      10, 9, 5, 4, 1]
+        
+        let symbols = ["M", "CM", "D", "CD",
+                       "C", "XC", "L", "XL",
+                       "X", "IX", "V", "IV", "I"]
+        
+        var number = num
+        var result = ""
+        
+        for i in 0..<values.count {
+            while number >= values[i] {
+                number -= values[i]
+                result += symbols[i]
+            }
+        }
+        
+        return result
+    }
+    /* Medium 29. Divide Two Integers
+     Given two integers dividend and divisor, divide two integers without using multiplication, division, and mod operator.
+     
+     The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
+     
+     Return the quotient after dividing dividend by divisor.
+     
+     Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−231, 231 − 1]. For this problem, if the quotient is strictly greater than 231 - 1, then return 231 - 1, and if the quotient is strictly less than -231, then return -231.
+     
+     Example 1:
+     
+     Input: dividend = 10, divisor = 3
+     Output: 3
+     Explanation: 10/3 = 3.33333.. which is truncated to 3.
+     */
+    
+    func i34_m29_divide(_ dividend: Int, _ divisor: Int) -> Int {
+        // Edge case: overflow
+        if dividend == Int(Int32.min) && divisor == -1 {
+            return Int(Int32.max)
+        }
+        
+        // Determine sign
+        let sign = (dividend > 0) == (divisor > 0) ? 1 : -1
+        
+        var a = Int64(abs(dividend))
+        let b = Int64(abs(divisor))
+        var result: Int64 = 0
+        
+        while a >= b {
+            var temp = b
+            var multiple: Int64 = 1
+            
+            // Keep doubling temp until it exceeds a
+            while a >= (temp << 1) {
+                temp <<= 1
+                multiple <<= 1
             }
             
-            // Add last attack duration
-            total += duration
-            
-            return total
+            a -= temp
+            result += multiple
         }
-   
-   
+        
+        return sign * Int(result)
+    }
+    /* Medium 38. Count and Say
+     The count-and-say sequence is a sequence of digit strings defined by the recursive formula:
+
+     countAndSay(1) = "1"
+     countAndSay(n) is the run-length encoding of countAndSay(n - 1).
+     Run-length encoding (RLE) is a string compression method that works by replacing consecutive identical characters (repeated 2 or more times) with the concatenation of the character and the number marking the count of the characters (length of the run). For example, to compress the string "3322251" we replace "33" with "23", replace "222" with "32", replace "5" with "15" and replace "1" with "11". Thus the compressed string becomes "23321511".
+
+     Given a positive integer n, return the nth element of the count-and-say sequence.
+     Example 1:
+
+     Input: n = 4
+
+     Output: "1211"
+
+     Explanation:
+
+     countAndSay(1) = "1"
+     countAndSay(2) = RLE of "1" = "11"
+     countAndSay(3) = RLE of "11" = "21"
+     countAndSay(4) = RLE of "21" = "1211"
+     */
+    func i35_m38_countAndSay(_ n: Int) -> String {
+            if n == 1 { return "1" }
+            
+            var result = "1"
+            
+            for _ in 2...n {
+                var next = ""
+                let chars = Array(result)
+                var count = 1
+                
+                for i in 1..<chars.count {
+                    if chars[i] == chars[i - 1] {
+                        count += 1
+                    } else {
+                        next += "\(count)\(chars[i - 1])"
+                        count = 1
+                    }
+                }
+                // append the last group
+                next += "\(count)\(chars.last!)"
+                
+                result = next
+            }
+            
+            return result
+        }
+    /* Medium 45. Jump Game II
+     You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
+
+     Each element nums[i] represents the maximum length of a forward jump from index i. In other words, if you are at index i, you can jump to any index (i + j) where:
+
+     0 <= j <= nums[i] and
+     i + j < n
+     Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1.
+     Example 1:
+
+     Input: nums = [2,3,1,1,4]
+     Output: 2
+     Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+     */
+    func i36_m45_jump(_ nums: [Int]) -> Int {
+            var jumps = 0
+            var currentEnd = 0
+            var farthest = 0
+            
+            for i in 0..<nums.count - 1 {
+                farthest = max(farthest, i + nums[i])
+                if i == currentEnd {
+                    jumps += 1
+                    currentEnd = farthest
+                }
+            }
+            return jumps
+        }
+    /* Medium 46. Permutations
+     Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
+     Example 1:
+
+     Input: nums = [1,2,3]
+     Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+     */
+    func i37_m46_permute(_ nums: [Int]) -> [[Int]] {
+            var nums = nums.sorted() // start with lexicographically smallest
+            var results = [[Int]]()
+            results.append(nums)
+            
+            while nextPermutation(&nums) {
+                results.append(nums)
+            }
+            
+            return results
+        }
+        
+        // Helper: Next Permutation (LC 31)
+        private func nextPermutation(_ nums: inout [Int]) -> Bool {
+            let n = nums.count
+            var i = n - 2
+            
+            // Step 1: Find the first decreasing element
+            while i >= 0 && nums[i] >= nums[i + 1] {
+                i -= 1
+            }
+            
+            if i < 0 { return false } // already last permutation
+            
+            // Step 2: Find element just larger than nums[i]
+            var j = n - 1
+            while nums[j] <= nums[i] {
+                j -= 1
+            }
+            
+            // Step 3: Swap
+            nums.swapAt(i, j)
+            
+            // Step 4: Reverse suffix
+            reverse(&nums, start: i + 1, end: n - 1)
+            
+            return true
+        }
+        
+        private func reverse(_ nums: inout [Int], start: Int, end: Int) {
+            var l = start, r = end
+            while l < r {
+                nums.swapAt(l, r)
+                l += 1
+                r -= 1
+            }
+        }
+    /*
+     Medium 47. Permutations II
+     Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.
+     Example 1:
+
+     Input: nums = [1,1,2]
+     Output:
+     [[1,1,2],
+      [1,2,1],
+      [2,1,1]]
+     */
+    func i38_m47_permuteUnique(_ nums: [Int]) -> [[Int]] {
+        var nums = nums.sorted()
+        var result = [[Int]]()
+        var seen = Set<[Int]>()
+        
+        repeat {
+            if !seen.contains(nums) {
+                result.append(nums)
+                seen.insert(nums)
+            }
+        } while nextPermutation(&nums)
+        
+      /*  func nextPermutation(_ nums: inout [Int]) -> Bool {
+            let n = nums.count
+            var i = n - 2
+            
+            // Step 1: Find the rightmost "increasing" position
+            while i >= 0 && nums[i] >= nums[i + 1] {
+                i -= 1
+            }
+            
+            if i < 0 { return false }  // last permutation
+            
+            // Step 2: Find element just larger than nums[i]
+            var j = n - 1
+            while nums[j] <= nums[i] {
+                j -= 1
+            }
+            
+            // Step 3: Swap
+            nums.swapAt(i, j)
+            
+            // Step 4: Reverse the suffix
+            reverse(&nums, i + 1, n - 1)
+            
+            return true
+        }
+        
+        func reverse(_ nums: inout [Int], _ start: Int, _ end: Int) {
+            var l = start, r = end
+            while l < r {
+                nums.swapAt(l, r)
+                l += 1
+                r -= 1
+            }
+        }*/
+        return result
+    }
+
 }

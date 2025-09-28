@@ -179,9 +179,9 @@ struct StringViewModel {
         print(dString.s18_242_isAnagram("hello", "bello"))       // false
     }
     func groupAnagrams2() {
-        print(dString.s19_49_groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
-        print(dString.s19_49_groupAnagrams([""]))
-        print(dString.s19_49_groupAnagrams(["a"]))
+        print(dString.s19_m49_groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+        print(dString.s19_m49_groupAnagrams([""]))
+        print(dString.s19_m49_groupAnagrams(["a"]))
 
     }
     func isPalindrome2() {
@@ -362,18 +362,50 @@ struct StringViewModel {
         print(dString.s39_e415_addStrings("999", "1"))    // "1000"
     }
     func repeatedSubstringPattern(){
-        print(dString2.s1e459_repeatedSubstringPattern("abab"))       // true
-        print(dString2.s1e459_repeatedSubstringPattern("aba"))        // false
-        print(dString2.s1e459_repeatedSubstringPattern("abcabcabc"))  // true
-        print(dString2.s1e459_repeatedSubstringPattern("aaaa"))       // true
-        print(dString2.s1e459_repeatedSubstringPattern("abcd"))       // false
+        print(dString2.s41_e459_repeatedSubstringPattern("abab"))       // true
+        print(dString2.s41_e459_repeatedSubstringPattern("aba"))        // false
+        print(dString2.s41_e459_repeatedSubstringPattern("abcabcabc"))  // true
+        print(dString2.s41_e459_repeatedSubstringPattern("aaaa"))       // true
+        print(dString2.s41_e459_repeatedSubstringPattern("abcd"))       // false
     }
     func findWords() {
-        print(dString2.findWords(["Hello","Alaska","Dad","Peace"])) // ["Alaska","Dad"]
-        print(dString2.findWords(["omk"]))                          // []
-        print(dString2.findWords(["adsdf","sfd"]))                  // ["adsdf","sfd"]
+        print(dString2.s42_e500_findWords(["Hello","Alaska","Dad","Peace"])) // ["Alaska","Dad"]
+        print(dString2.s42_e500_findWords(["omk"]))                          // []
+        print(dString2.s42_e500_findWords(["adsdf","sfd"]))                  // ["adsdf","sfd"]
     }
-    
+    func convert() {
+        print(dString2.s43_m6_convert("PAYPALISHIRING", 3)) // "PAHNAPLSIIGYIR"
+        print(dString2.s43_m6_convert("PAYPALISHIRING", 4)) // "PINALSIGYAHRPI"
+        print(dString2.s43_m6_convert("A", 1))              // "A"
+    }
+    func generateParenthesis(){
+        print(dString2.s44_m22_generateParenthesis(3))
+        // ["((()))","(()())","(())()","()(())","()()()"]
+        print(dString2.s44_m22_generateParenthesis(1))
+        // ["()"]
+    }
+    func multiply() {
+        print(dString2.s45_m43_multiply("2", "3"))       // "6"
+        print(dString2.s45_m43_multiply("123", "456"))   // "56088"
+        print(dString2.s45_m43_multiply("0", "52"))      // "0"
+        print(dString2.s45_m43_multiply("999", "999"))   // "998001"
+        print(dString2.s45_m43_multiply("123456789", "987654321"))
+        // "121932631112635269"
+    }
+    func simplifyPath() {
+        print(dString2.s46_m71_simplifyPath("/home/"))           // "/home"
+        print(dString2.s46_m71_simplifyPath("/../"))             // "/"
+        print(dString2.s46_m71_simplifyPath("/home//foo/"))      // "/home/foo"
+        print(dString2.s46_m71_simplifyPath("/a/./b/../../c/"))  // "/c"
+        print(dString2.s46_m71_simplifyPath("/a//b////c/d//././/..")) // "/a/b/c"
+    }
+    func minDistance() {
+        print(dString2.s47_m72_minDistance("horse", "ros"))   // 3
+        print(dString2.s47_m72_minDistance("", "abc"))        // 3
+        print(dString2.s47_m72_minDistance("abc", ""))        // 3
+        print(dString2.s47_m72_minDistance("", ""))           // 0
+        print(dString2.s47_m72_minDistance("intention", "execution")) // 5
+    }
 }
 
 

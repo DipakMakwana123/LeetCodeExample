@@ -122,6 +122,12 @@ struct DIntViewModel {
         print(dInt.i18_e228_summaryRanges([1,2,3,4,5]))     // ["1->5"]
     }
     func longestPalindrome() {
+        
+        print(dInt.i19_e409_longestPalindrome("babad")) // "bab" or "aba"
+        print(dInt.i19_e409_longestPalindrome("cbbd"))  // "bb"
+        print(dInt.i19_e409_longestPalindrome("a"))     // "a"
+        print(dInt.i19_e409_longestPalindrome("ac"))    // "a" or "c"
+        
         print(dInt.i19_e409_longestPalindrome("abccccdd")) // 7
         print(dInt.i19_e409_longestPalindrome("a"))        // 1
         print(dInt.i19_e409_longestPalindrome("bb"))       // 2
@@ -194,5 +200,150 @@ struct DIntViewModel {
         print(dInt.i31e495_findPoisonedDuration([1], 5))     // 5
         print(dInt.i31e495_findPoisonedDuration([], 3))      // 0
     }
-    
+    func reverse() {
+        print(dInt.i32m7_reverse(123))        // 321
+        print(dInt.i32m7_reverse(-123))       // -321
+        print(dInt.i32m7_reverse(120))        // 21
+        print(dInt.i32m7_reverse(1534236469)) // 0 (overflow)
+    }
+    func intToRoman() {
+        print(dInt.i33_mM12_intToRoman(3))     // "III"
+        print(dInt.i33_mM12_intToRoman(4))     // "IV"
+        print(dInt.i33_mM12_intToRoman(9))     // "IX"
+        print(dInt.i33_mM12_intToRoman(58))    // "LVIII" (50 + 5 + 3)
+        print(dInt.i33_mM12_intToRoman(1994))  // "MCMXCIV" (1000 + 900 + 90 + 4)
+    }
+    func divide() {
+        print(dInt.i34_m29_divide(10, 3))     // 3
+        print(dInt.i34_m29_divide(7, -3))     // -2
+        print(dInt.i34_m29_divide(-2147483648, -1)) // 2147483647 (clamped)
+        print(dInt.i34_m29_divide(1, 1))      // 1
+        print(dInt.i34_m29_divide(-15, 2))    // -7
+    }
+    func countAndSay() {
+        print(dInt.i35_m38_countAndSay(1)) // "1"
+        print(dInt.i35_m38_countAndSay(2)) // "11"
+        print(dInt.i35_m38_countAndSay(3)) // "21"
+        print(dInt.i35_m38_countAndSay(4)) // "1211"
+        print(dInt.i35_m38_countAndSay(5)) // "111221"
+    }
+    func jump(){
+        print(dInt.i36_m45_jump([2,3,1,1,4]))   // 2
+        print(dInt.i36_m45_jump([2,3,0,1,4]))   // 2
+        print(dInt.i36_m45_jump([1,2,3]))       // 2
+        print(dInt.i36_m45_jump([0]))           // 0
+        print(dInt.i36_m45_jump([1,1,1,1]))     // 3
+    }
+    func permute() {
+        print(dInt.i37_m46_permute([1,2,3]))
+        // [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+        print(dInt.i37_m46_permute([0,1]))
+        // [[0,1],[1,0]]
+        print(dInt.i37_m46_permute([1]))
+        // [[1]]
+    }
+    func permuteUnique() {
+        print(dInt.i38_m47_permuteUnique([1,1,2]))
+        // [[1,1,2],[1,2,1],[2,1,1]]
+
+        print(dInt.i38_m47_permuteUnique([1,2,3]))
+        // [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+        print(dInt.i38_m47_permuteUnique([2,2,1,1]))
+        // [[1,1,2,2],[1,2,1,2],[1,2,2,1],
+        //  [2,1,1,2],[2,1,2,1],[2,2,1,1]]
+    }
+    func rotate() {
+        var arr = [[1,2,3],[4,5,6],[7,8,9]]
+        print(dInt.i38_m48_rotate(&arr))
+        
+        arr = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+        print(dInt.i38_m48_rotate(&arr))
+        /*
+         Input: matrix =
+         Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+         */
+    }
+    func maxSubArray(){
+        print(dInt.i39_m58_m53_maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6  (subarray [4,-1,2,1])
+        print(dInt.i39_m58_m53_maxSubArray([1]))                     // 1
+        print(dInt.i39_m58_m53_maxSubArray([5,4,-1,7,8]))            // 23
+    }
+    func spiralOrder(){
+        print(dInt.i40_m54_spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
+        // Output: [1,2,3,6,9,8,7,4,5]
+        print(dInt.i40_m54_spiralOrder([[1,2,3,4],[5,6,7,8],[9,10,11,12]]))
+        // Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+    }
+    func canJump() {
+        print(dInt.i41_m55_canJump([2,3,1,1,4])) // true
+        print(dInt.i41_m55_canJump([3,2,1,0,4])) // false
+        print(dInt.i41_m55_canJump([0]))         // true (already at last index)
+    }
+    func merge() {
+        print(dInt.i42_m56_merge([[1,3],[2,6],[8,10],[15,18]]))
+        // [[1,6],[8,10],[15,18]]
+
+        print(dInt.i42_m56_merge([[1,4],[4,5]]))
+        // [[1,5]]
+
+        print(dInt.i42_m56_merge([[1,10],[2,3],[4,5],[6,7],[8,9]]))
+        // [[1,10]]
+    }
+    func generateMatrix() {
+        print(dInt.i43_m59_generateMatrix(3))
+        // [
+        //  [1, 2, 3],
+        //  [8, 9, 4],
+        //  [7, 6, 5]
+        // ]
+
+        print(dInt.i43_m59_generateMatrix(4))
+        // [
+        //  [1, 2, 3, 4],
+        //  [12, 13, 14, 5],
+        //  [11, 16, 15, 6],
+        //  [10, 9, 8, 7]
+        // ]
+    }
+    func uniquePaths() {
+        print(dInt.i44_m62_uniquePaths(3, 7)) // 28
+        print(dInt.i44_m62_uniquePaths(3, 2)) // 3
+        print(dInt.i44_m62_uniquePaths(7, 3)) // 28
+        print(dInt.i44_m62_uniquePaths(3, 3)) // 6
+    }
+    func uniquePathsWithObstacles() {
+        
+
+        print(dInt.i45_m63_uniquePathsWithObstacles([
+            [0,0,0],
+            [0,1,0],
+            [0,0,0]
+        ])) // 2
+
+        print(dInt.i45_m63_uniquePathsWithObstacles([
+            [0,1],
+            [0,0]
+        ])) // 1
+
+        print(dInt.i45_m63_uniquePathsWithObstacles([
+            [1,0]
+        ])) // 0 (start is blocked)
+
+        print(dInt.i45_m63_uniquePathsWithObstacles([
+            [0,0],
+            [1,1],
+            [0,0]
+        ])) // 0 (path blocked)
+    }
+    func minPathSum(){
+        let grid = [
+          [1,3,1],
+          [1,5,1],
+          [4,2,1]
+        ]
+        print(dInt.i46_m64_minPathSum(grid))
+        // Output: 7
+    }
 }

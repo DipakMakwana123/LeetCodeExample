@@ -19,6 +19,7 @@ class LeetCodeViewModel: ObservableObject {
     private var dpVM: DPViewModel?
     private var devideConquerVM: DevideConquerViewModel?
     private var dIntVM: DIntViewModel?
+    private var dDoubleVM: DDoubleViewModel?
     @Published var data: [LeetCodeModel]
     
     init(
@@ -33,7 +34,8 @@ class LeetCodeViewModel: ObservableObject {
          _ searchVM: SearchViewModel = .init(),
          _ dpVM: DPViewModel = .init(),
          _ devideConquerVM: DevideConquerViewModel = .init(),
-         _ dIntVM: DIntViewModel = .init()) {
+         _ dIntVM: DIntViewModel = .init(),
+    _ dDoubleVM: DDoubleViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
@@ -43,6 +45,8 @@ class LeetCodeViewModel: ObservableObject {
         self.dpVM = dpVM
         self.dIntVM = dIntVM
         self.devideConquerVM = devideConquerVM
+        self.dDoubleVM = dDoubleVM
+        self.searchVM = searchVM 
         data = [
             LeetCodeModel(title: "Two number sum from array"),
             LeetCodeModel(title: "Bracket Validation String"),
@@ -52,6 +56,11 @@ class LeetCodeViewModel: ObservableObject {
     func findMaxDepth() {
         treeVM?.findMaxDepth()
     }
+    // MARK: - ========================================== Double ==========================================
+    func myPow() {
+        dDoubleVM?.myPow()
+    }
+    
     // MARK: - ========================================== Int ==========================================
     func reverseBits() {
         dIntVM?.reverseBits()
@@ -128,8 +137,67 @@ class LeetCodeViewModel: ObservableObject {
     func findPoisonedDuration() {
         dIntVM?.findPoisonedDuration()
     }
-    
+    func reverse() {
+        dIntVM?.reverse()
+    }
+    func intToRoman() {
+        dIntVM?.intToRoman()
+    }
+    func divide() {
+        dIntVM?.divide()
+    }
+    func countAndSay() {
+        dIntVM?.countAndSay()
+    }
+    func jump(){
+        dIntVM?.jump()
+    }
+    func permute() {
+        dIntVM?.permute()
+    }
+    func permuteUnique() {
+        dIntVM?.permuteUnique()
+    }
+    func rotate() {
+        dIntVM?.rotate()
+    }
+    func maxSubArray(){
+        dIntVM?.maxSubArray()
+    }
+    func spiralOrder(){
+        dIntVM?.spiralOrder()
+    }
+    func canJump() {
+        dIntVM?.canJump()
+    }
+    func merge2() {
+        dIntVM?.merge()
+    }
+    func generateMatrix() {
+        dIntVM?.generateMatrix()
+    }
+    func minPathSumuniquePaths() {
+        dIntVM?.uniquePaths()
+    }
+    func uniquePathsWithObstacles() {
+        dIntVM?.uniquePathsWithObstacles()
+    }
+    func minPathSum(){
+        dIntVM?.minPathSum()
+    }
     // MARK: - ========================================== String ==========================================
+    func minDistance() {
+        stringVM.minDistance()
+    }
+    func simplifyPath() {
+        stringVM.simplifyPath()
+    }
+    func multiply() {
+        stringVM.multiply()
+    }
+    func generateParenthesis(){
+        stringVM.generateParenthesis()
+    }
     func findWords() {
         stringVM.findWords()
     }
@@ -212,7 +280,6 @@ class LeetCodeViewModel: ObservableObject {
     func longestPalindromeString() {
         stringVM.longestPalindrome()
     }
-    
     func isPalindrome() {
         stringVM.isPalindrome()
     }
@@ -225,9 +292,11 @@ class LeetCodeViewModel: ObservableObject {
     func addBinary() {
         stringVM.addBinary()
     }
-    
     func solveSudoku() {
         stringVM.solveSudoku()
+    }
+    func convert() {
+        stringVM.convert()
     }
     // MARK: - ========================================== Array ==========================================
     
@@ -270,9 +339,7 @@ class LeetCodeViewModel: ObservableObject {
     func firstMissingPositive() {
         arrayVM.firstMissingPositive()
     }
-    func maxSubArray(){
-        arrayVM.maxSubArray()
-    }
+   
     func maxProduct(){
         arrayVM.maxProduct()
     }

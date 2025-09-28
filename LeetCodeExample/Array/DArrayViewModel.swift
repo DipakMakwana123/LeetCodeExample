@@ -160,29 +160,29 @@ struct DArrayViewModel {
     func maxArea() {
       
        
-        print("Expected: 49 \(dArray.A8_11_maxArea( [1,8,6,2,5,4,8,3,7]))") // Expected 6
-        print(dArray.A8_11_maxArea([0,1,0,2,1,0,1,3,2,1,2,1])) // Expected 6
-        print(dArray.A8_11_maxArea([0,1,10,2,1,0,1,3,2,1,2,1])) // Expected
+        print("Expected: 49 \(dArray.a8_m11_maxArea( [1,8,6,2,5,4,8,3,7]))") // Expected 6
+        print(dArray.a8_m11_maxArea([0,1,0,2,1,0,1,3,2,1,2,1])) // Expected 6
+        print(dArray.a8_m11_maxArea([0,1,10,2,1,0,1,3,2,1,2,1])) // Expected
         print("\nHeight: [1,2,3,4,5]")
-        print("Trapped Water: \(dArray.A8_11_maxArea([1,2,3,4,5]))") // Expected: 0
+        print("Trapped Water: \(dArray.a8_m11_maxArea([1,2,3,4,5]))") // Expected: 0
         print("\nHeight: [5,4,3,2,1]")
-        print("Trapped Water: \(dArray.A8_11_maxArea([5,4,3,2,1]))") // Expected: 0
+        print("Trapped Water: \(dArray.a8_m11_maxArea([5,4,3,2,1]))") // Expected: 0
         
         // Example 4: Peak in middle
         print("\nHeight: [4,2,0,3,2,5]")
-        print("Trapped Water: \(dArray.A8_11_maxArea([4,2,0,3,2,5]))") // Expected: 9 (2 at index 1, 4 at index 2, 1 at index 4)
+        print("Trapped Water: \(dArray.a8_m11_maxArea([4,2,0,3,2,5]))") // Expected: 9 (2 at index 1, 4 at index 2, 1 at index 4)
         
         //Example 5: No water (too few bars)
         print("\nHeight: [1,2]")
-        print("Trapped Water: \(dArray.A8_11_maxArea([1,2]))") // Expected: 0
+        print("Trapped Water: \(dArray.a8_m11_maxArea([1,2]))") // Expected: 0
         
         // Example 6: Empty array
         print("\nHeight: []")
-        print("Trapped Water: \(dArray.A8_11_maxArea([]))") // Expected: 0
+        print("Trapped Water: \(dArray.a8_m11_maxArea([]))") // Expected: 0
         
         // Example 7: Example from problem with leading/trailing zeros
         print("\nHeight: [0,1,0,2,1,0,1,3,2,1,2,1]")
-        print("Trapped Water: \(dArray.A8_11_maxArea([0,1,0,2,10,0,1,3,2,1,2,1]))") // Expected: 7
+        print("Trapped Water: \(dArray.a8_m11_maxArea([0,1,0,2,10,0,1,3,2,1,2,1]))") // Expected: 7
     }
     func findMinFuelStationToReachDestination() {
         let target1 = 100
@@ -198,11 +198,7 @@ struct DArrayViewModel {
         print("Expected: 1, Current: \(dArray.A12_H41_firstMissingPositive([7,8,9,1,12]))")  // 1
         print("Expected: 1, Current: \(dArray.A12_H41_firstMissingPositive([1,2,3]))")  // 1
     }
-    func maxSubArray(){
-        print(dArray.a13_m53_maxSubArray([-2,1,-3,4,-1,2,1,-5,4])) // 6  (subarray [4,-1,2,1])
-        print(dArray.a13_m53_maxSubArray([1]))                     // 1
-        print(dArray.a13_m53_maxSubArray([5,4,-1,7,8]))            // 23
-    }
+  
     func maxProduct(){
         print(dArray.a14_m152_maxProduct([2,3,-2,4]))   // 6   (subarray [2,3])
         print(dArray.a14_m152_maxProduct([-2,0,-1]))    // 0   (subarray [0])

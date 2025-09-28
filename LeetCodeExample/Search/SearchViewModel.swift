@@ -19,23 +19,23 @@ struct SearchViewModel {
         print(binarySearch.s1_704_search(nums, target))
     }
     func searchMatrix() {
-        print(binarySearch.s2_74_searchMatrix([
+        print(binarySearch.s2_m74_searchMatrix([
             [1,3,5,7],
             [10,11,16,20],
             [23,30,34,60]
         ], 3))   // true
         
-        print(binarySearch.s2_74_searchMatrix([
+        print(binarySearch.s2_m74_searchMatrix([
             [1,3,5,7],
             [10,11,16,20],
             [23,30,34,60]
         ], 13))  // false
         
-        print(binarySearch.s2_74_searchMatrix([[1]], 1))   // true
+        print(binarySearch.s2_m74_searchMatrix([[1]], 1))   // true
         
-        print(binarySearch.s2_74_searchMatrix([[1,2,3,4,5]], 4))   // true
+        print(binarySearch.s2_m74_searchMatrix([[1,2,3,4,5]], 4))   // true
         
-        print(binarySearch.s2_74_searchMatrix([[1],[3],[5],[7]], 6))   // false
+        print(binarySearch.s2_m74_searchMatrix([[1],[3],[5],[7]], 6))   // false
         
     }
     func searchMatrixWithRecursion() {
