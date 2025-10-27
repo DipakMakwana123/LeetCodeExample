@@ -91,18 +91,18 @@ struct DIntViewModel {
         print(dInt.i12_e367_isPerfectSquare(808201)) // true (899^2)
     }
     func largestNumber(){
-        print(dInt.i14_179_largestNumber([10,2]))        // "210"
-        print(dInt.i14_179_largestNumber([3,30,34,5,9])) // "9534330"
-        print(dInt.i14_179_largestNumber([0,0]))         // "0"
+        print(dInt.i14_m179_largestNumber([10,2]))        // "210"
+        print(dInt.i14_m179_largestNumber([3,30,34,5,9])) // "9534330"
+        print(dInt.i14_m179_largestNumber([0,0]))         // "0"
     }
     func fizzBuzz(){
         print(dInt.i15_412_fizzBuzz(15))
     }
     func countSubstrings(){
-        print(dInt.i16_647_countSubstrings("abc"))   // 3
-        print(dInt.i16_647_countSubstrings("aaa"))   // 6
-        print(dInt.i16_647_countSubstrings("a"))     // 1
-        print(dInt.i16_647_countSubstrings("ababa")) // 9
+        print(dInt.i16_m647_countSubstrings("abc"))   // 3
+        print(dInt.i16_m647_countSubstrings("aaa"))   // 6
+        print(dInt.i16_m647_countSubstrings("a"))     // 1
+        print(dInt.i16_m647_countSubstrings("ababa")) // 9
     }
     func titleToNumber() {
         print(dInt.i17_e171_titleToNumber("AA"))    // 1
@@ -182,29 +182,29 @@ struct DIntViewModel {
         print(dInt.i28e476_findComplement(0))   // 1
     }
     func licenseKeyFormatting() {
-        print(dInt.i29e482_licenseKeyFormatting("5F3Z-2e-9-w", 4))  // "5F3Z-2E9W"
-        print(dInt.i29e482_licenseKeyFormatting("2-5g-3-J", 2))     // "2-5G-3J"
-        print(dInt.i29e482_licenseKeyFormatting("a", 1))            // "A"
-        print(dInt.i29e482_licenseKeyFormatting("---", 3))          // ""
-        print(dInt.i29e482_licenseKeyFormatting("abc-def", 3))      // "ABC-DEF"
+        print(dInt.i29_e482_licenseKeyFormatting("5F3Z-2e-9-w", 4))  // "5F3Z-2E9W"
+        print(dInt.i29_e482_licenseKeyFormatting("2-5g-3-J", 2))     // "2-5G-3J"
+        print(dInt.i29_e482_licenseKeyFormatting("a", 1))            // "A"
+        print(dInt.i29_e482_licenseKeyFormatting("---", 3))          // ""
+        print(dInt.i29_e482_licenseKeyFormatting("abc-def", 3))      // "ABC-DEF"
     }
     func findMaxConsecutiveOnes() {
-        print(dInt.i30e485_findMaxConsecutiveOnes([1,1,0,1,1,1]))  // 3
-        print(dInt.i30e485_findMaxConsecutiveOnes([1,0,1,1,0,1]))  // 2
-        print(dInt.i30e485_findMaxConsecutiveOnes([0,0,0]))        // 0
-        print(dInt.i30e485_findMaxConsecutiveOnes([1,1,1,1]))      // 4
+        print(dInt.i30_e485_findMaxConsecutiveOnes([1,1,0,1,1,1]))  // 3
+        print(dInt.i30_e485_findMaxConsecutiveOnes([1,0,1,1,0,1]))  // 2
+        print(dInt.i30_e485_findMaxConsecutiveOnes([0,0,0]))        // 0
+        print(dInt.i30_e485_findMaxConsecutiveOnes([1,1,1,1]))      // 4
     }
     func findPoisonedDuration() {
-        print(dInt.i31e495_findPoisonedDuration([1,4], 2))   // 4
-        print(dInt.i31e495_findPoisonedDuration([1,2], 2))   // 3
-        print(dInt.i31e495_findPoisonedDuration([1], 5))     // 5
-        print(dInt.i31e495_findPoisonedDuration([], 3))      // 0
+        print(dInt.i31_e495_findPoisonedDuration([1,4], 2))   // 4
+        print(dInt.i31_e495_findPoisonedDuration([1,2], 2))   // 3
+        print(dInt.i31_e495_findPoisonedDuration([1], 5))     // 5
+        print(dInt.i31_e495_findPoisonedDuration([], 3))      // 0
     }
     func reverse() {
-        print(dInt.i32m7_reverse(123))        // 321
-        print(dInt.i32m7_reverse(-123))       // -321
-        print(dInt.i32m7_reverse(120))        // 21
-        print(dInt.i32m7_reverse(1534236469)) // 0 (overflow)
+        print(dInt.i32_m7_reverse(123))        // 321
+        print(dInt.i32_m7_reverse(-123))       // -321
+        print(dInt.i32_m7_reverse(120))        // 21
+        print(dInt.i32_m7_reverse(1534236469)) // 0 (overflow)
     }
     func intToRoman() {
         print(dInt.i33_mM12_intToRoman(3))     // "III"

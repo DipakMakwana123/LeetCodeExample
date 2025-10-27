@@ -117,12 +117,7 @@ struct DPLeetCode {
         }
         return dp[amount] == amount + 1 ? -1 : dp[amount]
     }
-    /*
-     91. Decode Ways
-     Medium
-     Topics
-     premium lock icon
-     Companies
+    /* Medium 91. Decode Ways
      You have intercepted a secret message encoded as a string of numbers. The message is decoded via the following mapping:
      
      "1" -> 'A'
@@ -147,18 +142,11 @@ struct DPLeetCode {
      Given a string s containing only digits, return the number of ways to decode it. If the entire string cannot be decoded in any valid way, return 0.
      
      The test cases are generated so that the answer fits in a 32-bit integer.
-     
-     
-     
      Example 1:
-     
+    
      Input: s = "12"
-     
      Output: 2
-     
-     Explanation:
-     
-     "12" could be decoded as "AB" (1 2) or "L" (12).
+     Explanation: "12" could be decoded as "AB" (1 2) or "L" (12).
      */
     func dp5_m91_numDecodings(_ s: String) -> Int {
         let chars = Array(s)

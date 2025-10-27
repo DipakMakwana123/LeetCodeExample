@@ -186,6 +186,15 @@ class LeetCodeViewModel: ObservableObject {
         dIntVM?.minPathSum()
     }
     // MARK: - ========================================== String ==========================================
+    func isInterleave(){
+        stringVM.isInterleave()
+    }
+    func restoreIpAddresses() {
+        stringVM.restoreIpAddresses()
+    }
+    func exist() {
+        stringVM.exist()
+    }
     func minDistance() {
         stringVM.minDistance()
     }
@@ -237,6 +246,9 @@ class LeetCodeViewModel: ObservableObject {
     }
     func checkBracketStringValidation() {
         stringVM.checkBracketStringValidation()
+    }
+    func decodeString(){
+        stringVM.decodeString()
     }
     func largestNumber(){
         dIntVM?.largestNumber()

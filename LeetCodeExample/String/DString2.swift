@@ -50,7 +50,6 @@ struct DString2 {
      Note that the strings are case-insensitive, both lowercased and uppercased of the same letter are treated as if they are at the same row.
      
      In the American keyboard:
-     
      the first row consists of the characters "qwertyuiop",
      the second row consists of the characters "asdfghjkl", and
      the third row consists of the characters "zxcvbnm".
@@ -275,5 +274,159 @@ struct DString2 {
         }
         return dp[m][n]
     }
+    /* Medium 79. Word Search
+     Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+
+     The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+     Example 1:
+     Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+     Output: true
+     Example 2:
+     */
     
+    func s48_m79_exist(_ board: [[Character]], _ word: String) -> Bool {
+            let rows = board.count
+            let cols = board[0].count
+            var board = board
+            let wordArray = Array(word)
+            
+            func dfs(_ r: Int, _ c: Int, _ index: Int) -> Bool {
+                if index == wordArray.count { return true } // word found
+                if r < 0 || c < 0 || r >= rows || c >= cols { return false }
+                if board[r][c] != wordArray[index] { return false }
+                
+                // Mark as visited (temporary change)
+                let temp = board[r][c]
+                board[r][c] = "#"
+                
+                // Explore neighbors
+                let found = dfs(r+1, c, index+1) ||
+                            dfs(r-1, c, index+1) ||
+                            dfs(r, c+1, index+1) ||
+                            dfs(r, c-1, index+1)
+                
+                // Backtrack (restore)
+                board[r][c] = temp
+                return found
+            }
+            
+            for r in 0..<rows {
+                for c in 0..<cols {
+                    if dfs(r, c, 0) { return true }
+                }
+            }
+            return false
+        }
+    /* Medium 93. Restore IP Addresses
+     A valid IP address consists of exactly four integers separated by single dots. Each integer is between 0 and 255 (inclusive) and cannot have leading zeros.
+
+     For example, "0.1.2.201" and "192.168.1.1" are valid IP addresses, but "0.011.255.245", "192.168.1.312" and "192.168@1.1" are invalid IP addresses.
+     Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You are not allowed to reorder or remove any digits in s. You may return the valid IP addresses in any order.
+     Example 1:
+
+     Input: s = "25525511135"
+     Output: ["255.255.11.135","255.255.111.35"]
+     */
+    func s49_m93_restoreIpAddresses(_ s: String) -> [String] {
+            let chars = Array(s)
+            var result = [String]()
+            var path = [String]()
+            
+            func backtrack(_ index: Int) {
+                // if 4 parts are built and all chars used → valid IP
+                if path.count == 4 {
+                    if index == chars.count {
+                        result.append(path.joined(separator: "."))
+                    }
+                    return
+                }
+                
+                // each part length: 1 to 3
+                for length in 1...3 {
+                    if index + length > chars.count { break }
+                    
+                    let sub = String(chars[index..<index+length])
+                    
+                    // skip leading zero unless "0"
+                    if sub.hasPrefix("0") && sub.count > 1 { continue }
+                    
+                    // check range 0–255
+                    if let num = Int(sub), num <= 255 {
+                        path.append(sub)
+                        backtrack(index + length)
+                        path.removeLast()
+                    }
+                }
+            }
+            
+            backtrack(0)
+            return result
+        }
+    /* Medium 97. Interleaving String
+     Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
+     An interleaving of two strings s and t is a configuration where s and t are divided into n and m substrings respectively, such that:
+
+     s = s1 + s2 + ... + sn
+     t = t1 + t2 + ... + tm
+     |n - m| <= 1
+     The interleaving is s1 + t1 + s2 + t2 + s3 + t3 + ... or t1 + s1 + t2 + s2 + t3 + s3 + ...
+     Note: a + b is the concatenation of strings a and b.
+     */
+    func s50_m97_isInterleave(_ s1: String, _ s2: String, _ s3: String) -> Bool {
+            let n = s1.count, m = s2.count
+            if n + m != s3.count { return false }
+            
+            let arr1 = Array(s1), arr2 = Array(s2), arr3 = Array(s3)
+            
+            var dp = Array(repeating: Array(repeating: false, count: m + 1), count: n + 1)
+            dp[0][0] = true
+            
+            for i in 0...n {
+                for j in 0...m {
+                    if i > 0 && arr1[i-1] == arr3[i+j-1] {
+                        dp[i][j] = dp[i][j] || dp[i-1][j]
+                    }
+                    if j > 0 && arr2[j-1] == arr3[i+j-1] {
+                        dp[i][j] = dp[i][j] || dp[i][j-1]
+                    }
+                }
+            }
+            return dp[n][m]
+        }
+
+    func decodeString(_ s: String) -> String {
+        var chars = Array(s)
+        var index = 0
+        return decode(&chars, &index)
+    }
+
+    private func decode(_ chars: inout [Character], _ index: inout Int) -> String {
+        var result = ""
+        var num = 0
+
+        while index < chars.count {
+            let char = chars[index]
+            index += 1
+
+            if char.isNumber {
+                // Build full number (handles multi-digit like "12[a]")
+                num = num * 10 + Int(String(char))!
+            } else if char == "[" {
+                // Start decoding substring recursively
+                let decodedPart = decode(&chars, &index)
+                // Append repeated segment
+                result += String(repeating: decodedPart, count: num)
+                num = 0
+            } else if char == "]" {
+                // End of current recursive segment
+                break
+            } else {
+                // Just a normal character
+                result.append(char)
+            }
+        }
+
+        return result
+    }
+
 }

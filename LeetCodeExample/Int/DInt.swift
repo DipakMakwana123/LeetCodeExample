@@ -48,10 +48,8 @@ struct DInt {
      Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
      Those numbers for which this process ends in 1 are happy.
      Return true if n is a happy number, and false if not.
-     
-     
+
      Example 1:
-     
      Input: n = 19
      Output: true
      
@@ -64,8 +62,7 @@ struct DInt {
      
      Input: n = 2
      Output: false
-     
-     
+
      */
     
     func i2_e202_isHappy(_ n: Int) -> Bool {
@@ -114,12 +111,12 @@ struct DInt {
      Example 1:
      Input: nums = [1,2,3,1], k = 3
      Output: true
+
      Example 2:
-     
      Input: nums = [1,0,1,1], k = 1
      Output: true
+
      Example 3:
-     
      Input: nums = [1,2,3,1,2,3], k = 2
      Output: false
      
@@ -194,18 +191,10 @@ struct DInt {
     }
     /* Easy 263. Ugly Number
      An ugly number is a positive integer which does not have a prime factor other than 2, 3, and 5.
-     
      Given an integer n, return true if n is an ugly number.
-     Example 1:
-     
-     Input: n = 6
-     Output: true
-     Explanation: 6 = 2 × 3
-     Example 2:
-     
-     Input: n = 1
-     Output: true
-     Explanation: 1 has no prime factors.
+
+     Example 1: Input: n = 6    Output: true    Explanation: 6 = 2 × 3
+     Example 2: Input: n = 1    Output: true    Explanation: 1 has no prime factors.
      */
     func i7_e263_isUgly(_ n: Int) -> Bool {
         if n <= 0 { return false }
@@ -220,13 +209,9 @@ struct DInt {
     
     /* Easy 268. Missing Number
      Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
-     Example 1:
-     
-     Input: nums = [3,0,1]
-     Output: 2
-     Explanation:
-     
-     n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+
+     Example 1: Input: nums = [3,0,1]   Output: 2
+     Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
      */
     func i8_e268_missingNumber(_ nums: [Int]) -> Int {
         let n = nums.count
@@ -235,20 +220,12 @@ struct DInt {
         return expectedSum - actualSum
     }
     /* Easy 283. Move Zeroes
-     
      Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
-     
      Note that you must do this in-place without making a copy of the array.
      
-     Example 1:
-     
-     Input: nums = [0,1,0,3,12]
-     Output: [1,3,12,0,0]
-     Example 2:
-     
-     Input: nums = [0]
-     Output: [0]
-     
+     Example 1: Input: nums = [0,1,0,3,12]  Output: [1,3,12,0,0]
+     Example 2: Input: nums = [0]           Output: [0]
+
      */
     func i9_e283_moveZeroes(_ nums: inout [Int]) {
         var lastNonZero = 0
@@ -261,17 +238,10 @@ struct DInt {
         }
     }
     /* Easy 326. Power of Three
-     
      Given an integer n, return true if it is a power of three. Otherwise, return false.
-     
      An integer n is a power of three, if there exists an integer x such that n == 3x.
-     
-     Example 1:
-     
-     Input: n = 27
-     Output: true
-     Explanation: 27 = 33
-     
+     Example 1:     Input: n = 27   Output: true    Explanation: 27 = 33
+
      */
     
     func i10_e326_isPowerOfThree(_ n: Int) -> Bool {
@@ -288,13 +258,9 @@ struct DInt {
      Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well.
      
      You must not use any built-in exponent function or operator.
-     
      For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
      
-     Example 1:
-     
-     Input: x = 8
-     Output: 2
+     Example 1: Input: x = 8    Output: 2
      Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
      */
     func i11_e69_mySqrt(_ x: Int) -> Int {
@@ -307,16 +273,10 @@ struct DInt {
     }
     /* Easy 367. Valid Perfect Square
      Given a positive integer num, return true if num is a perfect square or false otherwise.
-     
      A perfect square is an integer that is the square of an integer. In other words, it is the product of some integer with itself.
-     
      You must not use any built-in library function, such as sqrt.
      
-     Example 1:
-     
-     Input: num = 16
-     Output: true
-     Explanation: We return true because 4 * 4 = 16 and 4 is an integer.
+     Example 1: Input: num = 16 Output: true    Explanation: We return true because 4 * 4 = 16 and 4 is an integer.
      */
     func i12_e367_isPerfectSquare(_ num: Int) -> Bool {
         if num < 2 { return true }  // 1 is a perfect square
@@ -325,7 +285,7 @@ struct DInt {
         var right = num / 2
         
         while left <= right {
-            let mid = left + (right - left) / 2
+            let mid = (right + left) / 2
             let square = mid * mid
             
             if square == num {
@@ -340,13 +300,9 @@ struct DInt {
         return false
     }
     /* Easy 9. Palindrome Number
-     
      Given an integer x, return true if x is a palindrome, and false otherwise.
-     Example 1:
-     
-     Input: x = 121
-     Output: true
-     Explanation: 121 reads as 121 from left to right and from right to left.
+
+     Example 1: Input: x = 121  Output: true    Explanation: 121 reads as 121 from left to right and from right to left.
      */
     func i13_e9_isPalindromeNumber(_ x: Int) -> Bool {
         if x < 0 { return false }
@@ -358,8 +314,15 @@ struct DInt {
         }
         return x == rev
     }
-    //    179. Largest Number
-    func i14_179_largestNumber(_ nums: [Int]) -> String {
+    /* Medium 179. Largest Number
+     Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+     Since the result may be very large, so you need to return a string instead of an integer.
+
+     Example 1: Input: nums = [10,2]    Output: "210"
+     Example 2: Input: nums = [3,30,34,5,9] Output: "9534330"
+
+     */
+    func i14_m179_largestNumber(_ nums: [Int]) -> String {
         // Convert numbers to strings
         let strs = nums.map { String($0) }
         
@@ -372,6 +335,20 @@ struct DInt {
         // Edge case: if all numbers are "0"
         return result.first == "0" ? "0" : result
     }
+    /* Easy 412. Fizz Buzz
+     Given an integer n, return a string array answer (1-indexed) where:
+
+     answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+     answer[i] == "Fizz" if i is divisible by 3.
+     answer[i] == "Buzz" if i is divisible by 5.
+     answer[i] == i (as a string) if none of the above conditions are true.
+
+
+     Example 1:     Input: n = 3    Output: ["1","2","Fizz"]
+     Example 2:     Input: n = 5    Output: ["1","2","Fizz","4","Buzz"]
+     Example 3:     Input: n = 15   Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
+
+     */
     func i15_412_fizzBuzz(_ n: Int) -> [String] {
         var result = [String]()
         
@@ -386,8 +363,16 @@ struct DInt {
         
         return result
     }
-    // 647. Palindromic Substrings
-    func i16_647_countSubstrings(_ s: String) -> Int {
+    /* Medium 647. Palindromic Substrings
+     Given a string s, return the number of palindromic substrings in it.
+     A string is a palindrome when it reads the same backward as forward.
+     A substring is a contiguous sequence of characters within the string.
+
+     Example 1: Input: s = "abc"    Output: 3   Explanation: Three palindromic strings: "a", "b", "c".
+     Example 2: Input: s = "aaa"    Output: 6   Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+
+     */
+    func i16_m647_countSubstrings(_ s: String) -> Int {
         let characters = Array(s)
         let charactersCount = characters.count
         var result = 0
@@ -407,11 +392,9 @@ struct DInt {
         
     }
     /* Easy 171. Excel Sheet Column Number
-     
      Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
      
      For example:
-     
      A -> 1
      B -> 2
      C -> 3
@@ -431,29 +414,22 @@ struct DInt {
         return result
     }
     /* Easy 228. Summary Ranges
-     
      You are given a sorted unique integer array nums.
-     
      A range [a,b] is the set of all integers from a to b (inclusive).
-     
      Return the smallest sorted list of ranges that cover all the numbers in the array exactly. That is, each element of nums is covered by exactly one of the ranges, and there is no integer x such that x is in one of the ranges but not in nums.
      
      Each range [a,b] in the list should be output as:
-     
      "a->b" if a != b
      "a" if a == b
      
-     Example 1:
-     
-     Input: nums = [0,1,2,4,5,7]
-     Output: ["0->2","4->5","7"]
+     Example 1: Input: nums = [0,1,2,4,5,7] Output: ["0->2","4->5","7"]
+
      Explanation: The ranges are:
      [0,2] --> "0->2"
      [4,5] --> "4->5"
      [7,7] --> "7"
      
      */
-    
     func i18_e228_summaryRanges(_ nums: [Int]) -> [String] {
         var result: [String] = []
         var i = 0
@@ -483,10 +459,7 @@ struct DInt {
      Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
      
      Letters are case sensitive, for example, "Aa" is not considered a palindrome.
-     Example 1:
-     
-     Input: s = "abccccdd"
-     Output: 7
+     Example 1: Input: s = "abccccdd"   Output: 7
      Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
      */
     func i19_e409_longestPalindrome(_ s: String) -> Int {
@@ -577,10 +550,7 @@ struct DInt {
      Given a string s, return the number of segments in the string.
      
      A segment is defined to be a contiguous sequence of non-space characters.
-     Example 1:
-     
-     Input: s = "Hello, my name is John"
-     Output: 5
+     Example 1: Input: s = "Hello, my name is John" Output: 5
      Explanation: The five segments are ["Hello,", "my", "name", "is", "John"]
      
      */
@@ -627,13 +597,8 @@ struct DInt {
         return right
     }
     /* Easy 448. Find All Numbers Disappeared in an Array
-     
      Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all the integers in the range [1, n] that do not appear in nums.
-     
-     Example 1:
-     Input: nums = [4,3,2,7,8,2,3,1]
-     Output: [5,6]
-     
+     Example 1: Input: nums = [4,3,2,7,8,2,3,1] Output: [5,6]
      */
     func i25_e448_(_ nums: [Int]) -> [Int] {
         let n = nums.count
@@ -652,13 +617,8 @@ struct DInt {
      Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie.
      
      Each child i has a greed factor g[i], which is the minimum size of a cookie that the child will be content with; and each cookie j has a size s[j]. If s[j] >= g[i], we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.
-     
-     
-     
-     Example 1:
-     
-     Input: g = [1,2,3], s = [1,1]
-     Output: 1
+
+     Example 1: Input: g = [1,2,3], s = [1,1]   Output: 1
      Explanation: You have 3 children and 2 cookies. The greed factors of 3 children are 1, 2, 3.
      And even though you have 2 cookies, since their size is both 1, you could only make the child whose greed factor is 1 content.
      You need to output 1.
@@ -709,11 +669,8 @@ struct DInt {
      
      For example, The integer 5 is "101" in binary and its complement is "010" which is the integer 2.
      Given an integer num, return its complement.
-     
-     Example 1:
-     
-     Input: num = 5
-     Output: 2
+
+     Example 1: Input: num = 5  Output: 2
      Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
      */
     func i28e476_findComplement(_ num: Int) -> Int {
@@ -733,14 +690,12 @@ struct DInt {
      We want to reformat the string s such that each group contains exactly k characters, except for the first group, which could be shorter than k but still must contain at least one character. Furthermore, there must be a dash inserted between two groups, and you should convert all lowercase letters to uppercase.
      
      Return the reformatted license key.
-     Example 1:
-     Input: s = "5F3Z-2e-9-w", k = 4
-     Output: "5F3Z-2E9W"
+     Example 1:     Input: s = "5F3Z-2e-9-w", k = 4     Output: "5F3Z-2E9W"
      Explanation: The string s has been split into two parts, each part has 4 characters.
      Note that the two extra dashes are not needed and can be removed.
      
      */
-    func i29e482_licenseKeyFormatting(_ s: String, _ k: Int) -> String {
+    func i29_e482_licenseKeyFormatting(_ s: String, _ k: Int) -> String {
         // Step 1: Clean and uppercase
         let clean = s.replacingOccurrences(of: "-", with: "").uppercased()
         if clean.isEmpty { return "" }
@@ -761,14 +716,13 @@ struct DInt {
         return String(result.reversed())
     }
     /* Easy 485. Max Consecutive Ones
-     
      Given a binary array nums, return the maximum number of consecutive 1's in the array.
      Example 1:
      Input: nums = [1,1,0,1,1,1]
      Output: 3
      Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
      */
-    func i30e485_findMaxConsecutiveOnes(_ nums: [Int]) -> Int {
+    func i30_e485_findMaxConsecutiveOnes(_ nums: [Int]) -> Int {
         var maxCount = 0
         var currentCount = 0
         
@@ -797,7 +751,7 @@ struct DInt {
      - At second 4, Teemo attacks, and Ashe is poisoned for seconds 4 and 5.
      Ashe is poisoned for seconds 1, 2, 4, and 5, which is 4 seconds in total.
      */
-    func i31e495_findPoisonedDuration(_ timeSeries: [Int], _ duration: Int) -> Int {
+    func i31_e495_findPoisonedDuration(_ timeSeries: [Int], _ duration: Int) -> Int {
         guard !timeSeries.isEmpty else { return 0 }
         
         var total = 0
@@ -819,7 +773,7 @@ struct DInt {
      Input: x = 123
      Output: 321
      */
-    func i32m7_reverse(_ x: Int) -> Int {
+    func i32_m7_reverse(_ x: Int) -> Int {
         var num = x
         var rev = 0
         
@@ -859,10 +813,8 @@ struct DInt {
      Given an integer, convert it to a Roman numeral.
      Example 1:
      
-     Input: num = 3749
-     
-     Output: "MMMDCCXLIX"
-     
+     Input: num = 3749 Output: "MMMDCCXLIX"
+
      Explanation:
      
      3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
@@ -870,16 +822,8 @@ struct DInt {
      40 = XL as 10 (X) less of 50 (L)
      9 = IX as 1 (I) less of 10 (X)
      Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
-     Example 2:
-     
-     Input: num = 58
-     
-     Output: "LVIII"
-     
-     Explanation:
-     
-     50 = L
-     8 = VIII
+
+     Example 2: Input: num = 58      Output: "LVIII"    Explanation:    50 = L  8 = VIII
      */
     func i33_mM12_intToRoman(_ num: Int) -> String {
         let values = [1000, 900, 500, 400,
@@ -1002,10 +946,7 @@ struct DInt {
      0 <= j <= nums[i] and
      i + j < n
      Return the minimum number of jumps to reach index n - 1. The test cases are generated such that you can reach index n - 1.
-     Example 1:
-
-     Input: nums = [2,3,1,1,4]
-     Output: 2
+     Example 1:     Input: nums = [2,3,1,1,4]   Output: 2
      Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
      */
     func i36_m45_jump(_ nums: [Int]) -> Int {
@@ -1024,10 +965,7 @@ struct DInt {
         }
     /* Medium 46. Permutations
      Given an array nums of distinct integers, return all the possible permutations. You can return the answer in any order.
-     Example 1:
-
-     Input: nums = [1,2,3]
-     Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+     Example 1: Input: nums = [1,2,3]   Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
      */
     func i37_m46_permute(_ nums: [Int]) -> [[Int]] {
             var nums = nums.sorted() // start with lexicographically smallest

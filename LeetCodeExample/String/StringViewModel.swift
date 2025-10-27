@@ -157,11 +157,11 @@ struct StringViewModel {
         print(dString.s15_424_characterReplacement("ABBB", 2))      // 4
     }
     func lengthOfLongestSubstring2(){
-        print(dString.s16m3_lengthOfLongestSubstring("abcabcbb"))  // 3
-        print(dString.s16m3_lengthOfLongestSubstring("bbbbb"))     // 1
-        print(dString.s16m3_lengthOfLongestSubstring("pwwkew"))    // 3
-        print(dString.s16m3_lengthOfLongestSubstring(""))          // 0
-        print(dString.s16m3_lengthOfLongestSubstring("dvdf"))      // 3
+        print(dString.s16_m3_lengthOfLongestSubstring("abcabcbb"))  // 3
+        print(dString.s16_m3_lengthOfLongestSubstring("bbbbb"))     // 1
+        print(dString.s16_m3_lengthOfLongestSubstring("pwwkew"))    // 3
+        print(dString.s16_m3_lengthOfLongestSubstring(""))          // 0
+        print(dString.s16_m3_lengthOfLongestSubstring("dvdf"))      // 3
         
     }
     func minWindow() {
@@ -192,11 +192,11 @@ struct StringViewModel {
         print(dString.s20_125_isPalindrome("hello"))                           // false
     }
     func longestPalindrome() {
-        print(dString.s21m5_longestPalindrome("babad"))   // "bab" or "aba"
-        print(dString.s21m5_longestPalindrome("cbbd"))    // "bb"
-        print(dString.s21m5_longestPalindrome("a"))       // "a"
-        print(dString.s21m5_longestPalindrome("ac"))      // "a" or "c"
-        print(dString.s21m5_longestPalindrome("racecar")) // "racecar"
+        print(dString.s21_m5_longestPalindrome("babad"))   // "bab" or "aba"
+        print(dString.s21_m5_longestPalindrome("cbbd"))    // "bb"
+        print(dString.s21_m5_longestPalindrome("a"))       // "a"
+        print(dString.s21_m5_longestPalindrome("ac"))      // "a" or "c"
+        print(dString.s21_m5_longestPalindrome("racecar")) // "racecar"
     }
    
     func isPalindrome() {
@@ -405,6 +405,34 @@ struct StringViewModel {
         print(dString2.s47_m72_minDistance("abc", ""))        // 3
         print(dString2.s47_m72_minDistance("", ""))           // 0
         print(dString2.s47_m72_minDistance("intention", "execution")) // 5
+    }
+    func exist() {
+        var board: [[Character]] = [["A","B","C","E"],
+                 ["S","F","C","S"],
+                 ["A","D","E","E"]]
+        var word = "ABCCED"
+        print(dString2.s48_m79_exist(board, word))
+       // Output = true   // Path: A → B → C → C → E → D
+
+        board = [["A","B","C","E"],
+                 ["S","F","C","S"],
+                 ["A","D","E","E"]]
+        word = "ABCB"
+        print(dString2.s48_m79_exist(board, word))
+        //Output = false  // 'B' would require reusing cell
+    }
+    func restoreIpAddresses() {
+        print(dString2.s49_m93_restoreIpAddresses("25525511135"))
+        // ["255.255.11.135", "255.255.111.35"]
+    }
+    func isInterleave(){
+        print(dString2.s50_m97_isInterleave("aabcc", "dbbca", "aadbbcbcac")) // true
+        print(dString2.s50_m97_isInterleave("aabcc", "dbbca", "aadbbbaccc")) // false
+    }
+    func decodeString(){
+        print(dString2.decodeString("3[a]2[bc]"))   // Output: "aaabcbc"
+        print(dString2.decodeString("3[a2[c]]"))    // Output: "accaccacc"
+        print(dString2.decodeString("2[abc]3[cd]ef")) // Output: "abcabccdcdcdef"
     }
 }
 

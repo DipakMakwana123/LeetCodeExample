@@ -337,20 +337,8 @@ struct DString {
         
         return result
     }
-    
-    func s9_groupAnagrams(_ strs: [String]) -> [[String]] {
-        var map = [String: [String]]()
-        
-        for word in strs {
-            // Sort the word’s characters → anagram groups share same sorted string
-            let key = String(word.sorted())
-            map[key, default: []].append(word)
-        }
-        
-        return Array(map.values)
-    }
-    
-    // 271. Encode Decode String
+
+    // 271 Paid. Encode Decode String
     func s10_encode(_ strs: [String]) -> String {
         var result = ""
         for str in strs {
@@ -358,7 +346,7 @@ struct DString {
         }
         return result
     }
-    // 271. Encode Decode String
+    // 271 271 Paid. Encode Decode String
     // Decode a single string to a list of strings.
     func s11_decode(_ s: String) -> [String] {
         var result = [String]()
@@ -385,6 +373,15 @@ struct DString {
         
         return result
     }
+    /*  Easy     14. Longest Common Prefix
+     Write a function to find the longest common prefix string amongst an array of strings.
+     If there is no common prefix, return an empty string "".
+
+     Input: strs = ["flower","flow","flight"]   Output: "fl"
+     Input: strs = ["dog","racecar","car"]      Output: ""
+     Explanation: There is no common prefix among the input strings.
+
+     */
     func s13_14_longestCommonPrefix(_ strs: [String]) -> String {
         guard var prefix = strs.first else {return ""}
         for string in strs.dropFirst() {
@@ -421,13 +418,10 @@ struct DString {
     }
     /* Medium 3. Longest Substring Without Repeating Characters
      Given a string s, find the length of the longest substring without duplicate characters.
-     Example 1:
-     
-     Input: s = "abcabcbb"
-     Output: 3
+     Input: s = "abcabcbb"  Output: 3
      Explanation: The answer is "abc", with the length of 3.
      */
-    func s16m3_lengthOfLongestSubstring(_ s: String) -> Int {
+    func s16_m3_lengthOfLongestSubstring(_ s: String) -> Int {
         let chars = Array(s)
         var dict = [Character: Int]()   // stores last seen index
         var left = 0
@@ -504,14 +498,10 @@ struct DString {
      Medium 49. Group Anagrams
       Given an array of strings strs, group the anagrams together. You can return the answer in any order.
 
-      Example 1:
-
-      Input: strs = ["eat","tea","tan","ate","nat","bat"]
-
-      Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+    Input: strs = ["eat","tea","tan","ate","nat","bat"]
+    Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
       Explanation:
-
       There is no string in strs that can be rearranged to form "bat".
       The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
       The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
@@ -552,15 +542,12 @@ struct DString {
     }
     /* Medium 5. Longest Palindromic Substring
      Given a string s, return the longest palindromic substring in s.
-     Example 1:
-     
      Input: s = "babad"
      Output: "bab"
      Explanation: "aba" is also a valid answer.
      */
     
-    func s21m5_longestPalindrome(_ s: String) -> String {
-        
+    func s21_m5_longestPalindrome(_ s: String) -> String {
         if s.count < 2 { return s }
         let chars = Array(s)
         var start = 0
@@ -568,7 +555,6 @@ struct DString {
         
         func expand(_ left: Int, _ right: Int) {
             var l = left, r = right
-            debugPrint(chars[l],chars[r])
             while l >= 0, r < chars.count, chars[l] == chars[r] {
                 if (r - l + 1) > maxLength {
                     start = l
@@ -605,10 +591,7 @@ struct DString {
      Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.
      
      A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
-     Example 1:
-     
-     Input: digits = "23"
-     Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+     Input: digits = "23"   Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
      */
     
     func s24_m17_letterCombinations(_ digits: String) -> [String]  {
@@ -636,9 +619,6 @@ struct DString {
         }
         return combinations
     }
-    
-    
-    
     //68. Text Justification
     func s25_68_fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {
         var result = [String]()
@@ -690,21 +670,11 @@ struct DString {
         
         return result
     }
-    
-    
     /* Easy  67. Add Binary
-     
      Given two binary strings a and b, return their sum as a binary string.
-     
-     Example 1:
-     Example 1:
-     Input: a = "11", b = "1"
-     Output: "100"
-     Example 2:
-     
-     Input: a = "1010", b = "1011"
-     Output: "10101"
-     
+
+     Input: a = "11", b = "1"       Output: "100"
+     Input: a = "1010", b = "1011"  Output: "10101"
      */
     func s27_e67_addBinary(_ a: String, _ b: String) -> String {
         let arrA = Array(a)
@@ -842,28 +812,16 @@ struct DString {
         
         _ = backtrack()
     }
-    
-    
-    
-    
+
     /* Easy 290. Word Pattern
-     
      Given a pattern and a string s, find if s follows the same pattern.
-     
      Here follow means a full match, such that there is a bijection between a letter in pattern and a non-empty word in s. Specifically:
      
      Each letter in pattern maps to exactly one unique word in s.
      Each unique word in s maps to exactly one letter in pattern.
      No two letters map to the same word, and no two words map to the same letter.
-     
-     
-     Example 1:
-     
-     Input: pattern = "abba", s = "dog cat cat dog"
-     
-     Output: true
-     
-     Explanation:
+
+     Input: pattern = "abba", s = "dog cat cat dog" Output: true
      */
     func s31_e290_wordPattern(_ pattern: String, _ s: String) -> Bool {
         
@@ -882,7 +840,6 @@ struct DString {
             if pIndex[p] != wIndex[w] {
                 return false
             }
-            
             // Store the current index + 1 (to avoid default 0 confusion)
             pIndex[p] = i + 1
             wIndex[w] = i + 1
@@ -895,8 +852,6 @@ struct DString {
      Write a function that reverses a string. The input string is given as an array of characters s.
      
      You must do this by modifying the input array in-place with O(1) extra memory.
-     Example 1:
-     
      Input: s = ["h","e","l","l","o"]
      Output: ["o","l","l","e","h"]
      */
@@ -912,16 +867,9 @@ struct DString {
     }
     /* Easy 345. Reverse Vowels of a String
      Given a string s, reverse only all the vowels in the string and return it.
-     
      The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
-     Example 1:
-     
-     Input: s = "IceCreAm"
-     
-     Output: "AceCreIm"
-     
+     Input: s = "IceCreAm"  Output: "AceCreIm"
      Explanation:
-     
      The vowels in s are ['I', 'e', 'e', 'A']. On reversing the vowels, s becomes "AceCreIm".
      */
     
@@ -950,18 +898,10 @@ struct DString {
     }
     /* Easy 383. Ransom Note
      Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
-     
      Each letter in magazine can only be used once in ransomNote.
-     
-     Example 1:
-     
-     Input: ransomNote = "a", magazine = "b"
-     Output: false
-     Example 2:
-     
-     Input: ransomNote = "aa", magazine = "ab"
-     Output: false
-     Example 3:
+
+     Input: ransomNote = "a", magazine = "b"        Output: false
+     Input: ransomNote = "aa", magazine = "ab"      Output: false
      */
     
     func s34_e383_canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
@@ -989,15 +929,8 @@ struct DString {
      
      Each letter in magazine can only be used once in ransomNote.
      
-     Example 1:
-     
-     Input: ransomNote = "a", magazine = "b"
-     Output: false
-     Example 2:
-     
-     Input: ransomNote = "aa", magazine = "ab"
-     Output: false
-     
+     Input: ransomNote = "a", magazine = "b"    Output: false
+     Input: ransomNote = "aa", magazine = "ab"  Output: false
      */
     func s35_e383_canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
         var freq: [Character: Int] = [:]
@@ -1019,17 +952,11 @@ struct DString {
         return true
     }
     /* Easy 387. First Unique Character in a String
-     
      Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
-     Example 1:
-     Input: s = "leetcode"
-     Output: 0
+     Input: s = "leetcode"  Output: 0
      Explanation:
      The character 'l' at index 0 is the first character that does not occur at any other index.
-     
-     Example 2:
-     Input: s = "loveleetcode"
-     Output: 2
+     Input: s = "loveleetcode"  Output: 2
      */
     
     func s36_e387_firstUniqChar(_ s: String) -> Int {
@@ -1050,21 +977,14 @@ struct DString {
         return -1
     }
     /* Easy 389. Find the Difference
-     
      You are given two strings s and t.
-     
      String t is generated by random shuffling string s and then add one more letter at a random position.
-     
      Return the letter that was added to t.
-     
-     Example 1:
-     Input: s = "abcd", t = "abcde"
-     Output: "e"
+
+     Input: s = "abcd", t = "abcde" Output: "e"
      Explanation: 'e' is the letter that was added.
-     Example 2:
-     
-     Input: s = "", t = "y"
-     Output: "y"
+
+     Input: s = "", t = "y"     Output: "y"
      */
     func s37_e389_findTheDifference(_ s: String, _ t: String) -> Character {
         var freq: [Character: Int] = [:]
@@ -1115,19 +1035,13 @@ struct DString {
     /* Easy 392. Is Subsequence
      Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
      A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
-     Example 1:
-     
-     Input: s = "abc", t = "ahbgdc"
-     Output: true
-     Example 2:
-     
-     Input: s = "axc", t = "ahbgdc"
-     Output: false
-     
+
+     Input: s = "abc", t = "ahbgdc" Output: true
+     Input: s = "axc", t = "ahbgdc" Output: false
+
      */
     func s38_e392_isSubsequence(_ s: String, _ t: String) -> Bool {
         if s.isEmpty { return true }
-        
         let sChars = Array(s)
         let tChars = Array(t)
         
@@ -1146,11 +1060,7 @@ struct DString {
      Given two non-negative integers, num1 and num2 represented as string, return the sum of num1 and num2 as a string.
      
      You must solve the problem without using any built-in library for handling large integers (such as BigInteger). You must also not convert the inputs to integers directly.
-     
-     Example 1:
-     
-     Input: num1 = "11", num2 = "123"
-     Output: "134"
+     Input: num1 = "11", num2 = "123"   Output: "134"
      */
     func s39_e415_addStrings(_ num1: String, _ num2: String) -> String {
         let arr1 = Array(num1), arr2 = Array(num2)
