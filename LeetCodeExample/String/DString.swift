@@ -373,7 +373,7 @@ struct DString {
         
         return result
     }
-    /*  Easy     14. Longest Common Prefix
+    /*  Easy   14. Longest Common Prefix
      Write a function to find the longest common prefix string amongst an array of strings.
      If there is no common prefix, return an empty string "".
 
@@ -382,7 +382,7 @@ struct DString {
      Explanation: There is no common prefix among the input strings.
 
      */
-    func s13_14_longestCommonPrefix(_ strs: [String]) -> String {
+    func s13_e14_longestCommonPrefix(_ strs: [String]) -> String {
         guard var prefix = strs.first else {return ""}
         for string in strs.dropFirst() {
             while !string.hasPrefix(prefix) {
@@ -392,7 +392,18 @@ struct DString {
         }
         return prefix
     }
-    
+    /* Medium 424. Longest Repeating Character Replacement
+     You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+     Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+     Input: s = "ABAB", k = 2     Output: 4
+     Explanation: Replace the two 'A's with two 'B's or vice versa.
+     Input: s = "AABABBA", k = 1    Output: 4
+     Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+     The substring "BBBB" has the longest repeating letters, which is 4.
+     There may exists other ways to achieve this answer too.
+
+     */
     func s15_424_characterReplacement(_ s: String, _ k: Int) -> Int {
         var freq = [Int](repeating: 0, count: 26)
         var left = 0
@@ -440,7 +451,20 @@ struct DString {
         
         return result
     }
-    
+    /* Hard 76. Minimum Window Substring
+     Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+     The testcases will be generated such that the answer is unique.
+     Input: s = "ADOBECODEBANC", t = "ABC"  Output: "BANC"
+     Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+
+     Input: s = "a", t = "a"    Output: "a"
+     Explanation: The entire string s is the minimum window.
+
+     Input: s = "a", t = "aa"   Output: ""
+     Explanation: Both 'a's from t must be included in the window.
+     Since the largest window of s only has one 'a', return empty string.
+     */
     func s17_76_minWindow(_ s: String, _ t: String) -> String {
         let sChars = Array(s)
         let tChars = Array(t)
@@ -569,7 +593,6 @@ struct DString {
             expand(i, i)       // Odd-length center
             expand(i, i + 1)   // Even-length center
         }
-        
         let startIndex = s.index(s.startIndex, offsetBy: start)
         let endIndex = s.index(startIndex, offsetBy: maxLength)
         return String(s[startIndex..<endIndex])
@@ -580,7 +603,7 @@ struct DString {
     func s23_234_isPalindrome(_ head: ListNode?) -> Bool {
         var node = head
         var list : [Int] = []
-        while let current = node{
+        while let current = node {
             list.append(current.val)
             node = current.next
             
@@ -1035,7 +1058,6 @@ struct DString {
     /* Easy 392. Is Subsequence
      Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
      A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
-
      Input: s = "abc", t = "ahbgdc" Output: true
      Input: s = "axc", t = "ahbgdc" Output: false
 

@@ -124,11 +124,11 @@ struct StringViewModel {
         print(dString.s8_findSubstring(s, words)) // Output: [0, 9]
     }
     func groupAnagrams() {
-        print(dString.s9_groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
+        print(dString.s19_m49_groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
         // [["eat","tea","ate"],["tan","nat"],["bat"]]
-        print(dString.s9_groupAnagrams([""]))
+        print(dString.s19_m49_groupAnagrams([""]))
         // [[""]]
-        print(dString.s9_groupAnagrams(["a"]))
+        print(dString.s19_m49_groupAnagrams(["a"]))
         // [["a"]]
     }
     
@@ -144,9 +144,9 @@ struct StringViewModel {
     }
    
     func longestCommonPrefix() {
-        print(dString.s13_14_longestCommonPrefix(["flower","flow","flight"]))  // "fl"
-        print(dString.s13_14_longestCommonPrefix(["dog","racecar","car"]))     // ""
-        print(dString.s13_14_longestCommonPrefix(["interspecies","interstellar","interstate"])) // "inters"
+        print(dString.s13_e14_longestCommonPrefix(["flower","flow","flight"]))  // "fl"
+        print(dString.s13_e14_longestCommonPrefix(["dog","racecar","car"]))     // ""
+        print(dString.s13_e14_longestCommonPrefix(["interspecies","interstellar","interstate"])) // "inters"
     }
     
     func characterReplacement() {

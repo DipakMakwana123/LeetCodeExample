@@ -281,7 +281,7 @@ struct DIntViewModel {
         print(dInt.i41_m55_canJump([3,2,1,0,4])) // false
         print(dInt.i41_m55_canJump([0]))         // true (already at last index)
     }
-    func merge() {
+    func mergeIntervals() {
         print(dInt.i42_m56_merge([[1,3],[2,6],[8,10],[15,18]]))
         // [[1,6],[8,10],[15,18]]
 
@@ -343,7 +343,104 @@ struct DIntViewModel {
           [1,5,1],
           [4,2,1]
         ]
-        print(dInt.i46_m64_minPathSum(grid))
-        // Output: 7
+        print(dInt.i46_m64_minPathSum(grid))// Output: 7
+    }
+    func search() {
+        let nums = [2,5,6,0,0,1,2], target = 0
+        print(dInt.i47_m81_search(nums, target))
+
+        let nums2 = [2,5,6,0,0,1,2], target2 = 3
+        print(dInt.i47_m81_search(nums2, target2))
+    }
+    func findPeakElement() {
+        print(dInt.i48_m162_findPeakElement([1,2,3,1]))   //# -> 2 (value 3)
+        print(dInt.i48_m162_findPeakElement([1,2]))       //# -> 1 (value 2)
+        print(dInt.i48_m162_findPeakElement([3,2,1]))    // # -> 0 (value 3)
+    }
+    func maximumGap() {
+        print(dInt.i49_m164_maximumGap([3,6,9,1]))
+        print(dInt.i49_m164_maximumGap([10]))
+    }
+    func compareVersion() {
+        var version1 = "1.0.1", version2 = "1" // Output: 1
+        print(dInt.i50_m165_compareVersion(version1, version2))
+        version1 = "1.01"
+        version2 = "1.001" // Output: 0
+        print(dInt.i50_m165_compareVersion(version1, version2))
+        version1 = "1.0"
+        version2 = "1.0.0" // Output: 0
+        print(dInt.i50_m165_compareVersion(version1, version2))
+    }
+    func canCompleteCircuit() {
+        let gas = [1,2,3,4,5]
+        let cost = [3,4,5,1,2]
+        print(dInt.i51_m134_canCompleteCircuit(gas, cost))// Output: 3    Start at station 3 → 4 + 5 + 1 + 2 + 3 (circle complete)
+    }
+    func singleNumber() {
+        print(dInt.i52_m137_singleNumber([2, 2, 3, 2]))       // 3
+        print(dInt.i52_m137_singleNumber([0, 1, 0, 1, 0, 1, 99])) // 99
+        print(dInt.i52_m137_singleNumber([-2, -2, 1, -2]))    // 1
+    }
+    func minimumTotal() {
+    let
+    triangle = [
+         [2],
+        [3,4],
+       [6,5,7],
+      [4,1,8,3]
+    ]
+    print(dInt.i53_m120_minimumTotal(triangle))//Output: 11      //Explanation: 2 + 3 + 5 + 1 = 11
+    }
+    func fractionToDecimal() {
+        var numerator = 1
+        var denominator = 2
+        print(dInt.i54_m166_fractionToDecimal(numerator, denominator))// Output: "0.5"
+        numerator = 2
+        denominator = 1
+        print(dInt.i54_m166_fractionToDecimal(numerator, denominator)) //Output: "2"
+
+        numerator = 2
+        denominator = 3
+        print(dInt.i54_m166_fractionToDecimal(numerator, denominator)) // Output: "0.(6)"
+
+        numerator = 4
+        denominator = 333
+        print(dInt.i54_m166_fractionToDecimal(numerator, denominator)) //Output: "0.(012)"
+    }
+    func trailingZeroes() {
+        print(dInt.i55_m172_trailingZeroes(5)) //Output: 1   //Explanation: 5! = 120 → 1 trailing zero
+        print(dInt.i55_m172_trailingZeroes(3)) //Output: 1   //Explanation: 5! = 120 → 1 trailing zero
+    }
+    func findRepeatedDnaSequences() {
+        print(dInt.i56_m187_findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")) //    Output: ["AAAAACCCCC", "CCCCCAAAAA"]
+        print(dInt.i56_m187_findRepeatedDnaSequences("AAAAAAAAAAAAA")) //    Output: ["AAAAACCCCC", "CCCCCAAAAA"]
+    }
+    func rotateArray(){
+        var arr = [1,2,3,4,5,6,7]
+        print(dInt.i57_m189_rotate(&arr, 3))
+    /*    Output: [5,6,7,1,2,3,4]
+        Explanation:
+        Rotate 1 step → [7,1,2,3,4,5,6]
+        Rotate 2 step → [6,7,1,2,3,4,5]
+        Rotate 3 step → [5,6,7,1,2,3,4]*/
+    }
+    func numIslands() {
+
+    }
+    func countPrimes() {
+        print(dInt.i59_m204_countPrimes(10))  // Output: 4  (2, 3, 5, 7)
+        print(dInt.i59_m204_countPrimes(0))   // Output: 0
+        print(dInt.i59_m204_countPrimes(1))   // Output: 0
+        print(dInt.i59_m204_countPrimes(20))  // Output: 8  (2, 3, 5, 7, 11, 13, 17, 19)
+    }
+    func minSubArrayLen() {
+        print(dInt.i61_m209_minSubArrayLen(7, [2,3,1,2,4,3]))   // ✅ 2  → [4,3]
+        print(dInt.i61_m209_minSubArrayLen(4, [1,4,4]))         // ✅ 1  → [4]
+        print(dInt.i61_m209_minSubArrayLen(11, [1,1,1,1,1,1,1])) // ✅ 0  → no subarray
+    }
+    func findOrder(){
+        print(dInt.i62_m210_findOrder(2, [[1,0]]))                  // ✅ [0,1]
+        print(dInt.i62_m210_findOrder(4, [[1,0],[2,0],[3,1],[3,2]])) // ✅ [0,1,2,3] or [0,2,1,3]
+        print(dInt.i62_m210_findOrder(2, [[1,0],[0,1]]))            // ❌ []
     }
 }

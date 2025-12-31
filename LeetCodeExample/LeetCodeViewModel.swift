@@ -170,8 +170,8 @@ class LeetCodeViewModel: ObservableObject {
     func canJump() {
         dIntVM?.canJump()
     }
-    func merge2() {
-        dIntVM?.merge()
+    func mergeIntervals() {
+        dIntVM?.mergeIntervals()
     }
     func generateMatrix() {
         dIntVM?.generateMatrix()
@@ -182,8 +182,53 @@ class LeetCodeViewModel: ObservableObject {
     func uniquePathsWithObstacles() {
         dIntVM?.uniquePathsWithObstacles()
     }
+    func fractionToDecimal() {
+        dIntVM?.fractionToDecimal()
+    }
+    func numIslands() {
+        dIntVM?.numIslands()
+    }
+    func countPrimes() {
+        dIntVM?.countPrimes()
+    }
+    func trailingZeroes() {
+        dIntVM?.trailingZeroes()
+    }
+    func rotateArray(){
+        dIntVM?.rotateArray()
+    }
+    func findRepeatedDnaSequences() {
+        dIntVM?.findRepeatedDnaSequences()
+    }
     func minPathSum(){
         dIntVM?.minPathSum()
+    }
+//    func search() {
+//        dIntVM?.search()
+//    }
+    func findPeakElement() {
+        dIntVM?.findPeakElement()
+    }
+    func maximumGap() {
+        dIntVM?.maximumGap()
+    }
+    func compareVersion() {
+        dIntVM?.compareVersion()
+    }
+    func canCompleteCircuit() {
+        dIntVM?.canCompleteCircuit()
+    }
+    func singleNumber() {
+        dIntVM?.singleNumber()
+    }
+    func minimumTotal() {
+        dIntVM?.minimumTotal()
+    }
+    func minSubArrayLen() {
+        dIntVM?.minSubArrayLen()
+    }
+    func findOrder(){
+        dIntVM?.findOrder()
     }
     // MARK: - ========================================== String ==========================================
     func isInterleave(){
@@ -310,6 +355,7 @@ class LeetCodeViewModel: ObservableObject {
     func convert() {
         stringVM.convert()
     }
+
     // MARK: - ========================================== Array ==========================================
     
     func sortColors() {

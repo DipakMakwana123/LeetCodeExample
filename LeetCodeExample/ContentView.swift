@@ -22,9 +22,27 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            viewModel.decodeString()
+            viewModel.carFleet()
         }
         .padding()
+    }
+
+    func findGroupAnagram(_ s: [String])   {
+
+        var map1 = [String: [String]]()
+        for subStr in s {
+            var map = [Character: Int]()
+            for ch in subStr {
+                map[ch,default: 0] += 1
+            }
+            var str = ""
+            for ch in map.keys {
+                if let cnt = map[ch] {
+                    str += ("\(ch)\(cnt)")          }
+            }
+            map1[str, default: []].append(subStr)
+            print(map1.values)
+        }
     }
 }
 

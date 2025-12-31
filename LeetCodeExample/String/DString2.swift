@@ -12,13 +12,27 @@
 struct DString2 {
     /* Easy 459. Repeated Substring Pattern
      Given a string s, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
-     Example 1:
-     Input: s = "abab"
-     Output: true
+     Input: s = "abab"       Output: true
      Explanation: It is the substring "ab" twice.
-     
      */
-    func s40_e459_repeatedSubstringPattern1(_ s: String) -> Bool {
+    func s41_e459_repeatedSubstringPattern(_ s: String) -> Bool {
+        let n = s.count
+        let chars = Array(s)
+
+        // Try every possible substring length that divides n
+        for i in 1..<(n / 2 + 1) {
+            if n % i == 0 {
+                // Create the candidate substring
+                let pattern = String(chars[0..<i])
+                let repeated = String(repeating: pattern, count: n / i)
+                if repeated == s {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    func s41_e459_repeatedSubstringPattern1(_ s: String) -> Bool {
         let length = s.count
         if length == 1 {
             return false
@@ -39,7 +53,7 @@ struct DString2 {
         }
         return false
     }
-    func s41_e459_repeatedSubstringPattern(_ s: String) -> Bool {
+    func s41_e459_repeatedSubstringPattern2(_ s: String) -> Bool {
         let doubled = s + s
         let subStr = String(doubled.dropFirst().dropLast())
         return subStr.contains(s)
@@ -73,20 +87,16 @@ struct DString2 {
         return result
     }
     /* Medium 6. Zigzag Conversion
-     
      The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-     
+
      P   A   H   N
      A P L S I I G
      Y   I   R
      And then read line by line: "PAHNAPLSIIGYIR"
      
      Write the code that will take a string and make this conversion given a number of rows:
-     
      string convert(string s, int numRows);
-     Example 1:
-     Input: s = "PAYPALISHIRING", numRows = 3
-     Output: "PAHNAPLSIIGYIR"
+     Input: s = "PAYPALISHIRING", numRows = 3               Output: "PAHNAPLSIIGYIR"
      */
     func s43_m6_convert(_ s: String, _ numRows: Int) -> String {
         if numRows == 1 || numRows >= s.count { return s }
@@ -107,14 +117,9 @@ struct DString2 {
     }
     /* Medium 22. Generate Parentheses
      Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
-     Example 1:
-     
-     Input: n = 3
-     Output: ["((()))","(()())","(())()","()(())","()()()"]
-     Example 2:
-     
-     Input: n = 1
-     Output: ["()"]
+     Input: n = 3       Output: ["((()))","(()())","(())()","()(())","()()()"]
+     //")))(((", "))()((", "))(()(", ")())((", ")()()(" /
+     Input: n = 1       Output: ["()"]
      
      */
     func s44_m22_generateParenthesis(_ n: Int) -> [String] {
@@ -142,14 +147,8 @@ struct DString2 {
      Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
      
      Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
-     Example 1:
-     
-     Input: num1 = "2", num2 = "3"
-     Output: "6"
-     Example 2:
-     
-     Input: num1 = "123", num2 = "456"
-     Output: "56088"
+     Input: num1 = "2", num2 = "3"  Output: "6"
+     Input: num1 = "123", num2 = "456"      Output: "56088"
      */
     func s45_m43_multiply(_ num1: String, _ num2: String) -> String {
         let n1 = Array(num1)
@@ -165,7 +164,7 @@ struct DString2 {
                 let d2 = Int(n2[j].asciiValue! - zeroAscii)
                 let mul = d1 * d2
                 let sum = mul + result[i + j + 1]
-                
+
                 result[i + j + 1] = sum % 10
                 result[i + j] += sum / 10
             }
@@ -180,30 +179,18 @@ struct DString2 {
     }
     /* Medium 71. Simplify Path
      You are given an absolute path for a Unix-style file system, which always begins with a slash '/'. Your task is to transform this absolute path into its simplified canonical path.
-     
-     Example 1:
-     Input: path = "/home/"
-     Output: "/home"
+     Input: path = "/home/"         Output: "/home"
      Explanation:The trailing slash should be removed.
-     
-     Example 2:
-     Input: path = "/home//foo/"
-     Output: "/home/foo"
+     Input: path = "/home//foo/"        Output: "/home/foo"
      Explanation: Multiple consecutive slashes are replaced by a single one.
-     
-     Example 3:
-     Input: path = "/home/user/Documents/../Pictures"
-     Output: "/home/user/Pictures"
+
+     Input: path = "/home/user/Documents/../Pictures"   Output: "/home/user/Pictures"
      Explanation: A double period ".." refers to the directory up a level (the parent directory).
-     
-     Example 4:
-     Input: path = "/../"
-     Output: "/"
+
+     Input: path = "/../"   Output: "/"
      Explanation: Going one level up from the root directory is not possible.
-     
-     Example 5:
-     Input: path = "/.../a/../b/c/../d/./"
-     Output: "/.../b/d"
+
+     Input: path = "/.../a/../b/c/../d/./"          Output: "/.../b/d"
      Explanation: "..." is a valid name for a directory in this problem.
      */
     func s46_m71_simplifyPath(_ path: String) -> String {
@@ -226,21 +213,16 @@ struct DString2 {
     }
     /* Medium 72. Edit Distance
      Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
-     
      You have the following three operations permitted on a word:
      
      Insert a character
      Delete a character
      Replace a character
-     
-     
-     Example 1:
-     Input: word1 = "horse", word2 = "ros"
-     Output: 3
-     Explanation:
-     horse -> rorse (replace 'h' with 'r')
-     rorse -> rose (remove 'r')
-     rose -> ros (remove 'e')
+
+     Input: word1 = "horse", word2 = "ros"  Output: 3
+     Explanation:   horse -> rorse (replace 'h' with 'r')
+                    rorse -> rose (remove 'r')
+                    rose -> ros (remove 'e')
      */
     func s47_m72_minDistance(_ word1: String, _ word2: String) -> Int {
         
@@ -276,12 +258,8 @@ struct DString2 {
     }
     /* Medium 79. Word Search
      Given an m x n grid of characters board and a string word, return true if word exists in the grid.
-
      The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
-     Example 1:
-     Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
-     Output: true
-     Example 2:
+     Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"    Output: true
      */
     
     func s48_m79_exist(_ board: [[Character]], _ word: String) -> Bool {
@@ -322,10 +300,7 @@ struct DString2 {
 
      For example, "0.1.2.201" and "192.168.1.1" are valid IP addresses, but "0.011.255.245", "192.168.1.312" and "192.168@1.1" are invalid IP addresses.
      Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You are not allowed to reorder or remove any digits in s. You may return the valid IP addresses in any order.
-     Example 1:
-
-     Input: s = "25525511135"
-     Output: ["255.255.11.135","255.255.111.35"]
+     Input: s = "25525511135"   Output: ["255.255.11.135","255.255.111.35"]
      */
     func s49_m93_restoreIpAddresses(_ s: String) -> [String] {
             let chars = Array(s)

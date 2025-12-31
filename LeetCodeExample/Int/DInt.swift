@@ -10,17 +10,9 @@ import Foundation
 struct DInt {
     
     /* Easy 190. Reverse Bits
-     
      Reverse bits of a given 32 bits signed integer.
-     
-     Example 1:
-     
-     Input: n = 43261596
-     
-     Output: 964176192
-     
+     Input: n = 43261596    Output: 964176192
      Explanation:
-     
      Integer    Binary
      43261596    00000010100101000001111010011100
      964176192   00111001011110000010100101000000
@@ -48,20 +40,13 @@ struct DInt {
      Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
      Those numbers for which this process ends in 1 are happy.
      Return true if n is a happy number, and false if not.
-
-     Example 1:
-     Input: n = 19
-     Output: true
-     
+     Input: n = 19  Output: true
      Explanation:
-     12 + 92 = 82
-     82 + 22 = 68
-     62 + 82 = 100
-     12 + 02 + 02 = 1
-     Example 2:
-     
-     Input: n = 2
-     Output: false
+     1*1 + 9*9 = 1 + 81  = 82
+     8*8 + 2*2 = 64 + 36 = 68
+     6*6 + 8*8 = 36 + 64 =   100
+     1*1 + 0*0 + 0*0 = 1 + 0 + 0 = 1 // Happy Number
+     Input: n = 2     Output: false
 
      */
     
@@ -123,7 +108,6 @@ struct DInt {
      */
     func i4_e219_containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
         var lastSeen: [Int: Int] = [:]
-        
         for (i, num) in nums.enumerated() {
             if let prevIndex = lastSeen[num], i - prevIndex <= k {
                 return true
@@ -137,14 +121,9 @@ struct DInt {
      Given an integer n, return true if it is a power of two. Otherwise, return false.
      
      An integer n is a power of two, if there exists an integer x such that n == 2x.
-     
-     Example 1:
-     Input: n = 1
-     Output: true
-     
-     Example 2:
-     Input: n = 3
-     Output: false
+
+     Input: n = 1   Output: true
+     Input: n = 3   Output: false
      
      */
     func i5_e231_isPowerOfTwo(_ n: Int) -> Bool {
@@ -156,7 +135,7 @@ struct DInt {
         return x == 1
     }
     /* Easy 258. Add Digits
-     
+
      Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
      
      Example 1:
@@ -302,7 +281,7 @@ struct DInt {
     /* Easy 9. Palindrome Number
      Given an integer x, return true if x is a palindrome, and false otherwise.
 
-     Example 1: Input: x = 121  Output: true    Explanation: 121 reads as 121 from left to right and from right to left.
+     Input: x = 121  Output: true    Explanation: 121 reads as 121 from left to right and from right to left.
      */
     func i13_e9_isPalindromeNumber(_ x: Int) -> Bool {
         if x < 0 { return false }
@@ -343,21 +322,16 @@ struct DInt {
      answer[i] == "Buzz" if i is divisible by 5.
      answer[i] == i (as a string) if none of the above conditions are true.
 
-
-     Example 1:     Input: n = 3    Output: ["1","2","Fizz"]
-     Example 2:     Input: n = 5    Output: ["1","2","Fizz","4","Buzz"]
-     Example 3:     Input: n = 15   Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
-
+     Input: n = 3    Output: ["1","2","Fizz"]
+     Input: n = 5    Output: ["1","2","Fizz","4","Buzz"]
+     Input: n = 15   Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
      */
     func i15_412_fizzBuzz(_ n: Int) -> [String] {
         var result = [String]()
-        
         for i in 1...n {
             var str = ""
-            
             if i % 3 == 0 { str += "Fizz" }
             if i % 5 == 0 { str += "Buzz" }
-            
             result.append(str.isEmpty ? "\(i)" : str)
         }
         
@@ -422,7 +396,7 @@ struct DInt {
      "a->b" if a != b
      "a" if a == b
      
-     Example 1: Input: nums = [0,1,2,4,5,7] Output: ["0->2","4->5","7"]
+     Input: nums = [0,1,2,4,5,7] Output: ["0->2","4->5","7"]
 
      Explanation: The ranges are:
      [0,2] --> "0->2"
@@ -550,7 +524,7 @@ struct DInt {
      Given a string s, return the number of segments in the string.
      
      A segment is defined to be a contiguous sequence of non-space characters.
-     Example 1: Input: s = "Hello, my name is John" Output: 5
+     Input: s = "Hello, my name is John" Output: 5
      Explanation: The five segments are ["Hello,", "my", "name", "is", "John"]
      
      */
@@ -1074,4 +1048,14 @@ struct DInt {
         return result
     }
 
+}
+
+extension Array {
+    func dipakMap<T>(_ transform: (Element) -> T) -> [T] {
+        var result: [T] = []
+        for item in self {
+            result.append(transform(item))
+        }
+        return result
+    }
 }
