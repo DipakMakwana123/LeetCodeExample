@@ -30,12 +30,8 @@ struct DInt {
         return result
     }
     /* Easy 202. Happy Number
-     
-     
      Write an algorithm to determine if a number n is happy.
-     
      A happy number is a number defined by the following process:
-     
      Starting with any positive integer, replace the number by the sum of the squares of its digits.
      Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
      Those numbers for which this process ends in 1 are happy.
@@ -73,15 +69,9 @@ struct DInt {
         return num == 1
     }
     /* Easy 217. Contains Duplicate
-     
      Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
-     Example 1:
-     Input: nums = [1,2,3,1]
-     Output: true
-     
-     Example 2:
-     Input: nums = [1,2,3,4]
-     Output: false
+     Input: nums = [1,2,3,1]    Output: true
+     Input: nums = [1,2,3,4]    Output: false
      */
     func i3_e217_containsDuplicate(_ nums: [Int]) -> Bool {
         let a = Set(nums)
@@ -91,20 +81,11 @@ struct DInt {
         return true
     }
     /* Easy 219. Contains Duplicate II
-     
      Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
-     Example 1:
-     Input: nums = [1,2,3,1], k = 3
-     Output: true
+     Input: nums = [1,2,3,1], k = 3 Output: true
+     Input: nums = [1,0,1,1], k = 1 Output: true
+     Input: nums = [1,2,3,1,2,3], k = 2 Output: false
 
-     Example 2:
-     Input: nums = [1,0,1,1], k = 1
-     Output: true
-
-     Example 3:
-     Input: nums = [1,2,3,1,2,3], k = 2
-     Output: false
-     
      */
     func i4_e219_containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
         var lastSeen: [Int: Int] = [:]
@@ -119,9 +100,7 @@ struct DInt {
     }
     /* Easy 231. Power of Two
      Given an integer n, return true if it is a power of two. Otherwise, return false.
-     
      An integer n is a power of two, if there exists an integer x such that n == 2x.
-
      Input: n = 1   Output: true
      Input: n = 3   Output: false
      
@@ -135,22 +114,15 @@ struct DInt {
         return x == 1
     }
     /* Easy 258. Add Digits
-
      Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
-     
-     Example 1:
-     
-     Input: num = 38
-     Output: 2
+     Input: num = 38    Output: 2
      Explanation: The process is
      38 --> 3 + 8 --> 11
      11 --> 1 + 1 --> 2
      Since 2 has only one digit, return it.
-     Example 2:
      
-     Input: num = 0
-     Output: 0
-     
+     Input: num = 0     Output: 0
+
      */
     func i6_e258_addDigits(_ num: Int) -> Int {
         if num == 0 { return 0 }
@@ -204,7 +176,6 @@ struct DInt {
      
      Example 1: Input: nums = [0,1,0,3,12]  Output: [1,3,12,0,0]
      Example 2: Input: nums = [0]           Output: [0]
-
      */
     func i9_e283_moveZeroes(_ nums: inout [Int]) {
         var lastNonZero = 0
@@ -220,7 +191,6 @@ struct DInt {
      Given an integer n, return true if it is a power of three. Otherwise, return false.
      An integer n is a power of three, if there exists an integer x such that n == 3x.
      Example 1:     Input: n = 27   Output: true    Explanation: 27 = 33
-
      */
     
     func i10_e326_isPowerOfThree(_ n: Int) -> Bool {
@@ -342,8 +312,8 @@ struct DInt {
      A string is a palindrome when it reads the same backward as forward.
      A substring is a contiguous sequence of characters within the string.
 
-     Example 1: Input: s = "abc"    Output: 3   Explanation: Three palindromic strings: "a", "b", "c".
-     Example 2: Input: s = "aaa"    Output: 6   Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
+     Input: s = "abc"    Output: 3   Explanation: Three palindromic strings: "a", "b", "c".
+     Input: s = "aaa"    Output: 6   Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
 
      */
     func i16_m647_countSubstrings(_ s: String) -> Int {
@@ -550,7 +520,6 @@ struct DInt {
      
      Given the integer n, return the number of complete rows of the staircase you will build.
      */
-    
     func i24_e441_arrangeCoins(_ n: Int) -> Int {
         var left = 0
         var right = n
@@ -578,7 +547,7 @@ struct DInt {
         let n = nums.count
         let setNums = Set(nums)
         var result = [Int]()
-        
+
         for i in 1...n {
             if !setNums.contains(i) {
                 result.append(i)
@@ -828,9 +797,7 @@ struct DInt {
      Return the quotient after dividing dividend by divisor.
      
      Note: Assume we are dealing with an environment that could only store integers within the 32-bit signed integer range: [−231, 231 − 1]. For this problem, if the quotient is strictly greater than 231 - 1, then return 231 - 1, and if the quotient is strictly less than -231, then return -231.
-     
-     Example 1:
-     
+
      Input: dividend = 10, divisor = 3
      Output: 3
      Explanation: 10/3 = 3.33333.. which is truncated to 3.
@@ -865,7 +832,7 @@ struct DInt {
         
         return sign * Int(result)
     }
-    /* Medium 38. Count and Say
+    /* TODO: Medium 38. Count and Say
      The count-and-say sequence is a sequence of digit strings defined by the recursive formula:
 
      countAndSay(1) = "1"
@@ -873,7 +840,6 @@ struct DInt {
      Run-length encoding (RLE) is a string compression method that works by replacing consecutive identical characters (repeated 2 or more times) with the concatenation of the character and the number marking the count of the characters (length of the run). For example, to compress the string "3322251" we replace "33" with "23", replace "222" with "32", replace "5" with "15" and replace "1" with "11". Thus the compressed string becomes "23321511".
 
      Given a positive integer n, return the nth element of the count-and-say sequence.
-     Example 1:
 
      Input: n = 4
 

@@ -93,41 +93,71 @@ struct DStack {
         }
         return stack.count
     }
+        /*  1249. Minimum Remove to Make Valid Parentheses
+         Given a string s of '(' , ')' and lowercase English characters.
+
+         Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the resulting parentheses string is valid and return any valid string.
+
+         Formally, a parentheses string is valid if and only if:
+
+         It is the empty string, contains only lowercase characters, or
+         It can be written as AB (A concatenated with B), where A and B are valid strings, or
+         It can be written as (A), where A is a valid string.
+
+
+         Example 1:
+
+         Input: s = "lee(t(c)o)de)"
+         Output: "lee(t(c)o)de"
+         Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+         Example 2:
+
+         Input: s = "a)b(c)d"
+         Output: "ab(c)d"
+         Example 3:
+
+         Input: s = "))(("
+         Output: ""
+         Explanation: An empty string is also valid.
+
+         */
     func ST3_1249_minRemoveToMakeValid(_ s: String) -> String {
-        var stackArr = [Int]()
-        var ansStr: String = ""
-        let strArray = Array(s)
-        
-        for i in 0..<strArray.count {
-            if strArray[i] == "(" {
-                //print("bracket")
-                stackArr.append(i+1);
-            } else if strArray[i] == ")" {
-                //print("closing bracket -- \(strArray.count)")
-                if stackArr.count > 0, stackArr.last ?? 0 > 0 {
-                    let _ = stackArr.popLast();
-                } else {
-                    //print("bracket ex")
-                    stackArr.append(-(i+1))
+        var stack = [Int]()
+        var sArr = Array(s)
+        for i in 0..<s.count  {
+            if  sArr[i] == "(" {
+                stack.append(i)
+            }
+            else if  sArr[i] == ")" {
+                if !stack.isEmpty {
+                    stack.removeLast()
+                }
+                else {
+                    sArr[i] = "*"
                 }
             }
-            //print("here = i \(i) --\(stackArr)")
         }
-        var j = 0
-        
-        for i in 0..<strArray.count {
-            if j < stackArr.count, abs(stackArr[j]) == i + 1 {
-                j+=1;
-                continue
-            }
-            //print("uuu")
-            ansStr.append(strArray[i]);
-            //print(ansStr )
-            
+
+        for i in stack {
+            sArr[i] = "*"
+            //invalidIndex.insert(i)
         }
-        return ansStr
-        
+        return String(sArr.filter({$0 != "*"}))
+
     }
+    /* Easy   20. Valid Parentheses
+     Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+     An input string is valid if:
+     Open brackets must be closed by the same type of brackets.
+     Open brackets must be closed in the correct order.
+     Every close bracket has a corresponding open bracket of the same type.
+     Input: s = "()"        Output: true
+     Input: s = "()[]{}"    Output: true
+     Input: s = "(]"        Output: false
+     Input: s = "([])"      Output: true
+     Input: s = "([)]"      Output: false
+     */
     func ST4_20__validParenthese(_ s: String) -> Bool {
         // A quick check for odd length strings - they can never be valid
         if s.count % 2 != 0 {
@@ -142,7 +172,6 @@ struct DStack {
             "}": "{",
             "]": "["
         ]
-        
         for char in s {
             switch char {
             case "(", "{", "[":
@@ -166,6 +195,15 @@ struct DStack {
         // After iterating through the string, the stack should be empty if all brackets matched
         return stack.isEmpty
     }
+    /* Hard 84. Largest Rectangle in Histogram
+     Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+
+     Input: heights = [2,1,5,6,2,3]     Output: 10
+     Explanation: The above is a histogram where width of each bar is 1.
+     The largest rectangle is shown in the red area, which has an area = 10 units.
+
+     Input: heights = [2,4]     Output: 4
+     */
     func S5_84_largestRectangleArea(_ heights: [Int]) -> Int {
         let heights = heights + [0]
         var stack = [(i: Int, h: Int)](), result = 0

@@ -5,10 +5,6 @@
 //  Created by Dipak Makwana on 17/09/25.
 //
 
-/*
- 
- */
-
 struct DString2 {
     /* Easy 459. Repeated Substring Pattern
      Given a string s, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
@@ -112,7 +108,6 @@ struct DString2 {
             }
             currentRow += goingDown ? 1 : -1
         }
-        
         return rows.joined()
     }
     /* Medium 22. Generate Parentheses
@@ -165,8 +160,8 @@ struct DString2 {
                 let mul = d1 * d2
                 let sum = mul + result[i + j + 1]
 
-                result[i + j + 1] = sum % 10
-                result[i + j] += sum / 10
+                result[i + j + 1] = sum % 10 // store reminder
+                result[i + j] += sum / 10 // store carry
             }
         }
         
@@ -256,7 +251,7 @@ struct DString2 {
         }
         return dp[m][n]
     }
-    /* Medium 79. Word Search
+    /* TODO: aji thi baki che Medium 79. Word Search
      Given an m x n grid of characters board and a string word, return true if word exists in the grid.
      The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
      Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"    Output: true

@@ -51,6 +51,13 @@
 			);
 			target = F44416382E3CE5D600FB2B6D /* MyNotfication */;
 		};
+		F471B67B2F16267B008B6351 /* Exceptions for "LeetCodeExample" folder in "LeetCodeExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F486C6672E19160900FD2E16 /* LeetCodeExample */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -64,6 +71,9 @@
 		};
 		F486C66A2E19160900FD2E16 /* LeetCodeExample */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F471B67B2F16267B008B6351 /* Exceptions for "LeetCodeExample" folder in "LeetCodeExample" target */,
+			);
 			path = LeetCodeExample;
 			sourceTree = "<group>";
 		};
@@ -430,6 +440,7 @@
 				DEVELOPMENT_TEAM = GRKEY4XZZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LeetCodeExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,6 +470,7 @@
 				DEVELOPMENT_TEAM = GRKEY4XZZ6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LeetCodeExample/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

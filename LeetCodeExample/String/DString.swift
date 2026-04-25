@@ -14,19 +14,14 @@ struct DString {
      '.' Matches any single character.
      '*' Matches zero or more of the preceding element.
      The matching should cover the entire input string (not partial).
-     Example 1:
      
-     Input: s = "aa", p = "a"
-     Output: false
+     Input: s = "aa", p = "a"   Output: false
      Explanation: "a" does not match the entire string "aa".
-     
-     Example 2:
-     Input: s = "aa", p = "a*"
-     Output: true
+
+     Input: s = "aa", p = "a*"  Output: true
      Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
-     
      */
-    func s1_h10_isMatch1(_ s: String, _ p: String) -> Bool {
+    func s1_h10_isMatch2(_ s: String, _ p: String) -> Bool {
         let sChars = Array(s)
         let pChars = Array(p)
         var dp = Array(repeating: Array(repeating: false, count: p.count + 1), count: s.count + 1)
@@ -39,28 +34,28 @@ struct DString {
         }
         for i in 0..<s.count   {
             for j in 0..<p.count  {
-                let patternChar = pChars[j]
-                debugPrint(patternChar)
                 if pChars[j] == "." {
                     dp[i+1][j+1] = dp[i][j]
                 }
                 else if pChars[j] == sChars[i] { // Both Character are same
                     dp[i+1][j+1] =  dp[i][j]
                 }
-                
                 else if pChars[j] == "*" {
-                    if pChars[j-1] != sChars[i] && pChars[j - 1] != "." {
+                    if pChars[j-1] != sChars[i] && pChars[j-1] != "." {
                         dp[i+1][j+1] = dp[i+1][j-1]
                     }
                     else {
-                        dp[i+1][j+1] = dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]
+                        dp[i+1][j+1] =
+                        dp[i+1][j] || // one occurrence
+                        dp[i][j+1] || // multiple occurrences
+                        dp[i+1][j-1] // zero occurrence
                     }
                 }
             }
         }
         return dp[s.count][p.count]
     }
-    func s1_h10_isMatch(_ s: String, _ p: String) -> Bool {
+    func s1_h10_isMatch1(_ s: String, _ p: String) -> Bool {
         let sArr = Array(s)
         let pArr = Array(p)
         let m = sArr.count
@@ -99,7 +94,7 @@ struct DString {
         
         return prev[n]
     }
-    func isMatch1(_ s: String, _ p: String) -> Bool {
+    func s1_h10_isMatch(_ s: String, _ p: String) -> Bool {
         let sChars = Array(s)
         let pChars = Array(p)
         let m = sChars.count
@@ -251,6 +246,7 @@ struct DString {
         return finalRotatedString == sequence
         // return true
     }
+    // TODO: Note: Not working for caps letter Ex. "A" 
     func s7_isAnagramFrequencyMap(_ s: String, _ t: String) -> Bool {
         // 1. If lengths are different, they cannot be anagrams
         guard s.count == t.count else {
@@ -380,7 +376,6 @@ struct DString {
      Input: strs = ["flower","flow","flight"]   Output: "fl"
      Input: strs = ["dog","racecar","car"]      Output: ""
      Explanation: There is no common prefix among the input strings.
-
      */
     func s13_e14_longestCommonPrefix(_ strs: [String]) -> String {
         guard var prefix = strs.first else {return ""}
@@ -518,10 +513,8 @@ struct DString {
         let rhs = Dictionary(t.utf8CString.dropLast().map { ($0, 1) }, uniquingKeysWith: +)
         return lhs == rhs
     }
-    /*
-     Medium 49. Group Anagrams
+    /* Medium 49. Group Anagrams
       Given an array of strings strs, group the anagrams together. You can return the answer in any order.
-
     Input: strs = ["eat","tea","tan","ate","nat","bat"]
     Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 
@@ -540,7 +533,19 @@ struct DString {
            
            return Array(dict.values)
     }
-    
+    /* Easy 125. Valid Palindrome
+     A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+     Given a string s, return true if it is a palindrome, or false otherwise.
+     Input: s = "A man, a plan, a canal: Panama"    Output: true
+     Explanation: "amanaplanacanalpanama" is a palindrome.
+     Input: s = "race a car"    Output: false
+     Explanation: "raceacar" is not a palindrome.
+
+     Input: s = " " Output: true
+     Explanation: s is an empty string "" after removing non-alphanumeric characters.
+     Since an empty string reads the same forward and backward, it is a palindrome.
+     */
     func s20_125_isPalindrome(_ s: String) -> Bool {
         let chars = Array(s.lowercased())
         var left = 0, right = chars.count - 1
@@ -642,6 +647,48 @@ struct DString {
         }
         return combinations
     }
+    /* Hard  68. Text Justification
+     Given an array of strings words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+
+     You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+
+     Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line does not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+
+     For the last line of text, it should be left-justified, and no extra space is inserted between words.
+
+     Note:
+     A word is defined as a character sequence consisting of non-space characters only.
+     Each word's length is guaranteed to be greater than 0 and not exceed maxWidth.
+     The input array words contains at least one word.
+     Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+     Output:
+     [
+        "This    is    an",
+        "example  of text",
+        "justification.  "
+     ]
+     Input: words = ["What","must","be","acknowledgment","shall","be"], maxWidth = 16
+     Output:
+     [
+       "What   must   be",
+       "acknowledgment  ",
+       "shall be        "
+     ]
+     Explanation: Note that the last line is "shall be    " instead of "shall     be", because the last line must be left-justified instead of fully-justified.
+     Note that the second line is also left-justified because it contains only one word.
+
+     Input: words = ["Science","is","what","we","understand","well","enough","to","explain","to","a ","computer.","Art","is","everything","else","we","do"], maxWidth = 20
+     Output:
+     [
+       "Science  is  what we",
+       "understand      well",
+       "enough to explain to",
+       "a  computer.  Art is",
+       "everything  else  we",
+       "do                  "
+     ]
+
+     */
     //68. Text Justification
     func s25_68_fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {
         var result = [String]()
@@ -721,7 +768,6 @@ struct DString {
         
         return String(result.reversed())
     }
-    
     // Medium : 36. Valid Sudoku
     func s29_m36_solveSudoku(_ board: inout [[Character]]) {
         func isValid(_ row: Int, _ col: Int, _ char: Character) -> Bool {
@@ -923,7 +969,7 @@ struct DString {
      Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
      Each letter in magazine can only be used once in ransomNote.
 
-     Input: ransomNote = "a", magazine = "b"        Output: false
+     Input: ransomNote = "a",  magazine = "b"       Output: false
      Input: ransomNote = "aa", magazine = "ab"      Output: false
      */
     

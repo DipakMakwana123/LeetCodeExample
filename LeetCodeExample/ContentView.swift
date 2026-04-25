@@ -22,7 +22,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            viewModel.carFleet()
+            viewModel.minBitsFlips()
         }
         .padding()
     }
@@ -49,3 +49,4 @@ struct ContentView: View {
 #Preview {
     ContentView(leetCodeViewModel: LeetCodeViewModel())
 }
+

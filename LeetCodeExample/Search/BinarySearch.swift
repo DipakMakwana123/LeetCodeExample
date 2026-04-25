@@ -62,7 +62,6 @@ struct BinarySearch {
                 right = mid - 1
             }
         }
-        
         return false
     }
     
@@ -107,8 +106,6 @@ struct BinarySearch {
             var hours = 0
             for pile in piles {
                 hours += (pile + mid - 1) / mid
-                
-                
             }
             if(hours <= h) {
                 res = mid

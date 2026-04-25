@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct WiproViewModel {
+    let wipro: Wipro
+    init(_ wipro: Wipro = .init()) {
+        self.wipro = wipro
+    }
+    func minBitsFlips() {
+        print(wipro.minBitsFlips(10110, 10011))
+    }
+}

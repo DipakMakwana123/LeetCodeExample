@@ -578,8 +578,7 @@ struct DArray {
     /*
      Easy : 953. Verifying an Alien Dictionary
      Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
-     Example 1:
-     
+
      Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
      Output: true
      Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
@@ -746,19 +745,9 @@ struct DArray {
     }
     
     /* Easy  242. Valid Anagram
-     
      Given two strings s and t, return true if t is an anagram of s, and false otherwise.
-     Example 1:
-     
-     Input: s = "anagram", t = "nagaram"
-     
-     Output: true
-     
-     Example 2:
-     
-     Input: s = "rat", t = "car"
-     
-     Output: false
+     Input: s = "anagram", t = "nagaram"    Output: true
+     Input: s = "rat", t = "car"        Output: false
      */
     
     func A25_e242_isAnagram(_ s: String, _ t: String) -> Bool {
@@ -802,8 +791,7 @@ struct DArray {
     }
     /* Medium 347. Top K Frequent Elements
      Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
-     
-     Example 1:
+
      Input: nums = [1,1,1,2,2,3], k = 2
      Output: [1,2]
      */
@@ -852,8 +840,6 @@ struct DArray {
      Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
      
      You must write an algorithm that runs in O(n) time.
-     Example 1:
-     
      Input: nums = [100,4,200,1,3,2]
      Output: 4
      Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
@@ -880,13 +866,10 @@ struct DArray {
      We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
      
      You must solve this problem without using the library's sort function.
-     
-     Example 1:
-     
+
      Input: nums = [2,0,2,1,1,0]
      Output: [0,0,1,1,2,2]
-     Example 2:
-     
+
      Input: nums = [2,0,1]
      Output: [0,1,2]
      */
@@ -915,12 +898,10 @@ struct DArray {
      Given an array nums of size n, return the majority element.
      
      The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
-     Example 1:
-     
+
      Input: nums = [3,2,3]
      Output: 3
-     Example 2:
-     
+
      Input: nums = [2,2,1,1,1,2,2]
      Output: 2
      */
@@ -991,10 +972,7 @@ struct DArray {
      assert nums[i] == expectedNums[i];
      }
      If all assertions pass, then your solution will be accepted.
-     
-     
-     Example 1:
-     
+
      Input: nums = [1,1,2]
      Output: 2, nums = [1,2,_]
      
@@ -1040,11 +1018,7 @@ struct DArray {
      assert nums[i] == expectedNums[i];
      }
      If all assertions pass, then your solution will be accepted.
-     
-     
-     
-     Example 1:
-     
+
      Input: nums = [3,2,2,3], val = 3
      Output: 2, nums = [2,2,_,_]
      Explanation: Your function should return k = 2, with the first two elements of nums being 2.
@@ -1064,14 +1038,11 @@ struct DArray {
     /* Easy 28. Find the Index of the First Occurrence in a String
      
      Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
-     Example 1:
-     
      Input: haystack = "sadbutsad", needle = "sad"
      Output: 0
      Explanation: "sad" occurs at index 0 and 6.
      The first occurrence is at index 0, so we return 0.
-     Example 2:
-     
+
      Input: haystack = "leetcode", needle = "leeto"
      Output: -1
      Explanation: "leeto" did not occur in "leetcode", so we return -1.
@@ -1113,10 +1084,7 @@ struct DArray {
      Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
      
      You must write an algorithm with O(log n) runtime complexity.
-     
-     
-     Example 1:
-     
+
      Input: nums = [1,3,5,6], target = 5
      Output: 2
      

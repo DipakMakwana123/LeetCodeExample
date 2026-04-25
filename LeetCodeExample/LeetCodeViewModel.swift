@@ -20,6 +20,7 @@ class LeetCodeViewModel: ObservableObject {
     private var devideConquerVM: DevideConquerViewModel?
     private var dIntVM: DIntViewModel?
     private var dDoubleVM: DDoubleViewModel?
+    private var wipViewModel: WiproViewModel?
     @Published var data: [LeetCodeModel]
     
     init(
@@ -35,7 +36,8 @@ class LeetCodeViewModel: ObservableObject {
          _ dpVM: DPViewModel = .init(),
          _ devideConquerVM: DevideConquerViewModel = .init(),
          _ dIntVM: DIntViewModel = .init(),
-    _ dDoubleVM: DDoubleViewModel = .init()) {
+    _ dDoubleVM: DDoubleViewModel = .init(),
+         _ wipViewModel: WiproViewModel = .init()) {
         self.slidingWindowVM = slidingWindowVM
         self.stringVM = stringViewModel
         self.arrayVM = arrayVM
@@ -46,7 +48,8 @@ class LeetCodeViewModel: ObservableObject {
         self.dIntVM = dIntVM
         self.devideConquerVM = devideConquerVM
         self.dDoubleVM = dDoubleVM
-        self.searchVM = searchVM 
+        self.searchVM = searchVM
+        self.wipViewModel = wipViewModel
         data = [
             LeetCodeModel(title: "Two number sum from array"),
             LeetCodeModel(title: "Bracket Validation String"),
@@ -616,7 +619,13 @@ class LeetCodeViewModel: ObservableObject {
     func makeArrayIdentical() {
         devideConquerVM?.makeArrayIdentical()
     }
-    // MARK:  ========================================== deinit ===================================================
+    // MARK:  ========================================== Wipro ===================================================
+
+    func minBitsFlips() {
+        wipViewModel?.minBitsFlips()
+    }
+
+     // MARK:  ========================================== deinit ===================================================
     deinit {
         debugPrint("LeetCodeViewModel deinit")
     }

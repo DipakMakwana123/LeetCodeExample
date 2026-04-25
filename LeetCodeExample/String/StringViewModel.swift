@@ -112,6 +112,8 @@ struct StringViewModel {
     }
     func isMatch() {
         // let solution = Solution()
+        print(dString.s1_h10_isMatch("faangm", "fa*n.m")) // true
+
         print(dString.s1_h10_isMatch("aab", "c*a*b")) // true
         print(dString.s1_h10_isMatch("mississippi", "mis*is*p*.")) // false
         //        print(leetCode.isMatch("ab", ".*")) // true
