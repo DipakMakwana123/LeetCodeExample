@@ -624,6 +624,15 @@ class LeetCodeViewModel: ObservableObject {
     func minBitsFlips() {
         wipViewModel?.minBitsFlips()
     }
+    func topPerformingItems() {
+        wipViewModel?.topPerformingItems()
+    }
+    func minStops() {
+        wipViewModel?.minStops()
+    }
+    func lightStateAfterDays() {
+        wipViewModel?.lightStateAfterDays()
+    }
 
      // MARK:  ========================================== deinit ===================================================
     deinit {
