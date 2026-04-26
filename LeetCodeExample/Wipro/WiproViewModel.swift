@@ -36,4 +36,10 @@ struct WiproViewModel {
     print(wipro.lightStateAfterDays(arr, days))
     //Output: [0,1,1,0,1,1,0,0]
     }
+    func countParticipants() {
+        let input = [1, 2, 3, 1, 2, 1, 0, 9, 9]
+
+        let result = wipro.countParticipants(input)
+        print(result)
+    }
 }

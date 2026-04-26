@@ -633,6 +633,9 @@ class LeetCodeViewModel: ObservableObject {
     func lightStateAfterDays() {
         wipViewModel?.lightStateAfterDays()
     }
+    func countParticipants() {
+        wipViewModel?.countParticipants()
+    }
 
      // MARK:  ========================================== deinit ===================================================
     deinit {

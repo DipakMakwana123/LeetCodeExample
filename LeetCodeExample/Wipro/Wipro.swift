@@ -93,8 +93,16 @@ struct Wipro {
                 current = next
             }
         }
-
         return current
+    }
+    func countParticipants(_ clubs: [Int]) -> [Int] {
+        var count = Array(repeating: 0, count: 10)
+
+        for club in clubs {
+            count[club] += 1
+        }
+
+        return count
     }
 }
 
